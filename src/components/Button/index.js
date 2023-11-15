@@ -5,6 +5,7 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
+// to: link noi bo, href: link ngoai,
 function Button({
     to,
     href,

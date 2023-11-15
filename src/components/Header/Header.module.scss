@@ -37,10 +37,26 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    cursor: pointer;
+
+
+    &:hover {
+        text-decoration: underline;
+    }
+
     .title-icon__name {
         margin-left: 8px;
     }
+
+
 }
+.title-group{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+
 .bxh {
     margin-left: 30px;
 }
