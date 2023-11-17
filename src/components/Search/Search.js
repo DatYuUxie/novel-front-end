@@ -5,21 +5,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '../Popper';
+import { useDebounce } from '../../Hooks';
 
 const cx = classNames.bind(styles);
 
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [showResult,setShowResult]=useState(true);
+    const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
+    //delay the search
+    //wait user finish typing then fetch api
+    const debounced = useDebounce(searchValue, 500);
     const inputRef = useRef();
 
     useEffect(() => {
-        setTimeout(() => {
+        if (!debounced.trim()) {
             setSearchResult([]);
-        }, 0);
-    }, []);
+            return;
+        }
+
+        setLoading(true);
+
+        //fectch api
+        setSearchResult(debounced);
+        setShowResult(true);
+        console.log(searchResult);
+        setLoading(false);
+
+        //////------------//////
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -27,9 +43,9 @@ function Search() {
         inputRef.current.focus();
     };
 
-    const handleHideResult=()=>{
-        setShowResult(false)
-    }
+    const handleHideResult = () => {
+        setShowResult(false);
+    };
 
     return (
         <Tippy
@@ -38,9 +54,11 @@ function Search() {
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        <h4 className={cx('search-title')}>Accounts</h4>
-                        <h4 className={cx('search-title')}>Accounts</h4>
+                            <h4 className={cx('search-title')}>{searchResult}</h4>
+                            <h4 className={cx('search-title')}>{searchResult}</h4>
+                            <h4 className={cx('search-title')}>{searchResult}</h4>
+
+                   
                     </PopperWrapper>
                 </div>
             )}
@@ -54,12 +72,14 @@ function Search() {
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
-                {!!searchValue && (
+
+
+                {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClear}>
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
                 )}
-                {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+                {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
                 <button className={cx('search-btn')}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
