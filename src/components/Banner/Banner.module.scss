@@ -1,0 +1,43 @@
+.banner-container {
+    width: 480px;
+    height: 290px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+.container {
+    width: 480px;
+}
+.banner-container-1 {
+    width: 480px;
+    height: 290px;
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 40px 0px 30px;
+    border-radius: 5px;
+}
+
+.cover-banner {
+    width: 410px;
+    height: 250px;
+    display: flex;
+    justify-content: space-between;
+    .cover-img {
+        height: 200px;
+    }
+    .novel-info {
+        width: 240px;
+        color: #ffffff;
+        .novel-des {
+            margin-top: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 6;
+            height: 150px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    }
+}
