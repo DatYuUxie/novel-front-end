@@ -1,0 +1,72 @@
+.container {
+    margin-top: 30px;
+}
+.novel-item-container {
+    width: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    background-color: #fff;
+}
+
+.cover-novel-item {
+    width: 270px;
+    display: flex;
+    justify-content: space-between;
+    .cover-novel-img{
+        height: 112px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        .cover-img {
+            width: 84px !important;
+            border-radius: 2px;
+            cursor: pointer;
+            
+    
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            -webkit-transition: 0.3s ease-in-out;
+            transition: 0.3s ease-in-out;
+            &:hover {
+                height: 112px;
+                -webkit-transform: scale(1.2);
+                transform: scale(1.2);
+            }
+        }
+    }
+    
+    .novel-info {
+        width: 160px;
+        color: #393939;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .novel-des {
+            font-size: 1.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 20px;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+        .type {
+            color: #6c6c6c;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        .name {
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
