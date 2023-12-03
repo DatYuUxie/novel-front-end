@@ -1,0 +1,60 @@
+.container {
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    display: flex;
+    border-radius: 1rem;
+    .cover-novel-img {
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .novel-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 40px;
+
+        .author {
+            margin-top: -10px;
+            color: #6c6c6c;
+            font-weight: 600;
+            display: flex;
+            p + p {
+                margin-left: 10px;
+            }
+            .author-link {
+                color: rgb(72, 0, 255);
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        .name {
+            margin-top: -10px;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        .stat {
+            display: flex;
+            .stat-item {
+            }
+            .stat-item + .stat-item {
+                margin-left: 20px;
+            }
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            .rates {
+                margin-left: 10px;
+            }
+        }
+        .buttons {
+        }
+    }
+}

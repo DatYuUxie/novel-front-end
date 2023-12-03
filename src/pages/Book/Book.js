@@ -1,7 +1,15 @@
+import BookContent from '../../components/BookContent';
+import BookBanner from '../../components/BookBanner';
+import BookHeader from '../../components/BookHeader';
+
 function Book() {
-    return ( 
-        <h1>book</h1>
-     );
+    return (
+        <>
+            <BookHeader />
+            <BookBanner />
+            <BookContent/>
+        </>
+    );
 }
 
 export default Book;

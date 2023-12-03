@@ -1,0 +1,47 @@
+.container {
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    margin-top: 40px;
+    border-radius: 1rem;
+    .group {
+        .group-tag {
+            .tag {
+                margin-top: 20px;
+            }
+        }
+        .group-tag-2 {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #c2c2c2;
+            border-radius: 5px;
+            padding: 20px;
+            .group-item{
+                display: flex;
+                .item {
+                    display: flex;
+                    align-items: center;
+                    .cover-img {
+                        .img {
+                        }
+                    }
+                    h1 {
+                        margin: 0px 10px;
+                    }
+                }
+                .item + .item {
+                    margin-left: 20px;
+                }
+            }
+            .button{
+                height: 100%;
+            }
+            
+            
+        }
+    }
+    .group + .group {
+        margin-top: 30px;
+    }
+}
