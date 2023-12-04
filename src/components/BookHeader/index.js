@@ -50,7 +50,7 @@ function BookHeader() {
                     </div>
                 </div>
                 <div className={cx('rating')}>
-                    <Rating onClick={handleRating} initialValue={rating} />
+                    <Rating onClick={handleRating} initialValue={rating} readonly/>
                     <h3>4.9</h3>
                     <h3>/5</h3>
                     <p className={cx('rates')}>(99 rates)</p>

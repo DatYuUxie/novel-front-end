@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import Button from '../Button';
 import Intro from './Intro';
-import Review from '../Review';
-
+import Reviews from './Reviews';
+import List from './List';
 import styles from './BookContent.module.scss';
 
 const cx = classNames.bind(styles);
@@ -30,7 +30,10 @@ function BookContent() {
             </div>
             <div className={cx('content')}>
                 {tab==0&&<Intro/>}
-                <Review/>
+                {tab==1&&<Reviews/>}
+                {tab==2&&<List/>}
+
+
             </div>
         </div>
     );
