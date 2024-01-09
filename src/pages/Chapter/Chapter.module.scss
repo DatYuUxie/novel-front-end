@@ -1,0 +1,129 @@
+.container {
+    line-height: 1.5;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5vh;
+    justify-content: space-between;
+    position: relative;
+}
+
+.content {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    margin-right: 60px;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px 0 rgba(#05043e, 0.15);
+    .head {
+        display: flex;
+        justify-content: space-between;
+    }
+    .info {
+        margin-bottom: 20px;
+    }
+    .name {
+        font-size: 30px;
+        margin: 30px 0px 0px 0px;
+    }
+    .foot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+		margin-top: 20px;
+    }
+	.foot2 {
+		display: flex;
+		margin-top: 20px;
+		flex-direction: column;
+		align-items: center;
+		
+    }
+}
+.warning{
+	color: #f3f3f3;
+	background-color: #dc5618;
+	&:hover{
+		background-color: #ef7339;
+
+	}
+
+}
+.comment{
+	color: #f3f3f3;
+	background-color: #187adc;
+	&:hover{
+		background-color: #419efc;
+
+	}
+}
+.paragraph {
+    word-wrap: break-word;
+}
+
+.sidebar {
+    position: fixed;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 1110px;
+    margin-right: auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px 0 rgba(#05043e, 0.15);
+}
+
+.icon {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 8px;
+    position: relative;
+    &:hover,
+    &:focus,
+    &.active {
+        background-color: #f3f3f3;
+        outline: 0;
+
+        span {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    span {
+        position: absolute;
+        background-color: #939393;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        right: calc(100% + 1.5rem);
+        transform-origin: center left;
+        transform: scale(0);
+        opacity: 0;
+        transition: 0.15s ease;
+        &::after {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            background-color: #939393;
+            right: -5px;
+            top: 50%;
+            transform: translatey(-50%) rotate(45deg);
+            border-radius: 3px;
+        }
+    }
+}
+
+.icon + .icon {
+    margin-top: 0.75rem;
+}

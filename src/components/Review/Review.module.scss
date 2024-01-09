@@ -20,14 +20,15 @@
 }
 
 .review-content {
-  padding-top: 20px;
-  border-top: 0.5px solid #f1f1f1;
+    padding-top: 20px;
+    border-top: 0.5px solid #f1f1f1;
     .review-info {
         display: flex;
         align-items: flex-start;
         flex-direction: column;
         .name-vote {
             display: flex;
+            align-items: center;
         }
         .review-time {
             color: #676767;
@@ -38,22 +39,17 @@
     }
 
     .review-footer {
-      display: flex;
-      justify-content: flex-end;
-      color: #a1a1a1;
-      align-items: center;
-      margin-top: 10px;
-      .icon{
-        cursor: pointer;
-        margin-right: 20px;
-        &:hover{
-          color: #dbdbdb;
-
+        display: flex;
+        justify-content: flex-end;
+        color: #a1a1a1;
+        align-items: center;
+        margin-top: 10px;
+        .icon {
+            cursor: pointer;
+            margin-right: 20px;
+            &:hover {
+                color: #dbdbdb;
+            }
         }
-      }
-  }
-  
+    }
 }
-
-
-
