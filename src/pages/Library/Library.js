@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import NovelItem2 from '../../components/NovelItem2';
-import '../../assets/css/grid.css'
+import '../../assets/css/grid.css';
 const cx = classNames.bind(styles);
 
 function Library() {
@@ -16,10 +16,10 @@ function Library() {
 
     const active = cx('active');
     const hidden = cx('hidden');
-    const toggleClick = ()=>{
-        let temp= editClick;
+    const toggleClick = () => {
+        let temp = editClick;
         setEditClick(!temp);
-    }
+    };
     return (
         <div>
             <div className={cx('head')}>
@@ -34,27 +34,37 @@ function Library() {
                         </div>
                     </div>
                     <div className={cx(editClick == true && hidden)}>
-                    <Button className={cx('remove')} leftIcon={<FontAwesomeIcon icon={faTrashAlt}/>}>Xóa</Button>
-                    <Button className={cx('cancel')} onClick={toggleClick}>Hủy</Button>
+                        <Button className={cx('remove')} leftIcon={<FontAwesomeIcon icon={faTrashAlt} />}>
+                            Xóa
+                        </Button>
+                        <Button className={cx('cancel')} onClick={toggleClick}>
+                            Hủy
+                        </Button>
                     </div>
-                    
-                    <Button className={cx('edit', editClick == false && hidden)} onClick={toggleClick} leftIcon={<FontAwesomeIcon icon={faEdit}/>}>Chỉnh sửa</Button>
+
+                    <Button
+                        className={cx('edit', editClick == false && hidden)}
+                        onClick={toggleClick}
+                        leftIcon={<FontAwesomeIcon icon={faEdit} />}
+                    >
+                        Chỉnh sửa
+                    </Button>
                 </div>
             </div>
             <div className={cx('content')}>
-            <div className='grid'>
-                <div className='row'>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
-                <NovelItem2/>
+                <div className="grid">
+                    <div className="row">
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                        <NovelItem2 />
+                    </div>
                 </div>
-        </div>
             </div>
         </div>
     );

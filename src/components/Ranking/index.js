@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Ranking() {
     return (
         <div className={cx('container')}>
-            <h2 className={cx('title')}>Ranking</h2>
+            <h2 className={cx('title')}>Bảng xếp hạng</h2>
             <RankingItem/>
             <RankingItem/>
             <RankingItem/>

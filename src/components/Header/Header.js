@@ -119,7 +119,7 @@ function Header() {
                         </div>
                     </Menu>
 
-                    <Link to={config.home} className={cx('title-icon', 'bxh')}>
+                    <Link to={config.rankings} className={cx('title-icon', 'bxh')}>
                         <h4 className={cx('title-icon__name')}>Bảng xếp hạng</h4>
                     </Link>
                 </div>
@@ -134,7 +134,7 @@ function Header() {
                     <div className={cx('actions')}>
                         {currentUser ? (
                             <>
-                                <Link to={config.home} className={cx('title-icon', 'bxh')}>
+                                <Link to={config.library} className={cx('title-icon', 'bxh')}>
                                     <FontAwesomeIcon icon={faQuran} />
                                     <h4 className={cx('title-icon__name')}>Kệ sách</h4>
                                 </Link>
