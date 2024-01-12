@@ -1,0 +1,46 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.novel-item-container {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 170px;
+    border-radius: 5px;
+    box-shadow: 0 10px 50px 0 rgba(#05043e, 0.15);
+
+}
+
+.cover-novel-img {
+    height: 200px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    .cover-img {
+        width: 150px !important;
+        border-radius: 2px;
+        cursor: pointer;
+
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out;
+        &:hover {
+            height: 200px;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+    }
+}
+.name {
+    margin-top: 10px;
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.progress{
+    color: rgb(156, 156, 156);
+}

@@ -4,6 +4,7 @@ const routes = {
     profile: '/@:nickname',
     chapter: '/chapter',
     library: '/library',
+    rankings: '/rankings',
 
 };
 
