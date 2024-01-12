@@ -27,7 +27,7 @@
     width: 0;
     height: 6px;
     border-radius: 15px;
-    background-color: var(--primary);
+    background-color: var(--second);
     transition: all 0.2s ease;
 }
 .remove{
@@ -77,8 +77,8 @@
 }
 .tab-item.active {
     opacity: 1;
-    color: var(--primary);
-    border-bottom: 5px solid var(--primary);
+    color: var(--second);
+    border-bottom: 5px solid var(--second);
 }
 
 

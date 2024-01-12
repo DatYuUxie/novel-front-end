@@ -15,7 +15,7 @@ function RankingItem() {
             </div>
             <h3 className={cx('rank')}>01</h3>
             <div className={cx('content')}>
-                <h3 className={cx('name')}>Goddess of Ice: Corrupting Bleach</h3>
+                <h4 className={cx('name')}>Goddess of Ice: Corrupting Bleach</h4>
 
                 <h5 className={cx('type')}>fantasty</h5>
             </div>

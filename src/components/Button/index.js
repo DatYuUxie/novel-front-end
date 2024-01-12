@@ -10,6 +10,7 @@ function Button({
     to,
     href,
     primary = false,
+    primary2 = false,
     outline = false,
     text = false,
     rounded = false,
@@ -51,6 +52,7 @@ function Button({
     const classes = cx('wrapperBtn', {
         [className]: className,
         primary,
+        primary2,
         outline,
         text,
         tag,
@@ -74,6 +76,7 @@ Button.propTypes = {
     to: PropTypes.string,
     href: PropTypes.string,
     primary: PropTypes.bool,
+    primary2: PropTypes.bool,
     outline: PropTypes.bool,
     text: PropTypes.bool,
     rounded: PropTypes.bool,

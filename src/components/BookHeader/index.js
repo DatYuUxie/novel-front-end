@@ -56,10 +56,10 @@ function BookHeader() {
                     <p className={cx('rates')}>(99 rates)</p>
                 </div>
                 <div className={cx('buttons')}>
-                    <Button outline tag>
+                    <Button primary2 tag>
                         Đọc truyện
                     </Button>
-                    <Button outline tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
+                    <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
                         Thêm vào kệ sách
                     </Button>
                 </div>

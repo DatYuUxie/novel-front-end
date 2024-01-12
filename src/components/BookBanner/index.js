@@ -15,41 +15,41 @@ function BookBanner() {
             <div className={cx('group')}>
                 <h1>Tags</h1>
                 <div className={cx('group-tag')}>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
-                    <Button outline tag className={cx('tag')}>
-                        Đọc truyện
+                    <Button rounded tag className={cx('tag')}>
+                        #Đọc truyện
                     </Button>
                 </div>
             </div>
@@ -82,10 +82,10 @@ function BookBanner() {
                         </div>
                     </div>
                     <div className={cx('button')}>
-                    <Button  primary tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} >
+                    <Button  primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} >
                         Bình chọn
                     </Button>
-                    <Button  primary tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} >
+                    <Button  primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} >
                         Tặng thưởng
                     </Button>
                     </div>
