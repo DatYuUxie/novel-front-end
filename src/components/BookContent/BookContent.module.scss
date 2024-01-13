@@ -5,7 +5,7 @@
     margin-top: 40px;
     border-radius: 1rem;
 
-    .content{
+    .content {
         margin-top: 40px;
     }
 }
@@ -42,14 +42,50 @@
         background-color: rgba(194, 53, 100, 0.05);
         border-color: rgba(194, 53, 100, 0.1);
     }
-
 }
-.tab-item+.tab-item{
+.tab-item + .tab-item {
     margin-left: 40px;
 }
 .tab-item.active {
     opacity: 1;
     color: var(--second);
     border-bottom: 5px solid var(--second);
+}
 
-  }
+textarea {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 15rem;
+    outline: none;
+    resize: none;
+    font-size: large;
+}
+
+.rating {
+    margin-left: 25%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    .rates {
+        margin-left: 10px;
+    }
+}
+
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .modal-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}

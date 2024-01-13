@@ -21,13 +21,12 @@ function NovelItem() {
                         />
                     </div>
                     <div className={cx('novel-info')}>
-                        <h3 className={cx('name')}>Shadow Slave</h3>
+                        <h3 className={cx('name')}>Cầu ma</h3>
                         <p className={cx('novel-des')}>
-                            Growing up in poverty, Sunny never expected anything good from life. However, even he did
-                            not anticipate being chosen by the Nightmare Spell and becoming However, even he did not
-                            anticipate being chosen by the Nightmare Spell and becoming
+                            Có loại người, trong miệng chưa từng nói ra tình cảm, nhưng chôn giấu tình cảm tại đáy lòng,
+                            là ngươi nếu như hiểu, liền có thể mỉm cười cả đời chấp nhất.
                         </p>
-                        <h5 className={cx('type')}>fantasty</h5>
+                        <h5 className={cx('type')}>#Huyền huyễn</h5>
                     </div>
                 </div>
             </Link>

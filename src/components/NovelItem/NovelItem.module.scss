@@ -44,7 +44,7 @@
     
     .novel-info {
         width: 160px;
-        color: #393939;
+        color: #000000;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -52,13 +52,13 @@
             font-size: 1.2rem;
             overflow: hidden;
             text-overflow: ellipsis;
-            line-height: 20px;
-            -webkit-line-clamp: 2;
+            line-height: 15px;
+            -webkit-line-clamp: 3;
             display: -webkit-box;
             -webkit-box-orient: vertical;
         }
         .type {
-            color: #6c6c6c;
+            color: var(--third);
             cursor: pointer;
             font-weight: 600;
 

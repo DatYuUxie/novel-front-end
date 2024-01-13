@@ -54,7 +54,7 @@ function Library() {
             <div className={cx('content')}>
                 <div className="grid">
                     <div className="row">
-                        <NovelItem2 />
+                        <NovelItem2 isEdit={true} name="hello"/>
                         <NovelItem2 />
                         <NovelItem2 />
                         <NovelItem2 />

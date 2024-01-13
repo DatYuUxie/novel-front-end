@@ -30,7 +30,7 @@ function BookHeader() {
                 />
             </div>
             <div className={cx('novel-info')}>
-                <h1 className={cx('name')}>Shadow Slave</h1>
+                <h1 className={cx('name')}>Nô Dịch Bóng Tối</h1>
                 <p className={cx('author')}>
                     <p>Tác giả</p>
                     <p  className={cx('author-link')}>Oggy</p>
@@ -53,7 +53,7 @@ function BookHeader() {
                     <Rating onClick={handleRating} initialValue={rating} readonly/>
                     <h3>4.9</h3>
                     <h3>/5</h3>
-                    <p className={cx('rates')}>(99 rates)</p>
+                    <p className={cx('rates')}>(99 lượt)</p>
                 </div>
                 <div className={cx('buttons')}>
                     <Button primary2 tag>

@@ -1,8 +1,71 @@
-.container{
+.container {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+    position: relative;
 }
+
+.check-icon{
+    margin-top: 65px;
+    position: absolute;
+    align-items: center;
+    z-index: 1;
+    color: #cbcbcb;
+}
+
+.container input {
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+
+    position: absolute;
+    align-items: center;
+    // clip-path: circle(46% at 50% 50%); /* Set the clip path of circle*/
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    // background-image: linear-gradient(90deg,#3b66f5,#163bcd);
+    outline: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.container .novel-item-container:before {
+    content: '✓';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 8px;
+    left: 8px;
+    background: #f10d2f;
+    color: #751e1e;
+    text-align: center;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 200ms ease-in-out;
+    z-index: 1;
+}
+.container input:checked + .novel-item-container:before {
+    opacity: 1;
+    transform: scale(1);
+}
+.container input:checked + .novel-item-container .name {
+    color: #f10d2f;
+}
+.container input:checked + .novel-item-container .progress {
+    color: #f10d2f;
+}
+.container input:checked + .novel-item-container {
+    border: 1px solid #f10d2f;
+}
+
 
 .novel-item-container {
     background-color: rgb(255, 255, 255);
@@ -10,7 +73,7 @@
     width: 170px;
     border-radius: 5px;
     box-shadow: 0 10px 50px 0 rgba(#05043e, 0.15);
-
+    border: 1px solid #ffffff;
 }
 
 .cover-novel-img {
@@ -41,6 +104,6 @@
         text-decoration: underline;
     }
 }
-.progress{
+.progress {
     color: rgb(156, 156, 156);
 }

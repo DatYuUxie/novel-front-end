@@ -32,22 +32,21 @@ function Review() {
                     <h3>Nobita</h3>
 
                     <div className={cx('name-vote')}>
-                        <Rating onClick={handleRating} initialValue={rating} size="15" readonly/>
+                        <Rating onClick={handleRating} initialValue={rating} size="15" readonly />
                         <p className={cx('review-time')}>3 ngày trước</p>
                     </div>
                 </div>
                 <p>
-                    This is the service I have been looking for for years but not knowing this type of thing was the
-                    answer or even existed. Forget multiple complicated slow note-taking websites and applications. When
-                    google and websites are used for every type of work I conduct on my pc this takes away the headache
-                    of bookmarks and tedious switching between projects.
+                    Một kiệt tác cho cuốn tiểu thuyết đầu tiên mà tác giả này tạo ra, đã rất nhiều năm rồi tôi mới đọc
+                    được thứ gì đó có lối viết và mô tả đỉnh cao, kết hợp với lịch sử và nhân vật chính tuyệt vời. Và
+                    Tác giả nói chuyện và nhận xét với mọi người như thể anh ấy thực sự vui mừng vì tác phẩm và phản hồi
+                    của mình. Bất cứ ai nỗ lực đều xứng đáng được tôn trọng.
                 </p>
 
                 <div className={cx('review-footer')}>
-
-                    <FontAwesomeIcon icon={faThumbsUp} className={cx('icon')}/>
-                    <FontAwesomeIcon icon={faCommenting} className={cx('icon')}/>
-                    <FontAwesomeIcon icon={faExclamationTriangle} className={cx('icon')}/>
+                    <FontAwesomeIcon icon={faThumbsUp} className={cx('icon')} />
+                    <FontAwesomeIcon icon={faCommenting} className={cx('icon')} />
+                    <FontAwesomeIcon icon={faExclamationTriangle} className={cx('icon')} />
                 </div>
             </div>
         </div>

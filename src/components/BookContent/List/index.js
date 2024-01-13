@@ -23,22 +23,22 @@ function List() {
             time: '2 năm trước',
         },
         {
-            chapterNumber: '1',
+            chapterNumber: '5',
             name: 'Iam not an Undead!',
             time: '1 năm trước',
         },
         {
-            chapterNumber: '2',
+            chapterNumber: '6',
             name: 'begin',
             time: '4 năm trước',
         },
         {
-            chapterNumber: '3',
+            chapterNumber: '7',
             name: 'Luck',
             time: '1 năm trước',
         },
         {
-            chapterNumber: '4',
+            chapterNumber: '8',
             name: 'get a good dragon',
             time: '2 năm trước',
         },
