@@ -6,12 +6,17 @@ import Ranking from '../../components/Ranking';
 import Button from '../../components/Button';
 
 import '../../assets/css/grid.css';
+import NewUpdate from '../../components/NewUpdate';
 const cx = classNames.bind(styles);
 
 function Home() {
     return (
         <>
-            <Banner />
+            <div className={cx('top')}>
+                <Banner />
+                <NewUpdate />
+            </div>
+
             <div className={cx('container')}>
                 <h2 className={cx('title')}>Tiếp tục xem</h2>
 
@@ -59,7 +64,6 @@ function Home() {
                     <Button text tag>
                         Đô thị
                     </Button>
-                    
                 </div>
                 <div className={cx('content')}>
                     <div className="grid">

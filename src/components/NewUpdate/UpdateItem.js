@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './Ranking.module.scss';
+import styles from './NewUpdate.module.scss';
 
 const cx = classNames.bind(styles);
 
-function RankingItem(data) {
+function UpdateItem(data) {
     console.log("bxhit",data)
     return (
         <div className={cx('container-item')}>
@@ -14,7 +14,6 @@ function RankingItem(data) {
                     className={cx('img')}
                 />
             </div>
-            <h3 className={cx('rank')}>{data.data}</h3>
             <div className={cx('content')}>
                 <h4 className={cx('name')}>Goddess of Ice: Corrupting Bleach</h4>
 
@@ -24,4 +23,4 @@ function RankingItem(data) {
     );
 }
 
-export default RankingItem;
+export default UpdateItem;

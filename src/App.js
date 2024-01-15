@@ -7,6 +7,7 @@ import ScrollToTop from './services/scrollToTop';
 function App() {
     return (
         <Router>
+            {/* set len dau trang */}
             <ScrollToTop />
             <div className="App">
                 <Routes>
