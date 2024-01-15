@@ -7,29 +7,27 @@ import Button from '../Button';
 
 const cx = classNames.bind(styles);
 
-function RankingItem2() {
+function RankingItem2({data}) {
     return (
         <div className={cx('container-item')}>
-            <h3 className={cx('rank')}>01</h3>
+            <h3 className={cx('rank')}>{data.rank}</h3>
 
             <div className={cx('cover-img')}>
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhegpPNPQyfEAJtmb5QFa3gjZZjHjVRpOCWA&usqp=CAU"
+                    src={data.img}
                     alt="cover-img"
                     className={cx('img')}
                 />
             </div>
             <div className={cx('content')}>
-                <h3 className={cx('name')}>Goddess of Ice: Corrupting Bleach</h3>
+                <h3 className={cx('name')}>{data.name}</h3>
                 <p className={cx('des')}>
-                    Thiên địa là vạn vật chúng sinh khách xá, quang âm là từ xưa tới nay khách qua đường.Tử sinh khác
-                    biệt, thật giống như mộng cùng tỉnh khác biệt, xôn xao biến hóa, không thể cật vấn.Như vậy siêu việt
-                    sinh tử, đã vượt ra thiên địa, tại quang âm
+                    {data.des}
                 </p>
                 <div className={cx('info-container')}>
                     <Button className={cx('info')} leftIcon={<FontAwesomeIcon icon={faUserEdit} />}>Nhĩ Căn</Button>
                     <Button className={cx('info')} leftIcon={<FontAwesomeIcon icon={faFire} />}>1.20k</Button>
-                    <Button className={cx('info')}>#Tiên hiệp</Button>
+                    <Button className={cx('info')}>#{data.tag}</Button>
                 </div>
             </div>
         </div>

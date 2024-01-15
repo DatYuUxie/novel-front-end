@@ -30,10 +30,10 @@ function BookHeader() {
                 />
             </div>
             <div className={cx('novel-info')}>
-                <h1 className={cx('name')}>Nô Dịch Bóng Tối</h1>
+                <h1 className={cx('name')}>Cầu ma</h1>
                 <p className={cx('author')}>
                     <p>Tác giả</p>
-                    <p  className={cx('author-link')}>Oggy</p>
+                    <p  className={cx('author-link')}>Nhĩ Căn</p>
                 </p>
                 <div className={cx('stat')}>
                     <div className={cx('stat-item')}>

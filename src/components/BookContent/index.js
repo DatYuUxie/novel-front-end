@@ -32,7 +32,7 @@ function BookContent() {
                 {tab==0&&<Intro/>}
                 {tab==1&&<Reviews/>}
                 {tab==2&&<List/>}
-
+                {tab==3&&<Reviews/>}
 
             </div>
         </div>

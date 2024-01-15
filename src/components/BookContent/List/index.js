@@ -4,42 +4,82 @@ function List() {
     const chapterList = [
         {
             chapterNumber: '1',
-            name: 'Iam not an Undead!',
+            name: 'Tô minh',
             time: '1 năm trước',
         },
         {
             chapterNumber: '2',
-            name: 'begin',
+            name: 'Đoạn thời gian tốt đẹp ấy',
             time: '4 năm trước',
         },
         {
             chapterNumber: '3',
-            name: 'Luck',
+            name: 'Bỗng nhiên quay đầu',
             time: '1 năm trước',
         },
         {
             chapterNumber: '4',
-            name: 'get a good dragon',
+            name: 'Dị biến',
             time: '2 năm trước',
         },
         {
             chapterNumber: '5',
-            name: 'Iam not an Undead!',
+            name: 'Mộng ư',
             time: '1 năm trước',
         },
         {
             chapterNumber: '6',
-            name: 'begin',
+            name: 'Ân trạch',
             time: '4 năm trước',
         },
         {
             chapterNumber: '7',
-            name: 'Luck',
+            name: 'Tráo phúng vạn năm trước',
             time: '1 năm trước',
         },
         {
             chapterNumber: '8',
-            name: 'get a good dragon',
+            name: 'Huyết hỏa trùng trùng',
+            time: '2 năm trước',
+        },
+        {
+            chapterNumber: '9',
+            name: 'Tối thán',
+            time: '1 năm trước',
+        },
+        {
+            chapterNumber: '10',
+            name: 'Bỉ thương giả thiên cớ gì ngươi khóc',
+            time: '4 năm trước',
+        },
+        {
+            chapterNumber: '11',
+            name: 'Tô Minh nổ giận',
+            time: '1 năm trước',
+        },
+        {
+            chapterNumber: '12',
+            name: 'Sát cơ',
+            time: '2 năm trước',
+        },
+        {
+            chapterNumber: '13',
+            name: 'Tà man',
+            time: '1 năm trước',
+        },
+        {
+            chapterNumber: '14',
+            name: 'Lột xác',
+            time: '4 năm trước',
+        },
+        {
+            chapterNumber: '15',
+            name: 'A công',
+            time: '1 năm trước',
+        },
+        {
+            chapterNumber: '16',
+            name: 'Man Văn',
             time: '2 năm trước',
         },
     ];

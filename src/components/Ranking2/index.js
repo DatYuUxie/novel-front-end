@@ -4,14 +4,13 @@ import RankingItem2 from './RankingItem2';
 
 const cx = classNames.bind(styles);
 
-function Ranking2() {
+function Ranking2({data}) {
+    console.log("datatattatata",data)
     return (
         <div className={cx('container')}>
-            <RankingItem2/>
-            <RankingItem2/>
-            <RankingItem2/>
-            <RankingItem2/>
-            <RankingItem2/>
+            {data.map((item, index) => {
+                        return <RankingItem2 data={item} />;
+                    })}
 
             
         </div>

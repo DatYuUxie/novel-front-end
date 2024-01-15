@@ -5,7 +5,7 @@
     position: relative;
 }
 
-.check-icon{
+.check-icon {
     margin-top: 65px;
     position: absolute;
     align-items: center;
@@ -66,7 +66,6 @@
     border: 1px solid #f10d2f;
 }
 
-
 .novel-item-container {
     background-color: rgb(255, 255, 255);
     padding: 10px;
@@ -100,6 +99,11 @@
 .name {
     margin-top: 10px;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     &:hover {
         text-decoration: underline;
     }

@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom';
+import config from '../../../config';
+
+
 import classNames from 'classnames/bind';
 import styles from './List.module.scss';
 import '../../../assets/css/grid.css'
@@ -12,10 +16,10 @@ function ListItem(data) {
         <div className={cx('padding-item' , responsive)}>
         <div className={cx('item', evenNumber && item2 )}>
             <p>{data.data.chapterNumber}</p>
-            <div className={cx('item-content')}>
-                <p>{data.data.name}</p>
+            <Link to={config.chapter} className={cx('item-content')}>
+                <p className={cx('name')}>{data.data.name}</p>
                 <p className={cx('time')}>{data.data.time}</p>
-            </div>
+            </Link>
         </div>
         </div>
     );
