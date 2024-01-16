@@ -156,10 +156,10 @@ function Header() {
                         ) : (
                             <>
                                 <div className={cx('bxh')}>
-                                    <Button primary small>
+                                    <Button to={config.login} primary2 small>
                                         Đăng nhập
                                     </Button>
-                                    <Button outline small>
+                                    <Button to={config.register} primary2 small>
                                         Đăng kí
                                     </Button>
                                 </div>

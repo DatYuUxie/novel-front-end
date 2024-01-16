@@ -14,6 +14,9 @@ const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const handleLogin=()=>{
+        navigate('/');
+    }
     // const handleLogin = async () => {
     //     if (!email) {
     //         message.error('Email không được để trống!');
@@ -71,11 +74,11 @@ const Login = (props) => {
                 </div>
 
                 <div className="centered-welcome">
-                    <div className="title">Welcome to Webnovel!</div>
+                    <div className="title">Chào mừng Webnovel!</div>
                 </div>
 
                 <div className="centered-become">
-                    <div className="title">Become the Next Top Writer with Webnovel.</div>
+                    <div className="title">Đọc những tác phẩm yêu thích của bạn.</div>
                 </div>
 
                 <Form.Item
@@ -118,11 +121,11 @@ const Login = (props) => {
                 </Form.Item>
                 <Form.Item>
                     <Form.Item name="remember" valuePropName="checked" noStyle>
-                        <Checkbox style={{ float: 'left' }}>Remember me</Checkbox>
+                        <Checkbox style={{ float: 'left' }}>Ghi nhớ</Checkbox>
                     </Form.Item>
 
                     <a style={{ float: 'right' }} className="login-form-forgot" href="/">
-                        Forgot password
+                        Quên mật khẩu
                     </a>
                 </Form.Item>
 
@@ -133,7 +136,7 @@ const Login = (props) => {
                         htmlType="submit"
                         className="login-form-button"
                         style={{ width: '100%', marginBottom: '10px' }}
-                        // onClick={handleLogin}
+                        onClick={handleLogin}
                     >
                         Đăng nhập
                     </Button>

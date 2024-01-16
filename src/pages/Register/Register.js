@@ -82,11 +82,11 @@ const Register = (props) => {
                 </div>
 
                 <div className="centered-welcome">
-                    <div className="title">Welcome to Webnovel!</div>
+                    <div className="title">Chào mừng Webnovel!</div>
                 </div>
 
                 <div className="centered-become">
-                    <div className="title">Become the Next Top Writer with Webnovel.</div>
+                    <div className="title">Tạo tài khoản Webnovel.</div>
                 </div>
 
                 <Form.Item

@@ -5,6 +5,8 @@ const routes = {
     chapter: '/chapter',
     library: '/library',
     rankings: '/rankings',
+    login:'/login',
+    register: '/register',
 
 };
 

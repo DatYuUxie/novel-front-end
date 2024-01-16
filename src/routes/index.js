@@ -14,8 +14,8 @@ const publicRoutes = [
     { path: '/chapter', component: Chapter },
     { path: '/library', component: Library },
     { path: '/rankings', component: Rankings },
-    { path: '/login', component: Login },
-    { path: '/register', component: Register },
+    { path: '/login', component: Login , layout:null},
+    { path: '/register', component: Register , layout:null},
 ];
 
 const privateRoutes = [];
