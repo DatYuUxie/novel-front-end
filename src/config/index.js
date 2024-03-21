@@ -7,6 +7,8 @@ const routes = {
     rankings: '/rankings',
     login:'/login',
     register: '/register',
+    forum: '/forum',
+    thread: '/thread/:threadId',
 
 };
 

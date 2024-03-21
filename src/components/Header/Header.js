@@ -115,7 +115,7 @@ function Header() {
                     <Menu items={CATEGORY_ITEMS}>
                         <div className={cx('title-icon', 'bxh')}>
                             <FontAwesomeIcon icon={faBars} />
-                            <h4 className={cx('title-icon__name')}>Thể loại</h4>
+                            <h4 classNamze={cx('title-icon__name')}>Thể loại</h4>
                         </div>
                     </Menu>
 
@@ -127,7 +127,7 @@ function Header() {
                 <Search />
 
                 <div className={cx('title-group')}>
-                    <Link to={config.home} className={cx('title-icon')}>
+                    <Link to={config.forum} className={cx('title-icon')}>
                         <h4 className={cx('title-icon__name')}>Diễn đàn</h4>
                     </Link>
 

@@ -23,7 +23,7 @@ function Review() {
             <div className={cx('avatar')}>
                 <img
                     className={cx('user-img')}
-                    src="https://kiddy.edu.vn/wp-content/uploads/2023/05/130-Anh-Meme-Meme-Cat-Cute-Cute-Up-Sink-Down.jpg"
+                    src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg"
                     alt="user"
                 />
             </div>
