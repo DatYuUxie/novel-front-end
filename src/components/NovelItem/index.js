@@ -7,25 +7,18 @@ import Button from '../Button';
 import '../../assets/css/grid.css';
 const cx = classNames.bind(styles);
 
-function NovelItem({data}) {
+function NovelItem({ data }) {
     let responsive = 'l-3 m-4 c-6';
-    // console.log("abc,", data)
     return (
         <div className={cx('container', responsive)}>
-            <Link to={config.book} className={cx('novel-item-container')}>
+            <Link to={`/book/${data.bookID}`} className={cx('novel-item-container')}>
                 <div className={cx('cover-novel-item')}>
                     <div className={cx('cover-novel-img')}>
-                        <img
-                            src={data.img}
-                            alt="cover-img"
-                            className={cx('cover-img')}
-                        />
+                        <img src={data.poster} alt="cover-img" className={cx('cover-img')} />
                     </div>
                     <div className={cx('novel-info')}>
-                        <h3 className={cx('name')}>{data.name}</h3>
-                        <p className={cx('novel-des')}>
-                            {data.des}
-                        </p>
+                        <h3 className={cx('name')}>{data.bookName}</h3>
+                        <p className={cx('novel-des')}>{data.desciption}</p>
                         <h5 className={cx('type')}>#{data.tag}</h5>
                     </div>
                 </div>

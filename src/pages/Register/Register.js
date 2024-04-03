@@ -4,7 +4,7 @@ import { LockOutlined, UserOutlined, CloseOutlined, PhoneOutlined } from '@ant-d
 import './Register.scss';
 import logo from '../../assets/img/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-// import { registerNewUser } from "../../services/userService";
+import { registerNewUser } from '../../api/api';
 
 const onFinish = (values) => {
     console.log('Success:', values);
@@ -51,21 +51,21 @@ const Register = (props) => {
         }
         return true;
     };
-    // const handleRegister = async () => {
-    //   // message.success("Đăng kí thành công!");
-    //   let isValid = isValidInput();
-    //   if (isValid === true) {
-    //     let response = await registerNewUser(email, password);
-    //     let serverData = response.data;
-    //     if (+serverData.EC === 0) {
-    //       message.success(serverData.EM);
-    //       navigate("/login");
-    //     } else {
-    //       message.error(serverData.EM);
-    //     }
-    //     console.log(response);
-    //   }
-    // };
+    const handleRegister = async () => {
+        // message.success("Đăng kí thành công!");
+        let isValid = isValidInput();
+        if (isValid === true) {
+            let response = await registerNewUser(email, password);
+            let serverData = response.data;
+            if (+serverData.EC === 0) {
+                message.success(serverData.EM);
+                navigate('/login');
+            } else {
+                message.error(serverData.EM);
+            }
+            console.log(response);
+        }
+    };
 
     return (
         <div className="register-container">
@@ -152,9 +152,9 @@ const Register = (props) => {
                         htmlType="submit"
                         className="register-form-button"
                         style={{ width: '100%', marginBottom: '10px' }}
-                        // onClick={() => {
-                        //   handleRegister();
-                        // }}
+                        onClick={() => {
+                            handleRegister();
+                        }}
                     >
                         Đăng kí
                     </Button>

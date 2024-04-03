@@ -12,14 +12,14 @@ import Thread from '../pages/Thread';
 // Public routes
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/book', component: Book },
+    { path: '/book/:bookID', component: Book },
     { path: '/chapter', component: Chapter },
     { path: '/library', component: Library },
     { path: '/rankings', component: Rankings },
     { path: '/forum', component: Forum },
     { path: '/thread/:threadId', component: Thread },
-    { path: '/login', component: Login , layout:null},
-    { path: '/register', component: Register , layout:null},
+    { path: '/login', component: Login, layout: null },
+    { path: '/register', component: Register, layout: null },
 ];
 
 const privateRoutes = [];

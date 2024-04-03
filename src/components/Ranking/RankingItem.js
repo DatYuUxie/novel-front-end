@@ -3,16 +3,12 @@ import styles from './Ranking.module.scss';
 
 const cx = classNames.bind(styles);
 
-function RankingItem({data}) {
-    console.log("bxhit",data)
+function RankingItem({ data }) {
+    // console.log("bxhit",data)
     return (
         <div className={cx('container-item')}>
             <div className={cx('cover-img')}>
-                <img
-                    src={data.img}
-                    alt="cover-img"
-                    className={cx('img')}
-                />
+                <img src={data.img} alt="cover-img" className={cx('img')} />
             </div>
             <h3 className={cx('rank')}>{data.rank}</h3>
             <div className={cx('content')}>
