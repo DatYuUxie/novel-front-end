@@ -5,6 +5,7 @@ import './Login.scss';
 import logo from '../../assets/img/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 // import { loginUser } from '../../services/userService';
+import { login } from '../../api/api';
 
 const onFinish = (values) => {
     console.log('Success:', values);
@@ -14,38 +15,35 @@ const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const handleLogin=()=>{
-        navigate('/');
-    }
-    // const handleLogin = async () => {
-    //     if (!email) {
-    //         message.error('Email không được để trống!');
-    //         return;
-    //     }
-    //     if (!password) {
-    //         message.error('Mật khẩu không được để trống!');
-    //         return;
-    //     }
+    const handleLogin = async () => {
+        if (!email) {
+            message.error('Email không được để trống!');
+            return;
+        }
+        if (!password) {
+            message.error('Mật khẩu không được để trống!');
+            return;
+        }
 
-    //     let response = await loginUser(email, password);
-    //     if (response && response.data && +response.data.EC === 0) {
-    //         // success
-    //         let data = {
-    //             isAuthenticated: true,
-    //             token: 'fake token',
-    //         };
-    //         sessionStorage.setItem('account', JSON.stringify(data));
-    //         navigate('/users');
-    //         window.location.reload();
+        let response = await login(email, password);
+        if (response && response.data && +response.data.EC === 0) {
+            // success
+            let data = {
+                isAuthenticated: true,
+                token: 'fake token',
+            };
+            sessionStorage.setItem('account', JSON.stringify(data));
+            navigate('/');
+            window.location.reload();
 
-    //         //redux
-    //     }
-    //     if (response && response.data && +response.data.EC !== 0) {
-    //         // wrong password
-    //         message.error(response.data.EM);
-    //         return;
-    //     }
-    // };
+            //redux
+        }
+        if (response && response.data && +response.data.EC !== 0) {
+            // wrong password
+            message.error(response.data.EM);
+            return;
+        }
+    };
 
     const handlePressEnter = (e) => {
         if (e.key === 'Enter' && e.charCode === 13) {

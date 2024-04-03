@@ -38,7 +38,7 @@ function BookHeader({ bookID }) {
                 <img src={book.poster} alt="cover-img" className={cx('cover-img')} />
             </div>
             <div className={cx('novel-info')}>
-                <h1 className={cx('name')}>{}</h1>
+                <h1 className={cx('name')}>{book.bookName}</h1>
                 <p className={cx('author')}>
                     <p>Tác giả</p>
                     <p className={cx('author-link')}>{book.author}</p>

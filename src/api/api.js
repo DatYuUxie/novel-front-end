@@ -40,4 +40,4 @@ const getBookById = async (id) => {
         throw new Error(error);
     }
 };
-export { getBooks, getBookById, registerNewUser };
+export { getBooks, getBookById, registerNewUser, login };
