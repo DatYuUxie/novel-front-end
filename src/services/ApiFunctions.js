@@ -15,7 +15,7 @@ export const getHeader = () => {
 
 
 
-// this function get all rooms from the database
+// this function get all books from the database
 export async function getAllBooks() {
     try {
         const result = await api.get('/book/read');
@@ -25,7 +25,7 @@ export async function getAllBooks() {
     }
 }
 
-// this function delete room by id
+// this function delete book by id
 export async function getBookById(bookId) {
     try {
         const result = await api.get(`/book/read/${bookId}`);

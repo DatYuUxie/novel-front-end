@@ -9,7 +9,8 @@ import Register from '../pages/Register';
 import Forum from '../pages/Forum';
 import Thread from '../pages/Thread';
 import {Setting, Account, Coin} from '../pages/Settings';
-
+import CreateNovel from '../authorPages/CreateNovel';
+import CreateChapter from '../authorPages/CreateChapter';
 
 // Public routes
 const publicRoutes = [
@@ -25,6 +26,8 @@ const publicRoutes = [
     { path: '/account/setting', component: Setting },
     { path: '/account/coin', component: Coin },
     { path: '/account/:userId', component: Account },
+    { path: '/create-novel', component: CreateNovel},
+    { path: '/create-chapter', component: CreateChapter},
 
 ];
 
