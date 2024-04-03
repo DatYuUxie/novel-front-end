@@ -4,47 +4,44 @@ import React, { useEffect, useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faPlusSquare
-} from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { getBookById } from '../../api/api';
 
 import styles from './BookHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
-function BookHeader({bookId}) {
+function BookHeader({ bookID }) {
     const [rating, setRating] = useState(5);
-
-    console.log("bookId in book-header: " , bookId);
-
-
-    const book = async () => {
-        console.log('bookId in book-header 2:', bookId);
-        const res = await getBookById(bookId);
-        console.log('getBookByID', res);
-    };
-    useEffect(() => {
-        book();
-    }, []);
+    const [book, setBook] = useState({});
     // Catch Rating value
     const handleRating = (rate) => {
         setRating(rate);
     };
+    const bookByID = async () => {
+        const res = await getBookById(bookID);
+        if (res && res.data && res.data.DT) {
+            return res.data.DT;
+        }
+    };
+    useEffect(() => {
+        const fetchNovels = async () => {
+            const novels = await bookByID();
+            setBook(novels);
+        };
+        fetchNovels();
+    }, []);
 
     return (
         <div className={cx('container')}>
             <div className={cx('cover-novel-img')}>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhegpPNPQyfEAJtmb5QFa3gjZZjHjVRpOCWA&usqp=CAU"
-                    alt="cover-img"
-                    className={cx('cover-img')}
-                />
+                <img src={book.poster} alt="cover-img" className={cx('cover-img')} />
             </div>
             <div className={cx('novel-info')}>
-                <h1 className={cx('name')}>Cầu ma</h1>
+                <h1 className={cx('name')}>{}</h1>
                 <p className={cx('author')}>
                     <p>Tác giả</p>
-                    <p  className={cx('author-link')}>Nhĩ Căn</p>
+                    <p className={cx('author-link')}>{book.author}</p>
                 </p>
                 <div className={cx('stat')}>
                     <div className={cx('stat-item')}>
@@ -52,7 +49,7 @@ function BookHeader({bookId}) {
                         <p>Chương</p>
                     </div>
                     <div className={cx('stat-item')}>
-                        <h2>99.9k</h2>
+                        <h2>{book.view > 0 ? book.view : 999}</h2>
                         <p>Lượt đọc</p>
                     </div>
                     <div className={cx('stat-item')}>
@@ -61,7 +58,7 @@ function BookHeader({bookId}) {
                     </div>
                 </div>
                 <div className={cx('rating')}>
-                    <Rating onClick={handleRating} initialValue={rating} readonly/>
+                    <Rating onClick={handleRating} initialValue={rating} readonly />
                     <h3>4.9</h3>
                     <h3>/5</h3>
                     <p className={cx('rates')}>(99 lượt)</p>

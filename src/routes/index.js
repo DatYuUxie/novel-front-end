@@ -14,7 +14,7 @@ import {Setting, Account, Coin} from '../pages/Settings';
 // Public routes
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/book/:bookId', component: Book },
+    { path: '/book/:bookID', component: Book },
     { path: '/chapter', component: Chapter },
     { path: '/library', component: Library },
     { path: '/rankings', component: Rankings },

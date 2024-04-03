@@ -5,10 +5,9 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-
-function Ranking({title, data}) {
+function Ranking({ title, data }) {
     const [rank, setRank] = useState([1, 2, 3, 4, 5]);
-    console.log('dataaaa', data);
+    // console.log('dataaaa', data);
     return (
         <div className={cx('container')}>
             <h2 className={cx('title')}>{title}</h2>
