@@ -63,23 +63,24 @@ const CATEGORY_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
 
     const userMenu = [
+        
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Coin',
+            to: '/account/coin',
+        },
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'Hồ sơ',
-            to: '/@hoaa',
-        },
-        {
-            icon: <FontAwesomeIcon icon={faCoins} />,
-            title: 'Mua coins',
-            to: '/coin',
+            to: '/account/:userId',
         },
         {
             icon: <FontAwesomeIcon icon={faGear} />,
             title: 'Cài đặt',
-            to: '/settings',
+            to: '/account/setting',
         },
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
@@ -88,7 +89,6 @@ function Header() {
             separate: true,
         },
     ];
-
 
     // Handle logic
     const handleMenuChange = (menuItem) => {
@@ -115,7 +115,7 @@ function Header() {
                     <Menu items={CATEGORY_ITEMS}>
                         <div className={cx('title-icon', 'bxh')}>
                             <FontAwesomeIcon icon={faBars} />
-                            <h4 classNamze={cx('title-icon__name')}>Thể loại</h4>
+                            <h4 className={cx('title-icon__name')}>Thể loại</h4>
                         </div>
                     </Menu>
 

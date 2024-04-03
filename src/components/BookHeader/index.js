@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,9 +12,20 @@ import styles from './BookHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
-function BookHeader() {
+function BookHeader({bookId}) {
     const [rating, setRating] = useState(5);
 
+    console.log("bookId in book-header: " , bookId);
+
+
+    const book = async () => {
+        console.log('bookId in book-header 2:', bookId);
+        const res = await getBookById(bookId);
+        console.log('getBookByID', res);
+    };
+    useEffect(() => {
+        book();
+    }, []);
     // Catch Rating value
     const handleRating = (rate) => {
         setRating(rate);

@@ -29,35 +29,33 @@
         display: flex;
         justify-content: center;
         align-items: center;
-		margin-top: 20px;
+        margin-top: 20px;
     }
-	.foot2 {
-		display: flex;
-		margin-top: 20px;
-		flex-direction: column;
-		align-items: center;
-		
+    .foot2 {
+        display: flex;
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
     }
 }
-.warning{
-	color: #f3f3f3;
-	background-color: #dc5618;
-	&:hover{
-		background-color: #ef7339;
-
-	}
-
+.warning {
+    color: #f3f3f3;
+    background-color: #dc5618;
+    &:hover {
+        background-color: #ef7339;
+    }
 }
-.comment{
-	color: #f3f3f3;
-	background-color: #187adc;
-	&:hover{
-		background-color: #419efc;
-
-	}
+.comment {
+    color: #f3f3f3;
+    background-color: #187adc;
+    &:hover {
+        background-color: #419efc;
+    }
 }
 .paragraph {
-    word-wrap: break-word;
+    // word-wrap: break-word;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .sidebar {
@@ -126,4 +124,124 @@
 
 .icon + .icon {
     margin-top: 0.75rem;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        .close-btn{
+            cursor: pointer;
+            &:hover{
+                color: #dc5618;
+            }
+        }
+    }
+    
+    .modal-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .radio {
+        padding-bottom: 20px;
+        margin-left: 124px;
+    }
+    .radio label {
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .radio label input[type='radio'] {
+        width: 0;
+        height: 0;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .radio label input[type='radio']:checked + .outer {
+        border: 2px solid #dedede;
+    }
+
+    .radio label .outer {
+        display: block;
+        float: left;
+        width: 58px;
+        height: 58px;
+        margin: 0;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 244, 244, 0);
+        transition: border 110ms linear;
+    }
+    .radio label .outer .inner {
+        display: block;
+        margin: 2px 0 0 2px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: solid 1px #dedede;
+        background-color: #f8dda3;
+    }
+    .radio label .outer .inner.t1 {
+        background-color: #f5e4e4;
+    }
+    .radio label .outer .inner.t2 {
+        background-color: #f5ebcd;
+    }
+    .radio label .outer .inner.t3 {
+        background-color: #e2eee2;
+    }
+    .radio label .outer .inner.t4 {
+        background-color: #e1e8e8;
+    }
+    .radio label .outer .inner.t5 {
+        background-color: #222;
+    }
+    .radio label .outer .inner.t6 {
+        background-color: #fff;
+    }
+    .radio label .outer .inner.t7 {
+        background-color: #7bb0e1;
+    }
+    .radio label .outer .inner.t8 {
+        background-color: #ac96d5;
+    }
+
+
+    .plus-minus-input {
+        display: flex;
+        align-items: center;
+        .setting-title{
+            margin-right: 40px;
+        }
+      
+        .input-group-field {
+          text-align: center;
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+          padding: 1rem;
+      
+          &::-webkit-inner-spin-button,
+          ::-webkit-outer-spin-button {
+            appearance: none;
+          }
+        }
+      
+        .input-group-button {
+            // margin-left: 40px;
+            
+          .circle {
+            border-radius: 50%;
+            padding:0.3em;
+            cursor: pointer;
+          }
+        }
+      }
 }

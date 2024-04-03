@@ -9,10 +9,10 @@ const cx = classNames.bind(styles);
 
 function NovelItem({data}) {
     let responsive = 'l-3 m-4 c-6';
-    // console.log("abc,", data)
+    // console.log("abc,", data) /book/234567
     return (
         <div className={cx('container', responsive)}>
-            <Link to={config.book} className={cx('novel-item-container')}>
+            <Link to={`/book/${data.bookId}`} className={cx('novel-item-container')}>
                 <div className={cx('cover-novel-item')}>
                     <div className={cx('cover-novel-img')}>
                         <img
