@@ -63,7 +63,7 @@ const CATEGORY_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const currentUser = false;
 
     const userMenu = [
         {
@@ -88,7 +88,6 @@ function Header() {
             separate: true,
         },
     ];
-
 
     // Handle logic
     const handleMenuChange = (menuItem) => {
@@ -115,7 +114,7 @@ function Header() {
                     <Menu items={CATEGORY_ITEMS}>
                         <div className={cx('title-icon', 'bxh')}>
                             <FontAwesomeIcon icon={faBars} />
-                            <h4 classNamze={cx('title-icon__name')}>Thể loại</h4>
+                            <h4 className={cx('title-icon__name')}>Thể loại</h4>
                         </div>
                     </Menu>
 

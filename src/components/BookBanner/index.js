@@ -1,55 +1,38 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-
+import { getBookById } from '../../api/api';
 import styles from './BookBanner.module.scss';
 
 const cx = classNames.bind(styles);
 
-function BookBanner() {
+function BookBanner({ bookID }) {
+    const [book, setBook] = useState({});
+    // Catch Rating value
+    const bookByID = async () => {
+        const res = await getBookById(bookID);
+        if (res && res.data && res.data.DT) {
+            return res.data.DT;
+        }
+    };
+    useEffect(() => {
+        const fetchNovels = async () => {
+            const novels = await bookByID();
+            setBook(novels);
+        };
+        fetchNovels();
+    }, []);
+    console.log(book);
     return (
         <div className={cx('container')}>
             <div className={cx('group')}>
                 <h1>Tags</h1>
                 <div className={cx('group-tag')}>
                     <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
-                    </Button>
-                    <Button rounded tag className={cx('tag')}>
-                        #Đọc truyện
+                        # {book.tag}
                     </Button>
                 </div>
             </div>
@@ -82,14 +65,13 @@ function BookBanner() {
                         </div>
                     </div>
                     <div className={cx('button')}>
-                    <Button  primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} >
-                        Bình chọn
-                    </Button>
-                    <Button  primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} >
-                        Tặng thưởng
-                    </Button>
+                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
+                            Bình chọn
+                        </Button>
+                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
+                            Tặng thưởng
+                        </Button>
                     </div>
-                    
                 </div>
             </div>
         </div>

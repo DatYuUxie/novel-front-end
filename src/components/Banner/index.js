@@ -27,8 +27,8 @@ function Banner() {
                     slidesPerView={1}
                     navigation
                     pagination={{ clickable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
