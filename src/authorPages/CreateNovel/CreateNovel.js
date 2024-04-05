@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function CreateNovel() {
     return (
         <div className={cx('container')}>
-                <SettingSideBar tag={2}/>
+                {/* <SettingSideBar tag={2}/> */}
                 <div className={cx('content')}>
                     <CreateNovelComponent/>
                 </div>
