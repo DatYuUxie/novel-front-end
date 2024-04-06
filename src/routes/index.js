@@ -14,6 +14,14 @@ import CreateChapter from '../authorPages/CreateChapter';
 import ManageUsers from '../adminPages/ManageUsers';
 import ManageBooks from '../adminPages/ManageBooks';
 import AdminLayout from '../layouts/AdminLayout';
+import AuthorLayout from '../layouts/AuthorLayout';
+import AuthorDashboard from '../authorPages/AuthorDashboard';
+import MyNovels from '../authorPages/MyNovels';
+import AuthorNovelDetail from '../authorPages/AuthorNovelDetail';
+
+
+
+
 
 // Public routes
 const publicRoutes = [
@@ -29,8 +37,17 @@ const publicRoutes = [
     { path: '/account/setting', component: Setting },
     { path: '/account/coin', component: Coin },
     { path: '/account/:userId', component: Account },
-    { path: '/create-novel', component: CreateNovel, layout: AdminLayout },
-    { path: '/create-chapter', component: CreateChapter, layout: AdminLayout },
+
+
+    { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
+    { path: '/create-novel', component: CreateNovel, layout: AuthorLayout },
+    { path: '/create-chapter', component: CreateChapter, layout: AuthorLayout },
+    { path: '/my-novels', component: MyNovels, layout: AuthorLayout },
+    { path: '/create-chapter', component: CreateChapter, layout: AuthorLayout },
+    { path: '/novel-detail', component: AuthorNovelDetail, layout: AuthorLayout },
+
+
+
     { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
 ];

@@ -42,11 +42,18 @@ function CreateChapter() {
                     </div>
 
                     <div className={cx('btns-box')}>
-                    <button className={cx('btn-save')} type="submit">
-                        Lưu
-                    </button>
-                    <button className={cx('btn-cancel')}>Hủy</button>
-                </div>
+                        <button className={cx('btn-save')} type="submit">
+                            Lưu
+                        </button>
+                        <button type="button"
+                            className={cx('btn-cancel')}
+                            onClick={() => {
+                                window.history.back();
+                            }}
+                        >
+                            Hủy
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
