@@ -1,0 +1,107 @@
+.manage-book-tabled {
+    .shape-avatar {
+        margin-right: 20px;
+    }
+
+    .shape-avatar img {
+        border-radius: 4px;
+    }
+
+    .avatar-info h5 {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 14px;
+        margin-bottom: 3px;
+    }
+
+    .avatar-info p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #8c8c8c;
+        margin: 0px;
+    }
+
+    .tag-badge {
+        border-radius: 6px;
+        padding: 2px 12px;
+        font-size: 14px;
+        height: auto;
+        line-height: 24px;
+        font-weight: 600;
+        background: #2bb5ff;
+        color: #fff;
+        outline: none;
+    }
+
+    .tag-badge:hover {
+        background: #8c8c8c;
+        color: #fff;
+        border-color: #8c8c8c;
+        opacity: 0.9;
+    }
+
+    .detail {
+        margin-right: 10px;
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-size: 14px;
+        height: auto;
+        line-height: 18px;
+        font-weight: 600;
+        background: #ffffff;
+        border: solid 1px #2b79ff;
+        color: #2b79ff;
+        outline: none;
+    }
+
+    .detail:hover {
+        background: #8c8c8c;
+        color: #fff;
+        border-color: #8c8c8c;
+        opacity: 0.9;
+    }
+
+    .ant-employed {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 500;
+        color: #8c8c8c;
+    }
+
+    .ant-employed a {
+        color: #8c8c8c;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .ant-card.criclebox {
+        box-shadow: 0px 20px 27px #0000000d;
+        border-radius: 12px;
+    }
+
+    .ant-card.criclebox .project-ant {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .ant-card.criclebox table th {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    .tablespace {
+        overflow: hidden;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ant-border-space th:before {
+        display: none;
+    }
+}

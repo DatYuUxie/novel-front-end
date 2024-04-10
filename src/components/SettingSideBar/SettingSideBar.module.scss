@@ -1,0 +1,22 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    .title{
+        margin: 20px 0px 5px 0px;
+        text-align: center;
+
+    }
+    .item{
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-start;
+        border-color: transparent;;
+    }
+    .item + .item {
+        margin-left: 0px;
+    }
+    .active{
+        color: var(--third);
+    }
+}

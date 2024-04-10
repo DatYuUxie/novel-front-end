@@ -1,6 +1,8 @@
 import classNames from 'classnames/bind';
 import Button from '../../components/Button';
-
+import { useState } from 'react';
+import React from 'react';
+import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowLeft,
@@ -9,6 +11,12 @@ import {
     faUserEdit,
     faClock,
     faExclamationTriangle,
+    faPlusCircle,
+    faPlusMinus,
+    faPlugCirclePlus,
+    faCirclePlus,
+    faCircleMinus,
+    faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from './Chapter.module.scss';
 import { Dialog, Widget, Revote, Reply, Playlist } from '../../assets/icon';
@@ -17,7 +25,45 @@ import { faCommenting } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        width: '400px',
+        height: '300px',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
+// Modal.setAppElement('#root');
 function Chapter() {
+    let subtitle;
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [fontSize, setFontSize] = useState(16);
+
+    const increaseFontSize = () => {
+        setFontSize(fontSize + 1);
+    };
+    const decreaseFontSize = () => {
+        setFontSize(fontSize - 1);
+    };
+
+    
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        subtitle.style.color = '#00000';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
     return (
         <div className={cx('container')}>
             <div className={cx('content')}>
@@ -42,7 +88,7 @@ function Chapter() {
                     </Button>
                 </div>
 
-                <p className={cx('paragraph')}>
+                <div className={cx('paragraph')} style={{ fontSize: fontSize + 'px' }}>
                     Núi! Thanh sơn! <br /> <br />
                     Đây là một dãy núi lớn liên miên không dứt, như một con rồng còn sống kéo dài cả vùng đất mênh mông
                     này, ở đấy có cỏ cây rậm rạp, còn có tiếng chim thú không ngừng vang lên. Xa xa nhìn lại, có thể
@@ -74,7 +120,7 @@ function Chapter() {
                     <br /> <br /> Trong đó có một ngọn núi trung đoạn(1), một người thiếu niên đang tựa vào một khối đá
                     lớn hơi bị lõm sâu vào để tránh nắng. Bên cạnh hắn có một cái sọt mây, trong đó có dựng một chút
                     dược thảo, mùi thuốc tản phát ra lượn lờ khắp bốn phía.
-                </p>
+                </div>
                 <div className={cx('foot')}>
                     <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>
                         Chương trước
@@ -100,7 +146,7 @@ function Chapter() {
                     <span>Quay về trang truyện</span>
                 </Link>
 
-                <Link className={cx('icon')}>
+                <Link className={cx('icon')} onClick={openModal}>
                     <Widget />
                     <span>Cài đặt hiển thị</span>
                 </Link>
@@ -116,6 +162,97 @@ function Chapter() {
                     <Dialog />
                     <span>Xem bình luận</span>
                 </Link>
+
+                <Modal
+                    isOpen={modalIsOpen}
+                    onAfterOpen={afterOpenModal}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <div className={cx('modal')}>
+                        <div className={cx('button-group')}>
+                            <h2 className={cx('modal-title')} ref={(_subtitle) => (subtitle = _subtitle)}>
+                                Cài đặt hiển thị
+                            </h2>
+                            <FontAwesomeIcon icon={faXmark} onClick={closeModal} className={cx('close-btn')} />
+                        </div>
+                        <div>
+                            <div id="setting-content">
+                                <h4 className={cx('no-user-select')}>Màu nền:</h4>
+                                <div className={cx('radio')}>
+                                    <label for="radio1">
+                                        <input id="radio1" type="radio" name="radio" />
+                                        <span className={cx('outer')}>
+                                            <span className={cx('inner', 't1')}></span>
+                                        </span>
+                                    </label>
+                                    <label for="radio2">
+                                        <input id="radio2" type="radio" name="radio" />
+                                        <span className={cx('outer')}>
+                                            <span className={cx('inner', 't2')}></span>
+                                        </span>
+                                    </label>
+                                    <label for="radio3">
+                                        <input id="radio3" type="radio" name="radio" />
+                                        <span className={cx('outer')}>
+                                            <span className={cx('inner', 't3')}></span>
+                                        </span>
+                                    </label>
+                                    <br />
+                                    <label for="radio4">
+                                        <input id="radio4" type="radio" name="radio" />
+                                        <span className={cx('outer')}>
+                                            <span className={cx('inner', 't4')}></span>
+                                        </span>
+                                    </label>
+                                    <label for="radio5">
+                                        <input id="radio5" type="radio" name="radio" />
+                                        <span className={cx('outer')}>
+                                            <span className={cx('inner', 't5')}></span>
+                                        </span>
+                                    </label>
+                                    <label for="radio6">
+                                        <input id="radio6" type="radio" name="radio" />
+                                        <span className={cx('outer')}>
+                                            <span className={cx('inner', 't6')}></span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div className={cx('input-group', 'plus-minus-input')}>
+                                    <h4 className={cx('setting-title')}>Cỡ chữ:</h4>
+                                    <div className={cx('input-group-button')}>
+                                        <button
+                                            type="button"
+                                            className={cx('button', 'hollow', 'circle')}
+                                            data-quantity="minus"
+                                            data-field="quantity"
+                                        >
+                                            <FontAwesomeIcon icon={faCircleMinus} onClick={decreaseFontSize} />
+                                        </button>
+                                    </div>
+                                    <input
+                                        className={cx('input-group-field')}
+                                        type="number"
+                                        name="quantity"
+                                        value={fontSize}
+                                    />
+                                    <div className={cx('input-group-button')}>
+                                        <button
+                                            type="button"
+                                            className={cx('button', 'hollow', 'circle')}
+                                            data-quantity="plus"
+                                            data-field="quantity"
+                                        >
+                                            <FontAwesomeIcon icon={faCirclePlus} onClick={increaseFontSize} />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         </div>
     );
