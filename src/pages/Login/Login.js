@@ -4,8 +4,8 @@ import { LockOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import './Login.scss';
 import logo from '../../assets/img/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-// import { loginUser } from '../../services/userService';
 import { login } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
 
 const onFinish = (values) => {
     console.log('Success:', values);
@@ -28,13 +28,22 @@ const Login = (props) => {
         let response = await login(email, password);
         if (response && response.data && +response.data.EC === 0) {
             // success
+            console.log('response', response);
             let data = {
                 isAuthenticated: true,
                 token: 'fake token',
             };
             sessionStorage.setItem('account', JSON.stringify(data));
-            navigate('/');
-            window.location.reload();
+            if (response.data.DT.role === 'ADMIN') {
+                navigate('/admin/manage-user');
+            }
+            if (response.data.DT.role === 'USER') {
+                navigate('/');
+            }
+            if (response.data.DT.role === 'MODERATOR') {
+                // navigate('/writers');
+            }
+            // window.location.reload();
 
             //redux
         }
