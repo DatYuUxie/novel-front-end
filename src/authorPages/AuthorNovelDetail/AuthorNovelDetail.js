@@ -54,7 +54,7 @@ function AuthorNovelDetail() {
                     </div>
 
                     <div className={cx('buttons')}>
-                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} onClick={()=>{navigate('/create-chapter')}}>
+                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} onClick={()=>{navigate('/author/create-chapter')}}>
                             Viết chương mới
                         </Button>
                         <Button primary2 tag>

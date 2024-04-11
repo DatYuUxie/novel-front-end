@@ -86,7 +86,6 @@ function List() {
 
     return (
         <div>
-            <h2>Danh sách chương</h2>
             <div className='grid'>
                 <div className='row'>
                 {chapterList.map((item, index) => <ListItem key={index} data={item} />)}

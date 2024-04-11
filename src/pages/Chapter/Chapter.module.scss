@@ -37,6 +37,11 @@
         flex-direction: column;
         align-items: center;
     }
+    .hr{
+        margin-top: 40px;
+        margin-bottom: 20px;
+        border: none;
+        border-top: 1px solid rgb(222, 222, 222); /* Thay đổi màu sắc ở đây */    }
 }
 .warning {
     color: #f3f3f3;
@@ -73,7 +78,9 @@
     border-radius: 10px;
     box-shadow: 0 10px 50px 0 rgba(#05043e, 0.15);
 }
-
+.mark{
+    border: solid 1px #dc5618
+}
 .icon {
     color: #fff;
     text-decoration: none;

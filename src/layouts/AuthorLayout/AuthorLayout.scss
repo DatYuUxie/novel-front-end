@@ -5,7 +5,8 @@
 }
 
 .container {
-    width: var(--default-layout-width);
+    // width: var(--default-layout-width);
+    width: 100%;
     max-width: 100%;
     padding: 0 var(--default-layout-horizontal-spacer);
     // margin-top: calc(var(--default-layout-header-height) * 1.75);
@@ -29,6 +30,7 @@
 }
 
 .brand {
+    cursor: pointer;
     margin-top: 10px;
     height: 30px;
     display: flex;

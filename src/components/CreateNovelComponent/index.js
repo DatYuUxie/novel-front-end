@@ -138,7 +138,15 @@ function CreateNovelComponent() {
                     <button className="btn-save" type="submit">
                         Lưu
                     </button>
-                    <button className="btn-cancel">Hủy</button>
+                    <button
+                        type="button"
+                        className='btn-cancel'
+                        onClick={() => {
+                            window.history.back();
+                        }}
+                    >
+                        Hủy
+                    </button>
                 </div>
             </form>
         </div>

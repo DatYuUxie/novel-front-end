@@ -1,4 +1,4 @@
-import './ManageUser.scss';
+import './ManagePayments.scss';
 
 import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
 import { ToTopOutlined } from '@ant-design/icons';
@@ -25,35 +25,43 @@ const formProps = {
 
 // table code start
 const columns = [
-    
     {
-        title: 'ID',
+        title: 'Mã hóa đơn',
         dataIndex: 'id',
         key: 'id',
     },
     {
-        title: 'Tên tài khoản ',
+        title: 'Người thực hiện',
+        dataIndex: 'user',
+        key: 'user',
+    },
+    {
+        title: 'Tên dịch vụ ',
         dataIndex: 'name',
         key: 'name',
-        width: '32%',
     },
 
+    {
+        title: 'Số tiền',
+        key: 'money',
+        dataIndex: 'money',
+    },
+    {
+        title: 'Thời gian giao dịch',
+        key: 'time',
+        dataIndex: 'time',
+    },
     {
         title: 'Trạng thái',
         key: 'status',
         dataIndex: 'status',
-    },
-    {
-        title: 'Số điện thoại',
-        key: 'phone',
-        dataIndex: 'phone',
     },
 ];
 
 const data = [
     {
         key: '1',
-        name: (
+        user: (
             <>
                 <Avatar.Group>
                     <Avatar
@@ -66,29 +74,44 @@ const data = [
                         <Title level={5}>Michael John</Title>
                         <p>michael@mail.com</p>
                     </div>
-                </Avatar.Group>{' '}
+                </Avatar.Group>
             </>
         ),
-        id: (
+
+        name: (
             <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
+                <div className="ant-employed">
+                    <span>Mua đá</span>
                 </div>
             </>
         ),
 
-        status: (
+        id: (
             <>
-                <Button type="primary" className="tag-primary">
-                    ONLINE
-                </Button>
+                <div className="author-info">
+                    <Title level={5}>002</Title>
+                </div>
             </>
         ),
-        phone: (
+
+        money: (
             <>
                 <div className="ant-employed">
                     <span>0123456</span>
-                    <a href="#pablo">Edit</a>
+                </div>
+            </>
+        ),
+        time: (
+            <>
+                <div className="ant-employed">
+                    <span>20:20 20-12-2023 </span>
+                </div>
+            </>
+        ),
+        status: (
+            <>
+                <div className="ant-employed">
+                    <span>Đã thanh toán</span>
                 </div>
             </>
         ),
@@ -96,7 +119,7 @@ const data = [
 
     {
         key: '2',
-        name: (
+        user: (
             <>
                 <Avatar.Group>
                     <Avatar
@@ -106,55 +129,60 @@ const data = [
                         src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
                     ></Avatar>
                     <div className="avatar-info">
-                        <Title level={5}>Alexa Liras</Title>
-                        <p>alexa@mail.com</p>
+                        <Title level={5}>Michael John</Title>
+                        <p>michael@mail.com</p>
                     </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-               </div>
+                </Avatar.Group>
             </>
         ),
 
-        status: (
-            <>
-                <Button className="tag-badge">OFFLINE</Button>
-            </>
-        ),
-        phone: (
+        name: (
             <>
                 <div className="ant-employed">
-                    <span>099888</span>
-                    <a href="#pablo">Edit</a>
+                    <span>Đăng kí premium</span>
+                </div>
+            </>
+        ),
+
+        id: (
+            <>
+                <div className="author-info">
+                    <Title level={5}>001</Title>
+                </div>
+            </>
+        ),
+
+        money: (
+            <>
+                <div className="ant-employed">
+                    <span>0123456</span>
+                </div>
+            </>
+        ),
+        time: (
+            <>
+                <div className="ant-employed">
+                    <span>20:20 20-12-2023 </span>
+                </div>
+            </>
+        ),
+        status: (
+            <>
+                <div className="ant-employed">
+                    <span>Đã thanh toán</span>
                 </div>
             </>
         ),
     },
 ];
-function ManageUsers() {
+function ManagePayments() {
     const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
     return (
         <div className="tabled">
             <Row gutter={[24, 0]}>
                 <Col xs="24" xl={24}>
-                    <Card
-                        bordered={false}
-                        className="criclebox tablespace mb-24"
-                        title="Quản lí người dùng"
-                        extra={
-                            <>
-                                <Radio.Group onChange={onChange} defaultValue="a">
-                                    <Radio.Button value="a">All</Radio.Button>
-                                    <Radio.Button value="b">ONLINE</Radio.Button>
-                                </Radio.Group>
-                            </>
-                        }
-                    >
+                    <Card bordered={false} className="criclebox tablespace mb-24" title="Quản lí thanh toán">
                         <div className="table-responsive">
                             <Table
                                 columns={columns}
@@ -170,4 +198,4 @@ function ManageUsers() {
     );
 }
 
-export default ManageUsers;
+export default ManagePayments;

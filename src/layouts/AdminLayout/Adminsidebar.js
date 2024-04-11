@@ -31,7 +31,7 @@ function AdminSidebar() {
                     </NavLink>
                 </Menu.Item>
                 <Menu.Item key="3">
-                    <NavLink to="/billing">
+                    <NavLink to="/admin/manage-authors">
                     <FontAwesomeIcon icon={faUserEdit} />
 
                         <span className="nav-label">Quản lí tác giả </span>
@@ -44,28 +44,22 @@ function AdminSidebar() {
                         <span className="nav-label">Quản lí người dùng </span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item className="menu-item-header" key="5">
-                    <NavLink to="/admin/manage-user">
-                    <FontAwesomeIcon icon={faUserAlt} />
-
-                        <span className="nav-label">Quản lí người dùng </span>
-                    </NavLink>
-                </Menu.Item>
-                <Menu.Item key="6">
-                    <NavLink to="/profile">
+                
+                <Menu.Item key="5">
+                    <NavLink to="/admin/manage-payment">
                     <FontAwesomeIcon icon={faMoneyBill} />
 
                         <span className="nav-label">Quản lí thanh toán </span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item key="7">
+                <Menu.Item key="6">
                     <NavLink to="/sign-in">
                     <FontAwesomeIcon icon={faPenNib} />
 
                         <span className="nav-label">Sách, truyện cần xét duyệt </span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item key="8">
+                <Menu.Item key="7">
                     <NavLink to="/sign-up">
                     <FontAwesomeIcon icon={faExclamationTriangle} />
 

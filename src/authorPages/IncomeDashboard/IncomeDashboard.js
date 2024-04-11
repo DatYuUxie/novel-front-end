@@ -1,4 +1,4 @@
-import './AuthorDashboard.scss';
+import './IncomeDashboard.scss';
 
 import { useState } from 'react';
 
@@ -8,7 +8,7 @@ import Paragraph from 'antd/lib/typography/Paragraph';
 import LineChart from '../../components/LineChart';
 import IncomeListBooks from '../../components/IncomeListBooks';
 
-function AuthorDashboard() {
+function IncomeDashboard() {
     const { Title, Text } = Typography;
 
     const onChange = (e) => console.log(`radio checked:${e.target.value}`);
@@ -73,15 +73,15 @@ function AuthorDashboard() {
 
     const count = [
         {
-            today: 'Thu nhập',
-            title: '$50',
+            today: 'Tổng lượt xem chương cần premium',
+            title: '5068',
             persent: '+30%',
             icon: dollor,
             bnb: 'bnb2',
         },
         {
-            today: 'Tổng lượt xem',
-            title: '3,200',
+            today: 'Tổng lượt xem chương bình thường',
+            title: '32060',
             persent: '+20%',
             icon: profile,
             bnb: 'bnb2',
@@ -96,7 +96,7 @@ function AuthorDashboard() {
         {
             today: 'Số tác phẩm',
             title: '3',
-            persent: '10%',
+            persent: '',
             icon: cart,
             bnb: 'bnb2',
         },
@@ -133,7 +133,7 @@ function AuthorDashboard() {
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={12} xl={12} className="criclebox-container">
                     <Card bordered={false} className="criclebox h-full">
-                        <IncomeListBooks />
+                        <IncomeListBooks/>
                     </Card>
                 </Col>
             </Row>
@@ -141,4 +141,4 @@ function AuthorDashboard() {
     );
 }
 
-export default AuthorDashboard;
+export default IncomeDashboard;

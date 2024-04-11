@@ -7,6 +7,17 @@
     }
 }
 
+.small-menu-list {
+    width: 100px;
+
+    .menu-item {
+        margin-left: 0;
+    }
+}
+
+
+
+
 .menu-popper {
     padding-bottom: 8px;
 }
@@ -19,6 +30,25 @@
     padding: 11px 16px;
     line-height: 1.8rem;
     font-weight: 600;
+
+    &.separate {
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
+    }
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+
+// Menu items
+.small-menu-item {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 0;
+    // padding: 5px 5px;
+    // line-height: 1.8rem;
+    font-weight: 500;
 
     &.separate {
         border-top: 1px solid rgba(22, 24, 35, 0.12);

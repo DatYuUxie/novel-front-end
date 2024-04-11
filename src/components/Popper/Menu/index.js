@@ -8,8 +8,7 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 const defaultFn = () => {};
 
-function Menu({ children, items = [],onChange = defaultFn }) {
-
+function Menu({ children, items = [], onChange = defaultFn, small = false }) {
     // const [history, setHistory] = useState([{ data: items }]);
     // const current = history[history.length - 1];
 
@@ -22,12 +21,11 @@ function Menu({ children, items = [],onChange = defaultFn }) {
 
     return (
         <Tippy
-            
             interactive
             delay={[0, 700]}
             placement="bottom-start"
             render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+                <div className={small?cx('small-menu-list'):cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>{renderItems()}</PopperWrapper>
                 </div>
             )}

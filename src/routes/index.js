@@ -18,10 +18,10 @@ import AuthorLayout from '../layouts/AuthorLayout';
 import AuthorDashboard from '../authorPages/AuthorDashboard';
 import MyNovels from '../authorPages/MyNovels';
 import AuthorNovelDetail from '../authorPages/AuthorNovelDetail';
-
-
-
-
+import Feedback from '../authorPages/Feedback';
+import IncomeDashboard from '../authorPages/IncomeDashboard';
+import ManageAuthors from '../adminPages/ManageAuthors';
+import ManagePayments from '../adminPages/ManagePayments';
 
 // Public routes
 const publicRoutes = [
@@ -40,16 +40,21 @@ const publicRoutes = [
 
 
     { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
-    { path: '/create-novel', component: CreateNovel, layout: AuthorLayout },
-    { path: '/create-chapter', component: CreateChapter, layout: AuthorLayout },
-    { path: '/my-novels', component: MyNovels, layout: AuthorLayout },
-    { path: '/create-chapter', component: CreateChapter, layout: AuthorLayout },
-    { path: '/novel-detail', component: AuthorNovelDetail, layout: AuthorLayout },
+    { path: '/author/create-novel', component: CreateNovel, layout: AuthorLayout },
+    { path: '/author/create-chapter', component: CreateChapter, layout: AuthorLayout },
+    { path: '/author/my-novels', component: MyNovels, layout: AuthorLayout },
+    { path: '/author/create-chapter', component: CreateChapter, layout: AuthorLayout },
+    { path: '/author/novel-detail', component: AuthorNovelDetail, layout: AuthorLayout },
+    { path: '/author/feedbacks', component: Feedback, layout: AuthorLayout },
+    { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
 
 
 
     { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
+    { path: '/admin/manage-authors', component: ManageAuthors, layout: AdminLayout },
+    { path: '/admin/manage-payment', component: ManagePayments, layout: AdminLayout },
+
 ];
 
 const privateRoutes = [];

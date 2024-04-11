@@ -1,5 +1,7 @@
 import classNames from 'classnames/bind';
 import Button from '../../components/Button';
+import List from '../../components/BookContent/List';
+import Reviews from '../../components/BookContent/Reviews';
 import { useState } from 'react';
 import React from 'react';
 import Modal from 'react-modal';
@@ -37,11 +39,27 @@ const customStyles = {
     },
 };
 
+const customStyles2 = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        width: '900px',
+        height: '400px',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
 // Modal.setAppElement('#root');
 function Chapter() {
     let subtitle;
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
     const [fontSize, setFontSize] = useState(16);
+    const [modalIsOpen2, setIsOpen2] = useState(false);
+    const [commentOpen, setCommentOpen] = useState(false);
+    const [mark, setMark] = useState(false);
+    const active = cx('mark');
 
     const increaseFontSize = () => {
         setFontSize(fontSize + 1);
@@ -49,8 +67,6 @@ function Chapter() {
     const decreaseFontSize = () => {
         setFontSize(fontSize - 1);
     };
-
-    
 
     function openModal() {
         setIsOpen(true);
@@ -63,6 +79,19 @@ function Chapter() {
 
     function closeModal() {
         setIsOpen(false);
+    }
+
+    // loai 2
+    function openModal2() {
+        setIsOpen2(true);
+    }
+
+    function afterOpenModal2() {
+        subtitle.style.color = '#00000';
+    }
+
+    function closeModal2() {
+        setIsOpen2(false);
     }
     return (
         <div className={cx('container')}>
@@ -135,13 +164,31 @@ function Chapter() {
                     </Button>
                 </div>
                 <div className={cx('foot2')}>
-                    <Button className={cx('comment')} leftIcon={<FontAwesomeIcon icon={faCommenting} />}>
+                    <Button
+                        className={cx('comment')}
+                        leftIcon={<FontAwesomeIcon icon={faCommenting} />}
+                        onClick={() => {
+                            setCommentOpen(!commentOpen);
+                        }}
+                    >
                         Xem bình luận
                     </Button>
                 </div>
+                {commentOpen && (
+                    <>
+                        <hr className={cx('hr')} />
+
+                        <Reviews />
+                    </>
+                )}
             </div>
             <div className={cx('sidebar')}>
-                <Link className={cx('icon')}>
+                <Link
+                    className={cx('icon')}
+                    onClick={() => {
+                        window.history.back();
+                    }}
+                >
                     <Reply />
                     <span>Quay về trang truyện</span>
                 </Link>
@@ -150,15 +197,25 @@ function Chapter() {
                     <Widget />
                     <span>Cài đặt hiển thị</span>
                 </Link>
-                <Link className={cx('icon')}>
+                <Link className={cx('icon')} onClick={openModal2}>
                     <Playlist />
                     <span>Danh sách chương</span>
                 </Link>
-                <Link className={cx('icon')}>
+                <Link
+                    className={cx('icon', mark == true && active)}
+                    onClick={() => {
+                        setMark(!mark);
+                    }}
+                >
                     <Revote />
                     <span>Đánh dấu</span>
                 </Link>
-                <Link className={cx('icon')}>
+                <Link
+                    className={cx('icon')}
+                    onClick={() => {
+                        setCommentOpen(!commentOpen);
+                    }}
+                >
                     <Dialog />
                     <span>Xem bình luận</span>
                 </Link>
@@ -250,6 +307,26 @@ function Chapter() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </Modal>
+
+                <Modal
+                    isOpen={modalIsOpen2}
+                    onAfterOpen={afterOpenModal2}
+                    onRequestClose={closeModal2}
+                    style={customStyles2}
+                    contentLabel="Example Modal"
+                >
+                    <div className={cx('modal')}>
+                        <div className={cx('button-group')}>
+                            <h2 className={cx('modal-title')} ref={(_subtitle) => (subtitle = _subtitle)}>
+                                Danh sách chương
+                            </h2>
+                            <FontAwesomeIcon icon={faXmark} onClick={closeModal2} className={cx('close-btn')} />
+                        </div>
+                        <div>
+                            <List />
                         </div>
                     </div>
                 </Modal>

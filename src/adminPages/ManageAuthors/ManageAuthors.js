@@ -1,4 +1,4 @@
-import './ManageUser.scss';
+import './ManageAuthors.scss';
 
 import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
 import { ToTopOutlined } from '@ant-design/icons';
@@ -25,7 +25,6 @@ const formProps = {
 
 // table code start
 const columns = [
-    
     {
         title: 'ID',
         dataIndex: 'id',
@@ -116,7 +115,7 @@ const data = [
             <>
                 <div className="author-info">
                     <Title level={5}>002</Title>
-               </div>
+                </div>
             </>
         ),
 
@@ -135,7 +134,7 @@ const data = [
         ),
     },
 ];
-function ManageUsers() {
+function ManageAuthors() {
     const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
     return (
@@ -145,7 +144,7 @@ function ManageUsers() {
                     <Card
                         bordered={false}
                         className="criclebox tablespace mb-24"
-                        title="Quản lí người dùng"
+                        title="Quản lí tác giả"
                         extra={
                             <>
                                 <Radio.Group onChange={onChange} defaultValue="a">
@@ -170,4 +169,4 @@ function ManageUsers() {
     );
 }
 
-export default ManageUsers;
+export default ManageAuthors;

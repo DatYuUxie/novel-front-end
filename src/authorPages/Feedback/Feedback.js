@@ -1,15 +1,11 @@
-import './MyNovels.scss';
+import './Feedback.scss';
 
-import { Row, Col, Card, Radio, Table, Upload, message, Progress, Avatar, Typography } from 'antd';
+import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
 import { ToTopOutlined } from '@ant-design/icons';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faUser } from '@fortawesome/free-regular-svg-icons';
-import Button from '../../components/Button';
-import Menu from '../../components/Popper/Menu';
-import { faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+
 const { Title } = Typography;
 
 const formProps = {
@@ -33,26 +29,22 @@ const formProps = {
 // table code start
 const columns = [
     {
-        title: 'Thông tin sách ',
+        title: 'Tên truyện',
         dataIndex: 'name',
         key: 'name',
-        width: '32%',
     },
+    
 
     {
-        title: 'Thể loại',
+        title: 'Loại',
         key: 'type',
         dataIndex: 'type',
     },
     {
-        title: 'Trạng thái',
-        key: 'status',
-        dataIndex: 'status',
-    },
-    {
-        title: 'Lượt xem',
-        dataIndex: 'view',
-        key: 'view',
+        title: 'Nội dung ',
+        dataIndex: 'content',
+        key: 'content',
+        width: '32%',
     },
     {
         title: 'Số chương',
@@ -64,6 +56,14 @@ const columns = [
 const data = [
     {
         key: '1',
+        content: (
+            <>
+                <div className="author-info">
+                <p>Truyện viết hay lắm</p>
+                </div>
+                
+            </>
+        ),
         name: (
             <>
                 <Avatar.Group>
@@ -75,35 +75,22 @@ const data = [
                     ></Avatar>
                     <div className="avatar-info">
                         <Title level={5}>Cầu ma</Title>
-                        <p>Nhĩ Căn</p>
                     </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        view: (
-            <>
-                <div className="author-info">
-                    <span>889990</span>
-                </div>
-            </>
-        ),
-        status: (
-            <>
-                <Button className="detail">Đang ra</Button>
+                </Avatar.Group>
             </>
         ),
 
         type: (
             <>
-                <Button className="detail">Tiên hiệp</Button>
+                <Button className="detail">Đánh giá</Button>
             </>
         ),
         chapter: (
             <>
                 <div className="ant-employed">
-                    <span>456</span>
+                    <span>_</span>
                     <div>
-                        <Link to={'/author/novel-detail'}>
+                        <Link to={'/novel-detail'}>
                             <Button className="detail">Xem chi tiết</Button>
                         </Link>
                         <a href="#pablo">
@@ -117,6 +104,14 @@ const data = [
 
     {
         key: '2',
+        content: (
+            <>
+            <div className="author-info">
+                <p>Lỗi chính tả</p>
+                </div>
+                
+            </>
+        ),
         name: (
             <>
                 <Avatar.Group>
@@ -127,30 +122,15 @@ const data = [
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
                     ></Avatar>
                     <div className="avatar-info">
-                        <Title level={5}>Cổ chân nhân</Title>
-                        <p>Quang Khải</p>
+                        <Title level={5}>Kiếm lai</Title>
                     </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        view: (
-            <>
-                <div className="author-info">
-                    <span>889990</span>
-                </div>
-            </>
-        ),
-        status: (
-            <>
-                <Button className="detail">Đang ra</Button>
+                </Avatar.Group>
             </>
         ),
 
         type: (
             <>
-                <Button outline className="detail">
-                    Ngôn tình
-                </Button>
+                <Button className="detail">Lỗi chương</Button>
             </>
         ),
         chapter: (
@@ -158,7 +138,7 @@ const data = [
                 <div className="ant-employed">
                     <span>88</span>
                     <div>
-                        <Link to={'/author/novel-detail'}>
+                        <Link to={'/novel-detail'}>
                             <Button className="detail">Xem chi tiết</Button>
                         </Link>
                         <a href="#pablo">
@@ -170,31 +150,14 @@ const data = [
         ),
     },
 ];
-function MyNovels() {
-    const navigate = useNavigate();
-
+function Feedback() {
     const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
     return (
-        <div className="manage-book-tabled">
+        <div className="manage-feedback-tabled">
             <Row gutter={[24, 0]}>
                 <Col xs="24" xl={24}>
-                    <Card
-                        bordered={false}
-                        className="criclebox tablespace mb-24"
-                        title="Quản lí truyện sách"
-                        extra={
-                            <Button
-                                className="new-btn"
-                                primary2
-                                onClick={() => {
-                                    navigate('/author/create-novel');
-                                }}
-                            >
-                                Viết tác phẩm mới
-                            </Button>
-                        }
-                    >
+                    <Card bordered={false} className="criclebox tablespace mb-24" title="Phản hồi từ người dùng">
                         <div className="table-responsive">
                             <Table
                                 columns={columns}
@@ -210,4 +173,4 @@ function MyNovels() {
     );
 }
 
-export default MyNovels;
+export default Feedback;
