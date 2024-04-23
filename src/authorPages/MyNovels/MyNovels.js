@@ -106,9 +106,9 @@ const data = [
                         <Link to={'/author/novel-detail'}>
                             <Button className="detail">Xem chi tiết</Button>
                         </Link>
-                        <a href="#pablo">
+                        <Link to={'/author/edit-novel'}>
                             <FontAwesomeIcon icon={faPenToSquare} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </>
@@ -161,7 +161,7 @@ const data = [
                         <Link to={'/author/novel-detail'}>
                             <Button className="detail">Xem chi tiết</Button>
                         </Link>
-                        <a href="#pablo">
+                        <a href="/author/edit-novel">
                             <FontAwesomeIcon icon={faPenToSquare} />
                         </a>
                     </div>

@@ -25,7 +25,7 @@ import ManageAuthors from '../adminPages/ManageAuthors';
 import ManagePayments from '../adminPages/ManagePayments';
 import Report from '../adminPages/Report';
 import AdminDashboard from '../adminPages/AdminDashboard';
-
+import EditNovel from '../authorPages/EditNovel';
 // Public routes
 const publicRoutes = [
     { path: '/', component: Home },
@@ -51,6 +51,7 @@ const publicRoutes = [
     { path: '/author/novel-detail', component: AuthorNovelDetail, layout: AuthorLayout },
     { path: '/author/feedbacks', component: Feedback, layout: AuthorLayout },
     { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
+    { path: '/author/edit-novel', component: EditNovel, layout: AuthorLayout },
 
 
 
