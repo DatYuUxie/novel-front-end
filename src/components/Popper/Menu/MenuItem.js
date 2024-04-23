@@ -9,7 +9,12 @@ function MenuItem({ data, onClick, small = false }) {
         separate: data.separate,
     });
     return (
-        <Button className={small ? cx('small-menu-item') : classes} leftIcon={data.icon} to={data.to} onClick={onClick}>
+        <Button
+            className={small ? cx('small-menu-item') : classes}
+            leftIcon={data.icon}
+            to={data.to}
+            onClick={data.onClick}
+        >
             {data.title}
         </Button>
     );
