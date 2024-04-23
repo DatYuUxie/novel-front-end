@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import './Login.scss';
@@ -12,6 +12,7 @@ const onFinish = (values) => {
 };
 
 const Login = (props) => {
+    const { loginContext } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -29,18 +30,25 @@ const Login = (props) => {
         if (response && response.data && +response.data.EC === 0) {
             // success
             console.log('response', response);
+            let role = response.data.DT.role;
+            let email = response.data.DT.email;
+            let username = response.data.DT.username;
+            let token = response.data.DT.access_token;
             let data = {
                 isAuthenticated: true,
-                token: 'fake token',
+                token: token,
+                account: { role, email, username },
             };
-            sessionStorage.setItem('account', JSON.stringify(data));
-            if (response.data.DT.role === 'ADMIN') {
+            // sessionStorage.setItem('account', JSON.stringify(data));
+            localStorage.setItem('jwt', token);
+            loginContext(data);
+            if (role === 'ADMIN') {
                 navigate('/admin/manage-user');
             }
-            if (response.data.DT.role === 'USER') {
+            if (role === 'USER') {
                 navigate('/');
             }
-            if (response.data.DT.role === 'MODERATOR') {
+            if (role === 'MODERATOR') {
                 // navigate('/writers');
             }
             // window.location.reload();

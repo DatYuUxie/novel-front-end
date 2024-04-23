@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
 
 import Button from '../Button';
@@ -27,6 +28,9 @@ import {
 import { InboxIcon } from '../../assets/icon';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
+import { message } from 'antd';
+import { UserContext } from '../../context/UserContext';
+import { logout } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -67,7 +71,21 @@ const CATEGORY_ITEMS = [
 ];
 
 function Header() {
-    const currentUser = true;
+    const { user, logoutContext } = useContext(UserContext);
+    const navigate = useNavigate();
+    // const currentUser = false;
+    const handleLogout = async () => {
+        let res = await logout();
+        // console.log('check logout', res);
+        if (res && res.data && res.data.EC === 0) {
+            localStorage.removeItem('jwt'); // clear the local storage
+            logoutContext();
+            message.success('Logout successful!');
+            navigate('/login');
+        } else {
+            message.error('Logout failed!');
+        }
+    };
 
     const notifyData = [
         {
@@ -125,7 +143,6 @@ function Header() {
         />
     );
     const userMenu = [
-        
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Coin',
@@ -149,8 +166,9 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Đăng xuất',
-            to: '/logout',
-            onClick: () => {},
+            onClick: () => {
+                handleLogout();
+            },
             separate: true,
         },
     ];
@@ -197,7 +215,7 @@ function Header() {
                     </Link>
 
                     <div className={cx('actions')}>
-                        {currentUser ? (
+                        {user && user.isAuthenticated === true ? (
                             <>
                                 <Link to={config.library} className={cx('title-icon', 'bxh')}>
                                     <FontAwesomeIcon icon={faQuran} />
