@@ -2,7 +2,8 @@ import classNames from 'classnames/bind';
 import Button from '../../components/Button';
 import List from '../../components/BookContent/List';
 import Reviews from '../../components/BookContent/Reviews';
-import { useState } from 'react';
+import { ColorFonts } from '../../constants/ColorFont';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -59,7 +60,19 @@ function Chapter() {
     const [modalIsOpen2, setIsOpen2] = useState(false);
     const [commentOpen, setCommentOpen] = useState(false);
     const [mark, setMark] = useState(false);
+    const [backgroundColor, setBackgroundColor] = useState('#fff');
+    const [textColor, setTextColor] = useState('#000000');
+
     const active = cx('mark');
+
+    useEffect(() => {
+        const themeColorId = localStorage.getItem('chapterTheme');
+        if (themeColorId) {
+            const color = ColorFonts.find((item) => item.id == themeColorId);
+            setBackgroundColor(color.bg);
+            setTextColor(color.text);
+        }
+    }, []);
 
     const increaseFontSize = () => {
         setFontSize(fontSize + 1);
@@ -93,9 +106,17 @@ function Chapter() {
     function closeModal2() {
         setIsOpen2(false);
     }
+
+    const handleTextColorChange = (event) => {
+        const newColorId = event.target.value;
+        const color = ColorFonts.find((item) => item.id == newColorId);
+        setBackgroundColor(color.bg);
+        setTextColor(color.text);
+        localStorage.setItem('chapterTheme', newColorId); // Lưu giá trị vào local storage
+    };
     return (
         <div className={cx('container')}>
-            <div className={cx('content')}>
+            <div className={cx('content')} style={{ backgroundColor: backgroundColor, color: textColor }}>
                 <div className={cx('head')}>
                     <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>
                         Chương trước
@@ -106,13 +127,13 @@ function Chapter() {
                 </div>
                 <p className={cx('name')}>Chương 3: Bỗng nhiên quay đầu</p>
                 <div className={cx('info')}>
-                    <Button info text leftIcon={<FontAwesomeIcon icon={faBook} />}>
+                    <Button info text leftIcon={<FontAwesomeIcon icon={faBook}/>} style={{ backgroundColor: backgroundColor, color: textColor }}>
                         Cầu ma
                     </Button>
-                    <Button info text leftIcon={<FontAwesomeIcon icon={faUserEdit} />}>
+                    <Button info text leftIcon={<FontAwesomeIcon icon={faUserEdit} />} style={{ backgroundColor: backgroundColor, color: textColor }}>
                         Nhĩ Căn
                     </Button>
-                    <Button info text leftIcon={<FontAwesomeIcon icon={faClock} />}>
+                    <Button info text leftIcon={<FontAwesomeIcon icon={faClock} />} style={{ backgroundColor: backgroundColor, color: textColor }}>
                         20:20 1-1-2023
                     </Button>
                 </div>
@@ -238,40 +259,76 @@ function Chapter() {
                             <div id="setting-content">
                                 <h4 className={cx('no-user-select')}>Màu nền:</h4>
                                 <div className={cx('radio')}>
-                                    <label for="radio1">
-                                        <input id="radio1" type="radio" name="radio" />
-                                        <span className={cx('outer')}>
+                                    <label htmlFor="radio1">
+                                        <input
+                                            id="radio1"
+                                            type="radio"
+                                            name="radio"
+                                            value="1"
+                                            onChange={handleTextColorChange}
+                                        />
+                                        <span className={cx('outer', { active: backgroundColor === '#f5e4e4' })}>
                                             <span className={cx('inner', 't1')}></span>
                                         </span>
                                     </label>
-                                    <label for="radio2">
-                                        <input id="radio2" type="radio" name="radio" />
-                                        <span className={cx('outer')}>
+                                    <label htmlFor="radio2">
+                                        <input
+                                            id="radio2"
+                                            type="radio"
+                                            name="radio"
+                                            value="2"
+                                            onChange={handleTextColorChange}
+                                        />
+                                        <span className={cx('outer', { active: backgroundColor === '#f5ebcd' })}>
                                             <span className={cx('inner', 't2')}></span>
                                         </span>
                                     </label>
-                                    <label for="radio3">
-                                        <input id="radio3" type="radio" name="radio" />
-                                        <span className={cx('outer')}>
+                                    <label htmlFor="radio3">
+                                        <input
+                                            id="radio3"
+                                            type="radio"
+                                            name="radio"
+                                            value="3"
+                                            onChange={handleTextColorChange}
+                                        />
+                                        <span className={cx('outer', { active: backgroundColor === '#e2eee2' })}>
                                             <span className={cx('inner', 't3')}></span>
                                         </span>
                                     </label>
                                     <br />
-                                    <label for="radio4">
-                                        <input id="radio4" type="radio" name="radio" />
-                                        <span className={cx('outer')}>
+                                    <label htmlFor="radio4">
+                                        <input
+                                            id="radio4"
+                                            type="radio"
+                                            name="radio"
+                                            value="4"
+                                            onChange={handleTextColorChange}
+                                        />
+                                        <span className={cx('outer', { active: backgroundColor === '#e1e8e8' })}>
                                             <span className={cx('inner', 't4')}></span>
                                         </span>
                                     </label>
-                                    <label for="radio5">
-                                        <input id="radio5" type="radio" name="radio" />
-                                        <span className={cx('outer')}>
+                                    <label htmlFor="radio5">
+                                        <input
+                                            id="radio5"
+                                            type="radio"
+                                            name="radio"
+                                            value="5"
+                                            onChange={handleTextColorChange}
+                                        />
+                                        <span className={cx('outer', { active: backgroundColor === '#222' })}>
                                             <span className={cx('inner', 't5')}></span>
                                         </span>
                                     </label>
-                                    <label for="radio6">
-                                        <input id="radio6" type="radio" name="radio" />
-                                        <span className={cx('outer')}>
+                                    <label htmlFor="radio6">
+                                        <input
+                                            id="radio6"
+                                            type="radio"
+                                            name="radio"
+                                            value="6"
+                                            onChange={handleTextColorChange}
+                                        />
+                                        <span className={cx('outer', { active: backgroundColor === '#fff' })}>
                                             <span className={cx('inner', 't6')}></span>
                                         </span>
                                     </label>

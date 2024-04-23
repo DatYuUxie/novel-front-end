@@ -29,10 +29,9 @@ function AuthorSidebar() {
                 }}
             >
                 <img src={logo} alt="" style={{ width: '80px' }} />
-                <h5>Trang tác giả</h5>
             </div>
             {/* <hr /> */}
-            <Menu theme="light" mode="inline">
+            <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                     <NavLink to="/author/dashboard">
                         <FontAwesomeIcon icon={faColumns} />
@@ -61,13 +60,13 @@ function AuthorSidebar() {
                         <span className="nav-label">Thu nhập </span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item className="menu-item-header" key="5">
+                {/* <Menu.Item className="menu-item-header" key="5">
                     <NavLink to="/admin/manage-user">
                         <FontAwesomeIcon icon={faRectangleAd} />
 
                         <span className="nav-label">Quảng cáo </span>
                     </NavLink>
-                </Menu.Item>
+                </Menu.Item> */}
             </Menu>
         </aside>
     );

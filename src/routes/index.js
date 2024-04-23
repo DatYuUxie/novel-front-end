@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Forum from '../pages/Forum';
 import Thread from '../pages/Thread';
+import SearchResult from '../pages/SearchResult';
 import { Setting, Account, Coin } from '../pages/Settings';
 import CreateNovel from '../authorPages/CreateNovel';
 import CreateChapter from '../authorPages/CreateChapter';
@@ -22,6 +23,8 @@ import Feedback from '../authorPages/Feedback';
 import IncomeDashboard from '../authorPages/IncomeDashboard';
 import ManageAuthors from '../adminPages/ManageAuthors';
 import ManagePayments from '../adminPages/ManagePayments';
+import Report from '../adminPages/Report';
+import AdminDashboard from '../adminPages/AdminDashboard';
 
 // Public routes
 const publicRoutes = [
@@ -37,6 +40,7 @@ const publicRoutes = [
     { path: '/account/setting', component: Setting },
     { path: '/account/coin', component: Coin },
     { path: '/account/:userId', component: Account },
+    { path: '/search', component: SearchResult },
 
 
     { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
@@ -54,6 +58,8 @@ const publicRoutes = [
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
     { path: '/admin/manage-authors', component: ManageAuthors, layout: AdminLayout },
     { path: '/admin/manage-payment', component: ManagePayments, layout: AdminLayout },
+    { path: '/admin/manage-report', component: Report, layout: AdminLayout },
+    { path: '/admin/dashboard', component: AdminDashboard, layout: AdminLayout },
 
 ];
 

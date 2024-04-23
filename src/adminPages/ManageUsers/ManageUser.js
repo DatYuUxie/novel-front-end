@@ -88,7 +88,7 @@ const data = [
             <>
                 <div className="ant-employed">
                     <span>0123456</span>
-                    <a href="#pablo">Edit</a>
+                    <a href="#pablo">Chỉnh sửa</a>
                 </div>
             </>
         ),
@@ -129,7 +129,7 @@ const data = [
             <>
                 <div className="ant-employed">
                     <span>099888</span>
-                    <a href="#pablo">Edit</a>
+                    <a href="#pablo">Chỉnh sửa</a>
                 </div>
             </>
         ),
