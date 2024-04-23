@@ -8,6 +8,10 @@ import Menu from '../Popper/Menu';
 
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { Row, Col, List, Avatar, Input, Drawer, Typography,   Dropdown,
+} from 'antd';
+
+import { SearchOutlined, StarOutlined, TwitterOutlined, FacebookFilled } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faBars,
@@ -26,41 +30,61 @@ import styles from './AdminHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
-const CATEGORY_ITEMS = [
+const notifyData = [
     {
-        title: 'Tất cả',
+        title: 'New message from Sophie',
+        description: <>2 days ago</>,
+
+        avatar: (
+            <Avatar
+                className={cx('shape-avatar')}
+                shape="square"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+            ></Avatar>
+        ),
     },
     {
-        title: 'Kì ảo',
-        children: {
-            title: 'Language',
-            data: [
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-            ],
-        },
+        title: 'New album by Travis Scott',
+        description: <>2 days ago</>,
+
+        avatar: (
+            <Avatar
+                className={cx('shape-avatar')}
+                shape="square"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+            ></Avatar>
+        ),
     },
     {
-        title: 'Tiên hiệp',
-    },
-    {
-        title: 'Ngôn tình',
-    },
-    {
-        title: 'Huyền huyễn',
-    },
-    {
-        title: 'Khoa học',
+        title: 'Payment completed',
+        description: <>2 days ago</>,
+        avatar: (
+            <Avatar
+                className={cx('shape-avatar')}
+                shape="square"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+            ></Avatar>
+        ),
     },
 ];
+
+const notifyMenu = (
+    <List
+        min-width="100%"
+        className={cx('header-notifications-dropdown')}
+        itemLayout="horizontal"
+        dataSource={notifyData}
+        renderItem={(item) => (
+            <List.Item>
+                <List.Item.Meta
+                    avatar={<Avatar shape="square" src={item.avatar} />}
+                    title={item.title}
+                    description={item.description}
+                />
+            </List.Item>
+        )}
+    />
+);
 
 function AdminHeader() {
     const currentUser = true;
@@ -109,12 +133,16 @@ function AdminHeader() {
                     <div className={cx('actions')}>
                         {currentUser ? (
                             <>
-                                <Tippy delay={[0, 50]} content="Thông báo" placement="bottom">
-                                    <button className={cx('action-btn')}>
-                                        <InboxIcon />
-                                        <span className={cx('badge')}>12</span>
-                                    </button>
-                                </Tippy>
+                                <Dropdown overlay={notifyMenu} trigger={['click']}>
+                                    <a href="#pablo" placement="bottomRight" className={cx('ant-dropdown-link')} onClick={(e) => e.preventDefault()}>
+                                        <Tippy delay={[0, 50]} content="Thông báo" placement="bottom">
+                                            <button className={cx('action-btn')}>
+                                                <InboxIcon />
+                                                <span className={cx('badge')}>12</span>
+                                            </button>
+                                        </Tippy>
+                                    </a>
+                                </Dropdown>
 
                                 <Menu items={userMenu} onChange={handleMenuChange}>
                                     <img

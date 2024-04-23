@@ -17,7 +17,7 @@ function AdminSidebar() {
             {/* <hr /> */}
             <Menu theme="light" mode="inline">
                 <Menu.Item key="1">
-                    <NavLink to="/dashboard">
+                    <NavLink to="/admin/dashboard">
                         <FontAwesomeIcon icon={faColumns} />
 
                         <span className="nav-label">Tổng quan</span>
@@ -52,15 +52,15 @@ function AdminSidebar() {
                         <span className="nav-label">Quản lí thanh toán </span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item key="6">
+                {/* <Menu.Item key="7">
                     <NavLink to="/sign-in">
                     <FontAwesomeIcon icon={faPenNib} />
 
                         <span className="nav-label">Sách, truyện cần xét duyệt </span>
                     </NavLink>
-                </Menu.Item>
-                <Menu.Item key="7">
-                    <NavLink to="/sign-up">
+                </Menu.Item> */}
+                <Menu.Item key="6">
+                    <NavLink to="/admin/manage-report">
                     <FontAwesomeIcon icon={faExclamationTriangle} />
 
                         <span className="nav-label">Báo cáo vi phạm </span>

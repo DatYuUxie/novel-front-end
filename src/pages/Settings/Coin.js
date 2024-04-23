@@ -1,4 +1,4 @@
-import PostItem from '../../components/PostItem';
+import CoinComponent from '../../components/CoinComponent';
 import SettingSideBar from '../../components/SettingSideBar';
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -13,9 +13,8 @@ function Coin() {
         <div className={cx('container')}>
                 <SettingSideBar tag={1}/>
                 <div className={cx('content')}>
-                    <PostItem />
-                    <PostItem />
-                    <PostItem />
+                    <CoinComponent />
+                   
                 </div>
             </div>
     );

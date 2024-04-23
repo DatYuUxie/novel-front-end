@@ -1,10 +1,10 @@
-import AdminSidebar from './AuthorSidebar';
+import AuthorSidebar from './AuthorSidebar';
 import AdminHeader from '../../components/AdminHeader';
 function AuthorLayout({ children }) {
     return (
         <div className="layout">
             <div className="wrapper">
-                <AdminSidebar />
+                <AuthorSidebar />
 
                 <div className="container">
                     <AdminHeader />

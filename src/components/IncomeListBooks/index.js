@@ -39,7 +39,7 @@ function IncomeListBooks() {
     }, []);
     return (
         <div className={cx('container')}>
-            <h2>Tác phẩm của tôi</h2>
+            <h2>Tác phẩm</h2>
 
             <div className={cx('banner-container')}>
                 {Object.values(rank).map((item, index) => {

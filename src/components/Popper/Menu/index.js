@@ -16,7 +16,7 @@ function Menu({ children, items = [], onChange = defaultFn, small = false }) {
     // console.log("gais tri current",current);
 
     const renderItems = () => {
-        return items.map((item, index) => <MenuItem key={index} data={item} />);
+        return items.map((item, index) => <MenuItem key={index} data={item}/>);
     };
 
     return (
