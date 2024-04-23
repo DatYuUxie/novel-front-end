@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from '../setup/axios';
 
 // ===========   user api   ===========
 const registerNewUser = async (email, password) => {
     try {
-        return axios.post('http://localhost:5000/api/v1/register', {
+        return axios.post('/api/v1/register', {
             email,
             password,
         });
@@ -14,7 +14,7 @@ const registerNewUser = async (email, password) => {
 };
 const login = async (email, password) => {
     try {
-        return axios.post('http://localhost:5000/api/v1/login', {
+        return axios.post('/api/v1/login', {
             email,
             password,
         });
@@ -23,10 +23,26 @@ const login = async (email, password) => {
         throw new Error(error);
     }
 };
+const logout = async () => {
+    try {
+        return axios.post('/api/v1/logout');
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const getUserAccount = async () => {
+    try {
+        return axios.get('/api/v1/account');
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 // ===========   book api   ===========
 const getBooks = async () => {
     try {
-        return axios.get('http://localhost:5000/api/v1/book/read');
+        return axios.get('/api/v1/book/read');
     } catch (error) {
         console.log(error);
         throw new Error(error);
@@ -34,10 +50,18 @@ const getBooks = async () => {
 };
 const getBookById = async (id) => {
     try {
-        return axios.get(`http://localhost:5000/api/v1/book/read/${id}`);
+        return axios.get(`/api/v1/book/read/${id}`);
     } catch (error) {
         console.log(error);
         throw new Error(error);
     }
 };
-export { getBooks, getBookById, registerNewUser, login };
+const createBook = async (data) => {
+    try {
+        return axios.post('/api/v1/book/create', data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+export { getBooks, getBookById, registerNewUser, login, logout, getUserAccount, createBook };

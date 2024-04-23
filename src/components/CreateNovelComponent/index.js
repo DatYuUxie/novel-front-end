@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import './CreateNovelComponent.scss';
-import { Select, Tag } from 'antd';
+import { message, Select, Tag } from 'antd';
+import { createBook } from '../../api/api';
+import _, { set } from 'lodash';
 const options = [
     {
         value: 'gold',
@@ -55,14 +57,45 @@ function CreateNovelComponent() {
     const handleButtonClick = () => {
         inputRef.current.click();
     };
+
+    const dafaultformData = {
+        bookName: '',
+        description: '',
+        tag: '',
+        author: '',
+    };
+    const [formData, setFormData] = useState(dafaultformData);
+    const handleOnChangeInput = (value, name) => {
+        let _formData = _.cloneDeep(formData);
+        _formData[name] = value;
+        setFormData(_formData);
+    };
+    const handleCreateBook = async (event) => {
+        event.preventDefault();
+        try {
+            console.log('formData', { ...formData, poster: selectedImage });
+            let response = await createBook({ ...formData, poster: selectedImage });
+            console.log('response', response);
+            if (response.data.EC === 0) {
+                message.success('Tạo sách thành công');
+                // console.log('formData', formData);
+                // alert('Tạo sách thành công');
+            }
+        } catch (error) {
+            message.error('Tạo sách thất bại');
+        }
+    };
     return (
         <div className="create-novel__account">
-            <form action="" method="post">
+            <form
+                // action=""
+                // method="post"
+                onSubmit={handleCreateBook}
+            >
                 <h3 className="settingsP">Thông tin sách:</h3>
 
                 <fieldset>
                     <div className="avatar-container">
-                        {/* Hiển thị ảnh đã chọn (nếu có) */}
                         <div className="avatar" onClick={handleButtonClick}>
                             <img
                                 src={
@@ -73,7 +106,7 @@ function CreateNovelComponent() {
                                 className="user-img"
                             />
                         </div>
-                        {/* Input để chọn tệp ảnh */}
+
                         <input
                             type="file"
                             accept="image/*"
@@ -88,24 +121,39 @@ function CreateNovelComponent() {
                     <label htmlFor="name">
                         <h5>Tên sách:</h5>
                     </label>
-                    <input type="text" id="name" name="user_name" />
+                    <input
+                        type="text"
+                        id="name"
+                        name="user_name"
+                        value={formData.bookName}
+                        onChange={(e) => handleOnChangeInput(e.target.value, 'bookName')}
+                    />
 
                     <label htmlFor="description">
                         <h5>Mô tả:</h5>
                     </label>
-                    <textarea id="description" name="description"></textarea>
+                    <textarea
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={(e) => handleOnChangeInput(e.target.value, 'description')}
+                    ></textarea>
 
                     <label htmlFor="gender">
                         <h5>Thể loại:</h5>
                     </label>
-                    <select id="type" name="type">
+                    <select
+                        id="type"
+                        name="type"
+                        value={formData.tag}
+                        onChange={(e) => handleOnChangeInput(e.target.value, 'tag')}
+                    >
                         <option value="">Chọn thể loại sáng tác</option>
-
-                        <option value="own">Tiên hiệp</option>
-                        <option value="trans">Quân sự</option>
+                        <option value="Tiên hiệp">Tiên hiệp</option>
+                        <option value="Quân sự">Quân sự</option>
                     </select>
 
-                    <label htmlFor="gender">
+                    {/* <label htmlFor="gender">
                         <h5>Loại sách:</h5>
                     </label>
                     <select id="type" name="type">
@@ -113,14 +161,20 @@ function CreateNovelComponent() {
 
                         <option value="own">Tự sáng tác</option>
                         <option value="trans">Sách dịch</option>
-                    </select>
+                    </select> */}
 
                     <label htmlFor="author" style={{ display: 'flex' }}>
                         <h5>Tên tác giả</h5> <p style={{ marginLeft: '4px' }}> (nếu là sách dịch):</p>
                     </label>
-                    <input type="text" id="author" name="author_name" />
+                    <input
+                        type="text"
+                        id="author"
+                        name="author"
+                        value={formData.author}
+                        onChange={(e) => handleOnChangeInput(e.target.value, 'author')}
+                    />
 
-                    <label htmlFor="gender">
+                    {/* <label htmlFor="gender">
                         <h5>Danh mục tag:</h5>
                     </label>
                     <Select
@@ -131,7 +185,7 @@ function CreateNovelComponent() {
                             width: '100%',
                         }}
                         options={options}
-                    />
+                    /> */}
                 </fieldset>
 
                 <div className="btns-box">
@@ -140,7 +194,7 @@ function CreateNovelComponent() {
                     </button>
                     <button
                         type="button"
-                        className='btn-cancel'
+                        className="btn-cancel"
                         onClick={() => {
                             window.history.back();
                         }}
