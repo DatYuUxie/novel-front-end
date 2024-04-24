@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './CreateNovelComponent.scss';
 import { message, Select, Tag } from 'antd';
-import { createBook } from '../../api/api';
+import { createBook, createImgLink } from '../../api/api';
 import _, { set } from 'lodash';
 const options = [
     {
@@ -39,12 +39,23 @@ const tagRender = (props) => {
 };
 function CreateNovelComponent() {
     const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage2, setSelectedImage2] = useState(null);
+
     const inputRef = useRef(null);
+    const dafaultformData = {
+        bookName: '',
+        description: '',
+        tag: '',
+        author: '',
+        poster: null,
+    };
+    const [formData, setFormData] = useState(dafaultformData);
 
     // Xử lý sự kiện khi người dùng chọn ảnh
-    const handleImageChange = (event) => {
+    const handleImageChange = async (event) => {
         const file = event.target.files[0];
         if (file) {
+            setSelectedImage2(file);
             const reader = new FileReader();
             reader.onload = () => {
                 setSelectedImage(reader.result); // Lưu trữ ảnh đã chọn dưới dạng URL dữ liệu
@@ -58,13 +69,6 @@ function CreateNovelComponent() {
         inputRef.current.click();
     };
 
-    const dafaultformData = {
-        bookName: '',
-        description: '',
-        tag: '',
-        author: '',
-    };
-    const [formData, setFormData] = useState(dafaultformData);
     const handleOnChangeInput = (value, name) => {
         let _formData = _.cloneDeep(formData);
         _formData[name] = value;
@@ -73,8 +77,13 @@ function CreateNovelComponent() {
     const handleCreateBook = async (event) => {
         event.preventDefault();
         try {
-            console.log('formData', { ...formData, poster: selectedImage });
-            let response = await createBook({ ...formData, poster: selectedImage });
+            let imgLink = await createImgLink(selectedImage2);
+            let poster = imgLink.data.DT.path;
+            console.log('img link', poster);
+
+            setFormData({ ...formData, poster: poster });
+            console.log('formData', formData);
+            let response = await createBook(formData);
             console.log('response', response);
             if (response.data.EC === 0) {
                 message.success('Tạo sách thành công');

@@ -64,4 +64,20 @@ const createBook = async (data) => {
         throw new Error(error);
     }
 };
+
+export const createImgLink = async (data) => {
+    try {
+        const formData = new FormData();
+        formData.append('poster', data);
+        return axios.post('/api/v1/book/create-image', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data', // Đặt kiểu dữ liệu là multipart/form-data
+            },
+        });
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+
 export { getBooks, getBookById, registerNewUser, login, logout, getUserAccount, createBook };
