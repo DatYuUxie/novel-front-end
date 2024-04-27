@@ -44,7 +44,7 @@ function CreateNovelComponent() {
     const inputRef = useRef(null);
     const dafaultformData = {
         bookName: '',
-        description: '',
+        desciption: '',
         tag: '',
         author: '',
         poster: null,
@@ -80,10 +80,10 @@ function CreateNovelComponent() {
             let imgLink = await createImgLink(selectedImage2);
             let poster = imgLink.data.DT.path;
             console.log('img link', poster);
-
-            setFormData({ ...formData, poster: poster });
-            console.log('formData', formData);
-            let response = await createBook(formData);
+            let updatedFormData = { ...formData, poster: poster };
+            setFormData(updatedFormData);
+            console.log('formData', updatedFormData);
+            let response = await createBook(updatedFormData);
             console.log('response', response);
             if (response.data.EC === 0) {
                 message.success('Tạo sách thành công');
@@ -138,14 +138,14 @@ function CreateNovelComponent() {
                         onChange={(e) => handleOnChangeInput(e.target.value, 'bookName')}
                     />
 
-                    <label htmlFor="description">
+                    <label htmlFor="desciption">
                         <h5>Mô tả:</h5>
                     </label>
                     <textarea
-                        id="description"
-                        name="description"
-                        value={formData.description}
-                        onChange={(e) => handleOnChangeInput(e.target.value, 'description')}
+                        id="desciption"
+                        name="desciption"
+                        value={formData.desciption}
+                        onChange={(e) => handleOnChangeInput(e.target.value, 'desciption')}
                     ></textarea>
 
                     <label htmlFor="gender">

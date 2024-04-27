@@ -30,7 +30,7 @@ import EditNovel from '../authorPages/EditNovel';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/book/:bookID', component: Book },
-    { path: '/chapter', component: Chapter },
+    { path: '/chapter/:chapterID', component: Chapter },
     { path: '/library', component: Library },
     { path: '/rankings', component: Rankings },
     { path: '/forum', component: Forum },
@@ -42,7 +42,6 @@ const publicRoutes = [
     { path: '/account/:userId', component: Account },
     { path: '/search', component: SearchResult },
 
-
     { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
     { path: '/author/create-novel', component: CreateNovel, layout: AuthorLayout },
     { path: '/author/create-chapter', component: CreateChapter, layout: AuthorLayout },
@@ -53,15 +52,12 @@ const publicRoutes = [
     { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
     { path: '/author/edit-novel', component: EditNovel, layout: AuthorLayout },
 
-
-
     { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
     { path: '/admin/manage-authors', component: ManageAuthors, layout: AdminLayout },
     { path: '/admin/manage-payment', component: ManagePayments, layout: AdminLayout },
     { path: '/admin/manage-report', component: Report, layout: AdminLayout },
     { path: '/admin/dashboard', component: AdminDashboard, layout: AdminLayout },
-
 ];
 
 const privateRoutes = [];

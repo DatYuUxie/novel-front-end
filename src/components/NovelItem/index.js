@@ -7,9 +7,9 @@ import Button from '../Button';
 import '../../assets/css/grid.css';
 const cx = classNames.bind(styles);
 
-function NovelItem({ data , search = false}) {
-    let responsive = search?'l-4 m-6 c-12':'l-3 m-4 c-6';
-    console.log("Search",data);
+function NovelItem({ data, search = false }) {
+    let responsive = search ? 'l-4 m-6 c-12' : 'l-3 m-4 c-6';
+    // console.log("Search",data);
 
     return (
         <div className={cx('container', responsive)}>

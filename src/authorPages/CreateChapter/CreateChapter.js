@@ -1,31 +1,77 @@
-import PostItem from '../../components/PostItem';
-import SettingSideBar from '../../components/SettingSideBar';
-import { Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CreateNovelComponent from '../../components/CreateNovelComponent';
-
+// import PostItem from '../../components/PostItem';
+// import SettingSideBar from '../../components/SettingSideBar';
+// import { Fragment } from 'react';
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import CreateNovelComponent from '../../components/CreateNovelComponent';
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CreateChapter.module.scss';
+import { createChapter } from '../../api/api';
+import _ from 'lodash';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 
 function CreateChapter() {
+    const defautFormData = {
+        orderNumber: '',
+        chapterName: '',
+        content: '',
+        bookID: '',
+    };
+    const [chapter, setChapter] = useState(defautFormData);
+    const handleOnchangeInput = (value, name) => {
+        let _chapter = _.cloneDeep(chapter);
+        _chapter[name] = value;
+        setChapter(_chapter);
+    };
+    const handleCreateChapter = async (e) => {
+        e.preventDefault();
+        try {
+            console.log('chapter', chapter);
+            let res = await createChapter(chapter);
+            console.log('res', res);
+            if (res.data.EC === 0) {
+                message.success('Tạo chương thành công');
+            }
+        } catch (error) {
+            message.error('Tạo chương thất bại');
+        }
+    };
     return (
         <div className={cx('container')}>
             {/* <SettingSideBar tag={2} /> */}
             <div className={cx('content')}>
-                <form>
+                <form onSubmit={handleCreateChapter}>
+                    <label htmlFor="name">
+                        <h4>Chương số:</h4>
+                    </label>
+                    <input
+                        className={cx('name-input')}
+                        type="text"
+                        id="orderNumber"
+                        name="orderNumber"
+                        value={chapter.orderNumber}
+                        onChange={(e) => handleOnchangeInput(e.target.value, 'orderNumber')}
+                    />
                     <label htmlFor="name">
                         <h4>Tên chương:</h4>
                     </label>
-                    <input className={cx('name-input')} type="text" id="name" name="user_name" />
+                    <input
+                        className={cx('name-input')}
+                        type="text"
+                        id="chapterName"
+                        name="chapterName"
+                        value={chapter.chapterName}
+                        onChange={(e) => handleOnchangeInput(e.target.value, 'chapterName')}
+                    />
                     <label htmlFor="">
                         <h4>Nội dung chương:</h4>
                     </label>
                     <div
-                        id="chapter-content"
+                        id="content"
                         className={cx('mce-content-body', 'cus-contend-bd')}
-                        data-id="chapter-content"
+                        data-id="content"
                         contentEditable={true}
                         style={{
                             overflowY: 'hidden',
@@ -35,6 +81,7 @@ function CreateChapter() {
                             outline: 'none',
                             border: '1px solid #e5e5e5',
                         }}
+                        onInput={(e) => handleOnchangeInput(e.target.innerText, 'content')}
                     >
                         <p>
                             <br data-mce-bogus="1" />
@@ -45,7 +92,8 @@ function CreateChapter() {
                         <button className={cx('btn-save')} type="submit">
                             Lưu
                         </button>
-                        <button type="button"
+                        <button
+                            type="button"
                             className={cx('btn-cancel')}
                             onClick={() => {
                                 window.history.back();
