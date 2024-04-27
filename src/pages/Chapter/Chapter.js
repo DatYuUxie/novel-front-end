@@ -3,8 +3,8 @@ import Button from '../../components/Button';
 import List from '../../components/BookContent/List';
 import Reviews from '../../components/BookContent/Reviews';
 import { ColorFonts } from '../../constants/ColorFont';
-import { useEffect, useState } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,9 +14,6 @@ import {
     faUserEdit,
     faClock,
     faExclamationTriangle,
-    faPlusCircle,
-    faPlusMinus,
-    faPlugCirclePlus,
     faCirclePlus,
     faCircleMinus,
     faXmark,
@@ -25,6 +22,7 @@ import styles from './Chapter.module.scss';
 import { Dialog, Widget, Revote, Reply, Playlist } from '../../assets/icon';
 import { Link } from 'react-router-dom';
 import { faCommenting } from '@fortawesome/free-regular-svg-icons';
+import { getChapterbyId } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -54,6 +52,23 @@ const customStyles2 = {
 
 // Modal.setAppElement('#root');
 function Chapter() {
+    const { chapterID } = useParams();
+    const [chapter, setChapter] = useState({});
+
+    useEffect(() => {
+        const getChapter = async () => {
+            try {
+                const response = await getChapterbyId(chapterID);
+                console.log('response:', response.data.DT);
+                setChapter(response.data.DT);
+            } catch (error) {
+                console.log('Failed to fetch chapter data:', error);
+            }
+        };
+        getChapter();
+    }, []);
+    console.log('chapter:', chapter);
+
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [fontSize, setFontSize] = useState(16);
@@ -125,51 +140,36 @@ function Chapter() {
                         Chương sau
                     </Button>
                 </div>
-                <p className={cx('name')}>Chương 3: Bỗng nhiên quay đầu</p>
+                <p className={cx('name')}>{`${chapter.orderNumber}. ${chapter.chapterName}`}</p>
                 <div className={cx('info')}>
-                    <Button info text leftIcon={<FontAwesomeIcon icon={faBook}/>} style={{ backgroundColor: backgroundColor, color: textColor }}>
-                        Cầu ma
+                    <Button
+                        info
+                        text
+                        leftIcon={<FontAwesomeIcon icon={faBook} />}
+                        style={{ backgroundColor: backgroundColor, color: textColor }}
+                    >
+                        {chapter && chapter.Book && chapter.Book.bookName}
                     </Button>
-                    <Button info text leftIcon={<FontAwesomeIcon icon={faUserEdit} />} style={{ backgroundColor: backgroundColor, color: textColor }}>
+                    <Button
+                        info
+                        text
+                        leftIcon={<FontAwesomeIcon icon={faUserEdit} />}
+                        style={{ backgroundColor: backgroundColor, color: textColor }}
+                    >
                         Nhĩ Căn
                     </Button>
-                    <Button info text leftIcon={<FontAwesomeIcon icon={faClock} />} style={{ backgroundColor: backgroundColor, color: textColor }}>
+                    <Button
+                        info
+                        text
+                        leftIcon={<FontAwesomeIcon icon={faClock} />}
+                        style={{ backgroundColor: backgroundColor, color: textColor }}
+                    >
                         20:20 1-1-2023
                     </Button>
                 </div>
 
                 <div className={cx('paragraph')} style={{ fontSize: fontSize + 'px' }}>
-                    Núi! Thanh sơn! <br /> <br />
-                    Đây là một dãy núi lớn liên miên không dứt, như một con rồng còn sống kéo dài cả vùng đất mênh mông
-                    này, ở đấy có cỏ cây rậm rạp, còn có tiếng chim thú không ngừng vang lên. Xa xa nhìn lại, có thể
-                    thấy trên núi có một phần giống như được năm ngọn núi hợp lại, trông như năm ngón tay người giơ lên
-                    trời cao.
-                    <br /> <br /> Trong đó có một ngọn núi trung đoạn(1) , một người thiếu niên đang tựa vào một khối đá
-                    lớn hơi bị lõm sâu vào để tránh nắng. Bên cạnh hắn có một cái sọt mây, trong đó có dựng một chút
-                    dược thảo, mùi thuốc tản phát ra lượn lờ khắp bốn phía. <br /> <br />
-                    Thiếu niên này mi thanh mục tú, nhưng thân thể lại hơi ốm yếu, thoạt nhìn có chút suy nhược. Hắn mặc
-                    một cái áo được làm bằng da thú, cổ đeo một vòng thú cốt màu trắng hình trăng lưỡi liềm, đầu tóc rối
-                    bù được hắn dùng một sợi dây cây buộc lại. Hắn ngồi ở chỗ đó, tay cầm một quyển sách da do mười tấm
-                    da thú dính lại, chăm chú đọc lấy.
-                    <br /> <br /> - Tổ tông Man tộc, khai thiên tạo người, di lưu muôn đời đến nay...Vài người có sức
-                    mạnh lớn lao được gọi là Man Sĩ (2), họ có thể bay lên trời chui xuống đất, dời núi lấp biển...có
-                    Man Văn (3) thông thiên, hái được ngôi sao và nhật nguyệt... Thiếu niên đọc lấy, khẽ thở dài. -
-                    Không có Man thể, làm sao trở thành Man...Man Sĩ...Man Sĩ...Tô Minh, ngươi chỉ có thể hái được chút
-                    thảo dược, trở thành một y phu tầm thường mà thôi. <br /> <br />
-                    Muốn trở thành Man sĩ ư? Thật xa xôi. Thiếu niên tự chế giễu chính mình, buông cuốn da thú trong tay
-                    xuống, nhìn về phương trời xa mà ngơ ngẩn. Hắn đã đọc qua cuốn da thú này rất nhiều lần rồi, nói hắn
-                    thuộc nằm lòng cũng không sai chút nào. - Trời là hình tròn, đất là hình vuông, như vô biên, phảng
-                    phất vô tận... Trong lúc lẩm bẩm, đầu hắn lại ảo tưởng đến thế giới trong cuốn sách. <br /> <br />
-                    Bất chợt trời đã tối dần mà hắn không hề hay biết, mây đen bắt đầu xuất hiện từ chân trời xa xôi.
-                    Gió núi thổi qua mang theo hơi ẩm rơi xuống lá cây các cây cỏ trên núi, phát ra tiếng vang
-                    rắc..rắc.. <br /> <br />
-                    Đây là một dãy núi lớn liên miên không dứt, như một con rồng còn sống kéo dài cả vùng đất mênh mông
-                    này, ở đấy có cỏ cây rậm rạp, còn có tiếng chim thú không ngừng vang lên. Xa xa nhìn lại, có thể
-                    thấy trên núi có một phần giống như được năm ngọn núi hợp lại, trông như năm ngón tay người giơ lên
-                    trời cao.
-                    <br /> <br /> Trong đó có một ngọn núi trung đoạn(1), một người thiếu niên đang tựa vào một khối đá
-                    lớn hơi bị lõm sâu vào để tránh nắng. Bên cạnh hắn có một cái sọt mây, trong đó có dựng một chút
-                    dược thảo, mùi thuốc tản phát ra lượn lờ khắp bốn phía.
+                    {chapter.content}
                 </div>
                 <div className={cx('foot')}>
                     <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>

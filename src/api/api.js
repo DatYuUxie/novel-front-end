@@ -64,8 +64,7 @@ const createBook = async (data) => {
         throw new Error(error);
     }
 };
-
-export const createImgLink = async (data) => {
+const createImgLink = async (data) => {
     try {
         const formData = new FormData();
         formData.append('poster', data);
@@ -80,4 +79,42 @@ export const createImgLink = async (data) => {
     }
 };
 
-export { getBooks, getBookById, registerNewUser, login, logout, getUserAccount, createBook };
+// ===========   chapter api   ===========
+const getChapterbyBookId = async (id) => {
+    try {
+        return axios.get(`/api/v1/chapter/readAll/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const getChapterbyId = async (id) => {
+    try {
+        return axios.get(`/api/v1/chapter/read/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const createChapter = async (data) => {
+    try {
+        return axios.post('/api/v1/chapter/create', data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+
+export {
+    getBooks,
+    getBookById,
+    registerNewUser,
+    login,
+    logout,
+    getUserAccount,
+    createBook,
+    createImgLink,
+    getChapterbyBookId,
+    getChapterbyId,
+    createChapter,
+};
