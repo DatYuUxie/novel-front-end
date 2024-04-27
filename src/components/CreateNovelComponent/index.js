@@ -77,19 +77,25 @@ function CreateNovelComponent() {
     const handleCreateBook = async (event) => {
         event.preventDefault();
         try {
-            let imgLink = await createImgLink(selectedImage2);
-            let poster = imgLink.data.DT.path;
-            console.log('img link', poster);
+            createImgLink(selectedImage2)
+                .then(async (imgLink) => {
+                    let poster = imgLink.data.DT.path;
+                    console.log('img link', poster);
+                    let updateFormData = { ...formData, poster: poster };
+                    setFormData(updateFormData);
+                    console.log('formData', updateFormData);
 
-            setFormData({ ...formData, poster: poster });
-            console.log('formData', formData);
-            let response = await createBook(formData);
-            console.log('response', response);
-            if (response.data.EC === 0) {
-                message.success('Tạo sách thành công');
-                // console.log('formData', formData);
-                // alert('Tạo sách thành công');
-            }
+                    let response = await createBook(updateFormData);
+                    console.log('response', response);
+                    if (response.data.EC === 0) {
+                        message.success('Tạo sách thành công');
+                        // console.log('formData', formData);
+                        // alert('Tạo sách thành công');
+                    }
+                })
+                .catch((error) => {
+                    message.error('Tạo sách thất bại');
+                });
         } catch (error) {
             message.error('Tạo sách thất bại');
         }
