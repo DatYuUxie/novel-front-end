@@ -24,7 +24,7 @@
     margin-bottom: 16px;
   }
   .centered-welcome {
-    font-family: "inter", sans-serif;
+    font-family: var(--font-family);
     justify-content: center;
     font-weight: 400;
     font-size: 32px;
@@ -32,7 +32,7 @@
     margin-bottom: 8px;
   }
   .centered-become {
-    font-family: "inter", sans-serif;
+    font-family: var(--font-family);
     font-size: 16px;
     font-weight: 400;
     justify-content: center;

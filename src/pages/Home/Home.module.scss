@@ -1,8 +1,7 @@
-.top{
+.top {
     display: flex;
     justify-content: space-between;
 }
-
 
 .container {
     margin-top: 50px;
@@ -34,13 +33,7 @@
     .continued::-webkit-scrollbar-thumb {
         border-radius: 10px;
         background-color: #fff;
-        background-image: -webkit-gradient(
-            linear,
-         
-            from(#ffe5ec),
-            to(#f5f5f5),
-            color-stop(0.6, #ffe5ec)
-        );
+        background-image: -webkit-gradient(linear, from(#ffe5ec), to(#f5f5f5), color-stop(0.6, #ffe5ec));
     }
 }
 @media (min-width: 740px) {
@@ -65,5 +58,10 @@
     }
     .content {
         margin-top: 10px;
+        .pagination {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin-bottom: 50px;
+        }
     }
 }

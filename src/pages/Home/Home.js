@@ -8,6 +8,8 @@ import Button from '../../components/Button';
 import '../../assets/css/grid.css';
 import NewUpdate from '../../components/NewUpdate';
 import { useEffect, useState } from 'react';
+import { Pagination } from 'antd';
+
 import { getBooks } from '../../api/api';
 
 const cx = classNames.bind(styles);
@@ -132,6 +134,7 @@ const rank3 = [
 
 function Home() {
     const [mine, setMine] = useState([]);
+    const [page, setPage] = useState(1);
     const Novels = async () => {
         try {
             let res = await getBooks();
@@ -206,9 +209,18 @@ function Home() {
                 <div className={cx('content')}>
                     <div className="grid">
                         <div className="row">
-                            {Object.values(mine).map((item, index) => {
-                                return <NovelItem data={item} />;
-                            })}
+                            {Object.values(mine)
+                                .slice((page - 1) * 12, page * 12)
+                                .map((item, index) => (
+                                    <NovelItem data={item} />
+                                ))}
+                            <Pagination
+                                className={cx('pagination')}
+                                defaultCurrent={1}
+                                current={page}
+                                total={Math.round((Object.values(mine).length / 12) * 10)}
+                                onChange={(value) => setPage(value)}
+                            />
                         </div>
                     </div>
                 </div>
