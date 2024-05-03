@@ -8,7 +8,7 @@ import styles from './BookContent.module.scss';
 
 const cx = classNames.bind(styles);
 
-function BookContent() {
+function BookContent({ bookID }) {
     const [tab, setTab] = useState(0);
     const active = cx('active');
     return (
@@ -20,11 +20,10 @@ function BookContent() {
                 <div className={cx('tab-item', tab == 1 && active)} onClick={() => setTab(1)}>
                     Danh sách chương
                 </div>
-                
             </div>
             <div className={cx('content')}>
-                {tab == 0 && <Draft />}
-                {tab == 1 && <List />}
+                {tab == 0 && <Draft bookID={bookID} />}
+                {tab == 1 && <List bookID={bookID} />}
             </div>
         </div>
     );

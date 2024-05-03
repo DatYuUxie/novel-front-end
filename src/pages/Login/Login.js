@@ -29,7 +29,6 @@ const Login = (props) => {
         let response = await login(email, password);
         if (response && response.data && +response.data.EC === 0) {
             // success
-            console.log('response', response);
             let role = response.data.DT.role;
             let email = response.data.DT.email;
             let username = response.data.DT.username;

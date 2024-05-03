@@ -84,7 +84,6 @@ function CreateNovelComponent() {
             setFormData(updatedFormData);
             console.log('formData', updatedFormData);
             let response = await createBook(updatedFormData);
-            console.log('response', response);
             if (response.data.EC === 0) {
                 message.success('Tạo sách thành công');
                 // console.log('formData', formData);

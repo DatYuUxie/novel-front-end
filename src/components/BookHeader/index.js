@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import Button from '../Button';
@@ -31,7 +30,6 @@ function BookHeader({ bookID }) {
         };
         fetchNovels();
     }, []);
-
     return (
         <div className={cx('container')}>
             <div className={cx('cover-novel-img')}>

@@ -56,6 +56,14 @@ const getBookById = async (id) => {
         throw new Error(error);
     }
 };
+const getBookByUserId = async (id) => {
+    try {
+        return axios.get(`/api/v1/book/by-user/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 const createBook = async (data) => {
     try {
         return axios.post('/api/v1/book/create', data);
@@ -96,9 +104,25 @@ const getChapterbyId = async (id) => {
         throw new Error(error);
     }
 };
+const getDraftChapter = async (id) => {
+    try {
+        return axios.get(`/api/v1/chapter/draft/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 const createChapter = async (data) => {
     try {
         return axios.post('/api/v1/chapter/create', data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const updatepublishChapter = async (id) => {
+    try {
+        return axios.put(`/api/v1/chapter/publish/${id}`);
     } catch (error) {
         console.log(error);
         throw new Error(error);
@@ -117,4 +141,7 @@ export {
     getChapterbyBookId,
     getChapterbyId,
     createChapter,
+    getBookByUserId,
+    getDraftChapter,
+    updatepublishChapter,
 };

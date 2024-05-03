@@ -59,7 +59,6 @@ function Chapter() {
         const getChapter = async () => {
             try {
                 const response = await getChapterbyId(chapterID);
-                console.log('response:', response.data.DT);
                 setChapter(response.data.DT);
             } catch (error) {
                 console.log('Failed to fetch chapter data:', error);

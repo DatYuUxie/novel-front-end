@@ -17,7 +17,9 @@ function ListItem({ chapter }) {
                 <p>{chapter.orderNumber}</p>
                 <Link to={`/chapter/${chapter.chapterID}`} className={cx('item-content')}>
                     <p className={cx('name')}>{chapter.chapterName}</p>
-                    <p className={cx('time')}>{chapter.view} view</p>
+                    <p className={cx('time')}>
+                        {new Date(chapter.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
+                    </p>
                 </Link>
             </div>
         </div>

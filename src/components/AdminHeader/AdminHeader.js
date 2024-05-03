@@ -1,32 +1,20 @@
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
 import config from '../../config';
-
 import Button from '../Button';
-import img from '../../assets/img';
 import Search from '../Search';
 import Menu from '../Popper/Menu';
-
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { Row, Col, List, Avatar, Input, Drawer, Typography,   Dropdown,
-} from 'antd';
-
-import { SearchOutlined, StarOutlined, TwitterOutlined, FacebookFilled } from '@ant-design/icons';
+import { List, Avatar, Dropdown } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faBars,
-    faQuran,
-    faCoins,
-    faBell,
-    faEllipsisVertical,
-    faGear,
-    faKeyboard,
-    faSignOut,
-    faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCoins, faGear, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 import { InboxIcon } from '../../assets/icon';
 import classNames from 'classnames/bind';
 import styles from './AdminHeader.module.scss';
+import { message } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import { logout } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -87,7 +75,21 @@ const notifyMenu = (
 );
 
 function AdminHeader() {
-    const currentUser = true;
+    // const currentUser = true;
+    const { user, logoutContext } = useContext(UserContext);
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        let res = await logout();
+        // console.log('check logout', res);
+        if (res && res.data && res.data.EC === 0) {
+            localStorage.removeItem('jwt'); // clear the local storage
+            logoutContext();
+            message.success('Logout successful!');
+            navigate('/login');
+        } else {
+            message.error('Logout failed!');
+        }
+    };
 
     const userMenu = [
         {
@@ -108,7 +110,9 @@ function AdminHeader() {
         {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: 'Đăng xuất',
-            to: '/logout',
+            onClick: () => {
+                handleLogout();
+            },
             separate: true,
         },
     ];
@@ -131,10 +135,15 @@ function AdminHeader() {
 
                 <div className={cx('title-group')}>
                     <div className={cx('actions')}>
-                        {currentUser ? (
+                        {user && user.isAuthenticated === true ? (
                             <>
                                 <Dropdown overlay={notifyMenu} trigger={['click']}>
-                                    <a href="#pablo" placement="bottomRight" className={cx('ant-dropdown-link')} onClick={(e) => e.preventDefault()}>
+                                    <a
+                                        href="#pablo"
+                                        placement="bottomRight"
+                                        className={cx('ant-dropdown-link')}
+                                        onClick={(e) => e.preventDefault()}
+                                    >
                                         <Tippy delay={[0, 50]} content="Thông báo" placement="bottom">
                                             <button className={cx('action-btn')}>
                                                 <InboxIcon />
