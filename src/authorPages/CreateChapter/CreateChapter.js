@@ -3,7 +3,8 @@
 // import { Fragment } from 'react';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import CreateNovelComponent from '../../components/CreateNovelComponent';
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useState, useMemo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CreateChapter.module.scss';
 import { createChapter } from '../../api/api';
@@ -13,16 +14,27 @@ import { message } from 'antd';
 const cx = classNames.bind(styles);
 
 function CreateChapter() {
-    const defautFormData = {
-        orderNumber: '',
-        chapterName: '',
-        content: '',
-        bookID: '',
-    };
-    const [chapter, setChapter] = useState(defautFormData);
+    const { bookID } = useParams();
+    // const defaultFormData = {
+    //     orderNumber: '',
+    //     chapterName: '',
+    //     content: '',
+    //     bookID: bookID,
+    // };
+    const defaultFormData = useMemo(
+        () => ({
+            orderNumber: '',
+            chapterName: '',
+            content: '',
+            bookID: bookID,
+        }),
+        [bookID],
+    ); // useMemo will only recompute the memoized value when bookID changes
+    const [chapter, setChapter] = useState(defaultFormData);
     const handleOnchangeInput = (value, name) => {
         let _chapter = _.cloneDeep(chapter);
         _chapter[name] = value;
+        _chapter['bookID'] = bookID; // always include bookID
         setChapter(_chapter);
     };
     const handleCreateChapter = async (e) => {

@@ -1,12 +1,9 @@
 import DraftItem from './DraftItem';
 
-function Intro() {
+function Intro({ bookID }) {
     return (
         <div>
-            <DraftItem />
-            <DraftItem />
-            <DraftItem />
-            <DraftItem />
+            <DraftItem bookID={bookID} />
         </div>
     );
 }

@@ -25,7 +25,6 @@ function BookBanner({ bookID }) {
         };
         fetchNovels();
     }, []);
-    console.log(book);
     return (
         <div className={cx('container')}>
             <div className={cx('group')}>

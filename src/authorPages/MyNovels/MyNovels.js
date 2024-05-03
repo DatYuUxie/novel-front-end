@@ -1,15 +1,12 @@
 import './MyNovels.scss';
-
-import { Row, Col, Card, Radio, Table, Upload, message, Progress, Avatar, Typography } from 'antd';
-import { ToTopOutlined } from '@ant-design/icons';
-import Tippy from '@tippyjs/react';
+import { Row, Col, Card, Table, message, Avatar, Typography } from 'antd';
 import 'tippy.js/dist/tippy.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import Button from '../../components/Button';
-import Menu from '../../components/Popper/Menu';
-import { faCoins } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react';
+import { getBookByUserId } from '../../api/api';
 const { Title } = Typography;
 
 const formProps = {
@@ -60,121 +57,70 @@ const columns = [
         dataIndex: 'chapter',
     },
 ];
-
-const data = [
-    {
-        key: '1',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cầu ma</Title>
-                        <p>Nhĩ Căn</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        view: (
-            <>
-                <div className="author-info">
-                    <span>889990</span>
-                </div>
-            </>
-        ),
-        status: (
-            <>
-                <Button className="detail">Đang ra</Button>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="detail">Tiên hiệp</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>456</span>
-                    <div>
-                        <Link to={'/author/novel-detail'}>
-                            <Button className="detail">Xem chi tiết</Button>
-                        </Link>
-                        <Link to={'/author/edit-novel'}>
-                            <FontAwesomeIcon icon={faPenToSquare} />
-                        </Link>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cổ chân nhân</Title>
-                        <p>Quang Khải</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        view: (
-            <>
-                <div className="author-info">
-                    <span>889990</span>
-                </div>
-            </>
-        ),
-        status: (
-            <>
-                <Button className="detail">Đang ra</Button>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button outline className="detail">
-                    Ngôn tình
-                </Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>88</span>
-                    <div>
-                        <Link to={'/author/novel-detail'}>
-                            <Button className="detail">Xem chi tiết</Button>
-                        </Link>
-                        <a href="/author/edit-novel">
-                            <FontAwesomeIcon icon={faPenToSquare} />
-                        </a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-];
 function MyNovels() {
     const navigate = useNavigate();
+    const { userId } = useParams();
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        getBooksByUserId();
+    }, []);
+    const getBooksByUserId = async () => {
+        let response = await getBookByUserId(userId);
+        const formattedBooks = response.data.DT.map((book, index) => ({
+            key: index + 1,
+            name: (
+                <>
+                    <Avatar.Group>
+                        <Avatar className="shape-avatar" shape="square" size={40} src={book.poster}></Avatar>
+                        <div className="avatar-info">
+                            <Title level={5}>{book.bookName}</Title>
+                            <p>{book.author}</p>
+                        </div>
+                    </Avatar.Group>{' '}
+                </>
+            ),
+            view: (
+                <>
+                    <div className="author-info">
+                        <span>{book.view}</span>
+                    </div>
+                </>
+            ),
+            status: (
+                <>
+                    <Button className="detail">
+                        {/* thêm trạng thái */}
+                        {/* {book.tag} */}
+                        Đang ra
+                    </Button>
+                </>
+            ),
 
+            type: (
+                <>
+                    <Button className="detail">{book.tag}</Button>
+                </>
+            ),
+            chapter: (
+                <>
+                    <div className="ant-employed">
+                        {/* đang bị sai số chương */}
+                        <span>{book.vote}</span>
+                        <div>
+                            <Link to={`/author/novel-detail/${book.bookID}`}>
+                                <Button className="detail">Xem chi tiết</Button>
+                            </Link>
+                            <Link to={'/author/edit-novel'}>
+                                <FontAwesomeIcon icon={faPenToSquare} />
+                            </Link>
+                        </div>
+                    </div>
+                </>
+            ),
+        }));
+        setBooks(formattedBooks);
+    };
     const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
     return (
         <div className="manage-book-tabled">
             <Row gutter={[24, 0]}>
@@ -198,7 +144,7 @@ function MyNovels() {
                         <div className="table-responsive">
                             <Table
                                 columns={columns}
-                                dataSource={data}
+                                dataSource={books}
                                 pagination={false}
                                 className="ant-border-space"
                             />

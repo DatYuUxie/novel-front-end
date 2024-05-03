@@ -44,10 +44,9 @@ const publicRoutes = [
 
     { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
     { path: '/author/create-novel', component: CreateNovel, layout: AuthorLayout },
-    { path: '/author/create-chapter', component: CreateChapter, layout: AuthorLayout },
-    { path: '/author/my-novels', component: MyNovels, layout: AuthorLayout },
-    { path: '/author/create-chapter', component: CreateChapter, layout: AuthorLayout },
-    { path: '/author/novel-detail', component: AuthorNovelDetail, layout: AuthorLayout },
+    { path: '/author/create-chapter/:bookID', component: CreateChapter, layout: AuthorLayout },
+    { path: '/author/my-novels/:userId', component: MyNovels, layout: AuthorLayout },
+    { path: '/author/novel-detail/:bookID', component: AuthorNovelDetail, layout: AuthorLayout },
     { path: '/author/feedbacks', component: Feedback, layout: AuthorLayout },
     { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
     { path: '/author/edit-novel', component: EditNovel, layout: AuthorLayout },

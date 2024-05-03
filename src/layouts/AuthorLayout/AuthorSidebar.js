@@ -1,25 +1,17 @@
-import { Menu, Button } from 'antd';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Menu } from 'antd';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './AuthorLayout.scss';
-import {
-    faBars,
-    faBook,
-    faColumns,
-    faExclamationTriangle,
-    faMoneyBill,
-    faPenNib,
-    faRectangleAd,
-    faUserAlt,
-    faUserEdit,
-} from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBook, faColumns, faMoneyBill, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import React, { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 function AuthorSidebar() {
     const navigate = useNavigate();
-
+    const { user } = useContext(UserContext);
+    // console.log(user);
     return (
         <aside className="sidebar-wrapper">
             <div
@@ -40,16 +32,14 @@ function AuthorSidebar() {
                     </NavLink>
                 </Menu.Item>
                 <Menu.Item key="2">
-                    <NavLink to="/author/my-novels">
+                    <NavLink to={`/author/my-novels/${user.account.userID}`}>
                         <FontAwesomeIcon icon={faBook} />
-
                         <span className="nav-label">Tác phẩm của bạn</span>
                     </NavLink>
                 </Menu.Item>
                 <Menu.Item key="3">
                     <NavLink to="/author/feedbacks">
                         <FontAwesomeIcon icon={faUserEdit} />
-
                         <span className="nav-label">Phản hồi </span>
                     </NavLink>
                 </Menu.Item>
