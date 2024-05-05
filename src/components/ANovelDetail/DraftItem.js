@@ -3,9 +3,12 @@ import styles from './BookContent.module.scss';
 import classNames from 'classnames/bind';
 import { getDraftChapter, updatepublishChapter } from '../../api/api';
 import { useEffect, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function DraftItem({ bookID }) {
+    const navigate = useNavigate();
+
     const [draftChapter, setDraftChapter] = useState([]);
     const fetchDraft = async () => {
         const draft = await getDraft();
@@ -24,6 +27,10 @@ function DraftItem({ bookID }) {
             return res.data.DT;
         }
     };
+    const handleEditChapter = (chapterID) => {
+        navigate(`/author/edit-chapter/${chapterID}`);
+        console.log('an trong ediiiiiiiit');
+    };
     useEffect(() => {
         fetchDraft();
     }, []);
@@ -31,9 +38,11 @@ function DraftItem({ bookID }) {
         <>
             {draftChapter.map((chapter, index) => (
                 <div key={index} className={cx('draft')}>
-                    <h4>
-                        Chương {chapter.orderNumber}: {chapter.chapterName}
-                    </h4>
+                    <a onClick={() => handleEditChapter(chapter.chapterID)}>
+                        <h4>
+                            Chương {chapter.orderNumber}: {chapter.chapterName}
+                        </h4>
+                    </a>
                     <div className={cx('action')}>
                         <p>
                             {new Date(chapter.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}

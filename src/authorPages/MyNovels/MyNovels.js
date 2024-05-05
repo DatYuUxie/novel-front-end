@@ -105,7 +105,7 @@ function MyNovels() {
                 <>
                     <div className="ant-employed">
                         {/* đang bị sai số chương */}
-                        <span>{book.vote}</span>
+                        <span className="author-info">{book.vote}</span>
                         <div>
                             <Link to={`/author/novel-detail/${book.bookID}`}>
                                 <Button className="detail">Xem chi tiết</Button>

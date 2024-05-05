@@ -11,7 +11,7 @@ import Thread from '../pages/Thread';
 import SearchResult from '../pages/SearchResult';
 import { Setting, Account, Coin } from '../pages/Settings';
 import CreateNovel from '../authorPages/CreateNovel';
-import CreateChapter from '../authorPages/CreateChapter';
+import {CreateChapter, EditChapter} from '../authorPages/CreateChapter';
 import ManageUsers from '../adminPages/ManageUsers';
 import ManageBooks from '../adminPages/ManageBooks';
 import AdminLayout from '../layouts/AdminLayout';
@@ -50,6 +50,8 @@ const publicRoutes = [
     { path: '/author/feedbacks', component: Feedback, layout: AuthorLayout },
     { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
     { path: '/author/edit-novel', component: EditNovel, layout: AuthorLayout },
+    { path: '/author/edit-chapter/:chapterID', component: EditChapter, layout: AuthorLayout },
+
 
     { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
