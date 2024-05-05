@@ -1,7 +1,7 @@
 import Button from '../Button';
 import styles from './BookContent.module.scss';
 import classNames from 'classnames/bind';
-import { getDraftChapter, updatepublishChapter } from '../../api/api';
+import { getDraftChapter, updatepublishChapter, deleteChapter } from '../../api/api';
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
@@ -27,6 +27,14 @@ function DraftItem({ bookID }) {
             return res.data.DT;
         }
     };
+
+    const handleDeleteChapter = async (id) => {
+        let res = await deleteChapter(id);
+        if (res && res.data && res.data.DT) {
+            fetchDraft();
+            return res.data.DT;
+        }
+
     const handleEditChapter = (chapterID) => {
         navigate(`/author/edit-chapter/${chapterID}`);
         console.log('an trong ediiiiiiiit');
@@ -50,7 +58,7 @@ function DraftItem({ bookID }) {
                         <Button primary2 className={cx('tag')} onClick={() => publishChapter(chapter.chapterID)}>
                             xuất bản
                         </Button>
-                        <Button primary className={cx('tag')}>
+                        <Button primary className={cx('tag')} onClick={() => handleDeleteChapter(chapter.chapterID)}>
                             Xóa
                         </Button>
                     </div>
