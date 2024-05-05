@@ -1,12 +1,12 @@
 const lineChart = {
     series: [
       {
-        name: "Mobile apps",
+        name: "Lượt xem",
         data: [350, 40, 300, 220, 500, 250, 400, 230, 500],
         offsetY: 0,
       },
       {
-        name: "Websites",
+        name: "Lượt đánh giá",
         data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
         offsetY: 0,
       },
@@ -39,6 +39,8 @@ const lineChart = {
             fontSize: "14px",
             fontWeight: 600,
             colors: ["#8c8c8c"],
+            fontFamily: "var(--font-family)",
+
           },
         },
       },

@@ -14,15 +14,16 @@ function AuthorSidebar() {
     // console.log(user);
     return (
         <aside className="sidebar-wrapper">
-            <div
+            {/* <div
                 className="brand"
                 onClick={() => {
                     navigate('/');
                 }}
             >
                 <img src={logo} alt="" style={{ width: '80px' }} />
-            </div>
+            </div> */}
             {/* <hr /> */}
+            <div className='front'> good morning :3</div>
             <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                     <NavLink to="/author/dashboard">

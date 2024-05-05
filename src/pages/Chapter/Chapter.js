@@ -139,7 +139,7 @@ function Chapter() {
                         Chương sau
                     </Button>
                 </div>
-                <p className={cx('name')}>{`${chapter.orderNumber}. ${chapter.chapterName}`}</p>
+                <p className={cx('name')}>{`Chương ${chapter.orderNumber}: ${chapter.chapterName}`}</p>
                 <div className={cx('info')}>
                     <Button
                         info
@@ -168,7 +168,10 @@ function Chapter() {
                 </div>
 
                 <div className={cx('paragraph')} style={{ fontSize: fontSize + 'px' }}>
-                    {chapter.content}
+                    <div className="cha-content" data-report-l1="3">
+                        {chapter.content &&
+                            chapter.content.split('\n').map((paragraph, index) => <p className={cx('paragraph1')}  key={index}>{paragraph}</p>)}
+                    </div>
                 </div>
                 <div className={cx('foot')}>
                     <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>

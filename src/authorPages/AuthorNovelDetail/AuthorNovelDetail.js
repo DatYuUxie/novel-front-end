@@ -35,7 +35,7 @@ function AuthorNovelDetail() {
                     <img src={detailBook.poster} alt="cover-img" className={cx('cover-img')} />
                 </div>
                 <div className={cx('novel-info')}>
-                    <h2 className={cx('name')}>{detailBook.author}</h2>
+                    <h2 className={cx('name')}>{detailBook.bookName}</h2>
                     <p className={cx('author')}>
                         <p>Thể loại</p>
                         <p className={cx('author-link')}>{detailBook.tag}</p>
