@@ -34,7 +34,8 @@ function DraftItem({ bookID }) {
             fetchDraft();
             return res.data.DT;
         }
-
+    }
+    
     const handleEditChapter = (chapterID) => {
         navigate(`/author/edit-chapter/${chapterID}`);
         console.log('an trong ediiiiiiiit');
