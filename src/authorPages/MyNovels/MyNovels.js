@@ -110,7 +110,7 @@ function MyNovels() {
                             <Link to={`/author/novel-detail/${book.bookID}`}>
                                 <Button className="detail">Xem chi tiết</Button>
                             </Link>
-                            <Link to={'/author/edit-novel'}>
+                            <Link to={`/author/edit-novel/${book.bookID}`}>
                                 <FontAwesomeIcon icon={faPenToSquare} />
                             </Link>
                         </div>

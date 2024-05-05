@@ -86,6 +86,14 @@ const createImgLink = async (data) => {
         throw new Error(error);
     }
 };
+const updateBook = async (data) => {
+    try {
+        return axios.put(`/api/v1/book/update`, data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 
 // ===========   chapter api   ===========
 const getChapterbyBookId = async (id) => {
@@ -128,6 +136,14 @@ const updatepublishChapter = async (id) => {
         throw new Error(error);
     }
 };
+const deleteChapter = async (id) => {
+    try {
+        return axios.delete(`/api/v1/chapter/delete/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 
 export {
     getBooks,
@@ -144,4 +160,6 @@ export {
     getBookByUserId,
     getDraftChapter,
     updatepublishChapter,
+    updateBook,
+    deleteChapter,
 };

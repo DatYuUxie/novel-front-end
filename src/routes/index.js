@@ -49,7 +49,7 @@ const publicRoutes = [
     { path: '/author/novel-detail/:bookID', component: AuthorNovelDetail, layout: AuthorLayout },
     { path: '/author/feedbacks', component: Feedback, layout: AuthorLayout },
     { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
-    { path: '/author/edit-novel', component: EditNovel, layout: AuthorLayout },
+    { path: '/author/edit-novel/:bookID', component: EditNovel, layout: AuthorLayout },
 
     { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
