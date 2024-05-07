@@ -1,7 +1,25 @@
 import './Coin.scss';
 import Coin from '../../assets/img/coin-svgrepo-com.svg';
 import Button from '../Button';
+import { payment } from '../../api/api';
+import { message } from 'antd';
 function PremiumCard() {
+    const data = {
+        amount: 69000,
+        description: 'Payment for order',
+    };
+    const handleBuy = async (data) => {
+        try {
+            console.log('data', data);
+            let res = await payment(data);
+            console.log('res', res);
+            if (res && res.status === 200) {
+                window.open(res.data.checkoutUrl, '_blank');
+            }
+        } catch (error) {
+            message.error('Thanh toán thất bại');
+        }
+    };
     return (
         <div>
             <div className="title">Đăng kí tài khoản premium</div>
@@ -99,7 +117,9 @@ function PremiumCard() {
                     </div>
                 </div>
                 <footer>
-                    <Button className="btn-buy">69.000đ / tháng</Button>
+                    <Button className="btn-buy" onClick={() => handleBuy(data)}>
+                        69.000đ / tháng
+                    </Button>
                 </footer>
             </main>
         </div>

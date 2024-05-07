@@ -1,13 +1,8 @@
-// import PostItem from '../../components/PostItem';
-// import SettingSideBar from '../../components/SettingSideBar';
-// import { Fragment } from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import CreateNovelComponent from '../../components/CreateNovelComponent';
 import { useParams } from 'react-router-dom';
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CreateChapter.module.scss';
-import { createChapter, getChapterbyId } from '../../api/api';
+import { getChapterbyId, updateChapter } from '../../api/api';
 import _ from 'lodash';
 import { message } from 'antd';
 
@@ -40,19 +35,19 @@ function EditChapter() {
     const handleEditChapter = async (e) => {
         e.preventDefault();
         try {
-            handleOnchangeInput(contentRef.current.innerText, 'content');
-            console.log(contentRef.current.innerText)
+            handleOnchangeInput(contentRef.current.textContent, 'content');
+            console.log(contentRef.current.textContent);
             console.log('chapter', chapter);
-            let newChapter = { ...chapter, content: contentRef.current.innerText };
+            let newChapter = { ...chapter, content: contentRef.current.textContent };
             console.log('new chapter', newChapter);
 
-            // let res = await updateChapter(newChapter);
-            // console.log('res', res);
-            // if (res.data.EC === 0) {
-            //     message.success('Tạo chương thành công');
-            // }
+            let res = await updateChapter(newChapter);
+            console.log('res', res);
+            if (res.data.EC === 0) {
+                message.success('Edit chương thành công');
+            }
         } catch (error) {
-            message.error('Tạo chương thất bại');
+            message.error('Edit chương thất bại');
         }
     };
     return (
@@ -99,7 +94,6 @@ function EditChapter() {
                             outline: 'none',
                             border: '1px solid #e5e5e5',
                         }}
-                        // onInput={(e) => handleOnchangeInput(e.target.innerText, 'content')}
                     >
                         {chapter.content && chapter.content.split('\n').map((paragraph, index) => <p>{paragraph}</p>)}
                         <p>

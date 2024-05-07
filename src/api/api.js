@@ -144,7 +144,21 @@ const deleteChapter = async (id) => {
         throw new Error(error);
     }
 };
-
+const updateChapter = async (data) => {
+    try {
+        return axios.put(`/api/v1/chapter/update`, data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const payment = (data) => {
+    try {
+        return axios.post('/api/v1/create-payment-link', data);
+    } catch (error) {
+        console.error(error);
+    }
+};
 export {
     getBooks,
     getBookById,
@@ -162,4 +176,6 @@ export {
     updatepublishChapter,
     updateBook,
     deleteChapter,
+    updateChapter,
+    payment,
 };
