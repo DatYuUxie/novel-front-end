@@ -1,13 +1,10 @@
 import './Coin.scss';
 import Coin from '../../assets/img/coin-svgrepo-com.svg';
-import Coin1 from '../../assets/img/coin1.png';
-
+import clock from '../../assets/img/clock2.png';
 import Button from '../Button';
 function PremiumCard() {
     return (
         <div>
-            <div className="title">Đăng kí tài khoản premium</div>
-
             <main className="blue">
                 <svg
                     className="logo"
@@ -86,22 +83,25 @@ function PremiumCard() {
                 </svg>
                 <div className="flex">
                     <h5>Premium card</h5>
-                    <div className="card-inline">
-                        <img crossOrigin="anonymous" className="dib" width="20" height="20" alt="coins" src={Coin1} />
-                        <h4>Nhận ngay 99 coins và nhận thêm 60 coins từ điểm danh hằng ngày</h4>
-                    </div>
-                    <div className="card-inline">
-                        <img crossOrigin="anonymous" className="dib" width="20" height="20" alt="coins" src={Coin1} />
-                        <h4>Quyền xem truy cập vào những truyện sách mới nhất và sách giới hạn</h4>
-                    </div>
-
-                    <div className="card-inline">
-                        <img crossOrigin="anonymous" className="dib" width="20" height="20" alt="coins" src={Coin1} />
-                        <h4>Loại bỏ quảng cáo</h4>
+                    <div className="cards">
+                        <div className="card-inline">
+                            <h3>Bạn đang sử dụng gói premium</h3>
+                        </div>
+                        <div className="card-inline">
+                            <img
+                                crossOrigin="anonymous"
+                                className="dib"
+                                width="20"
+                                height="20"
+                                alt="coins"
+                                src={clock}
+                            />
+                            <h4>Thời gian còn lại: 29 ngày</h4>
+                        </div>
                     </div>
                 </div>
                 <footer>
-                    <Button className="btn-buy">69.000đ / tháng</Button>
+                    <Button className="btn-buy"> Điểm danh</Button>
                 </footer>
             </main>
         </div>

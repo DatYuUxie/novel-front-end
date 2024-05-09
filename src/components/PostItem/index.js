@@ -32,20 +32,16 @@ function PostItem() {
             <div className={cx('content')}>
                 <div className={cx('title')}>
                     <Link to={config.thread} className={cx('title-icon')}>
-                        <h3 className={cx('name')}>Translator Recruitment</h3>
+                        <h3 className={cx('name')}>Bàn luận xích tâm thuẫn thiên</h3>
                     </Link>
                     <Button primary2 className={cx('tag')}>
                         Bàn luận truyện
                     </Button>
                 </div>
                 <p className={cx('des')}>
-                    I know that there’s been a lot of new writers joining our Webnovel community lately, but the flood
-                    of SHAMEFUL self-promoting is unbearable lately. The moderators have better things to do with their
-                    time than tell people to read the rules. Why would you NOT as soon as you join something new? It’s
-                    idiotic to me, but apparently this needed to be said. READ THE RULES! It’s common sense, and if you
-                    ignore them, or play stupid(seen others get chewed out, but still SHAMEFULLY post): you will get
-                    chewed out by the veteran authors, then blocked by moderators. Continued abuse will bring you
-                    negative reviews by the fore-mentioned vets.
+                Đây là một dãy núi lớn liên miên không dứt, như một con rồng còn sống kéo dài cả vùng đất mênh mông này,
+                ở đấy có cỏ cây rậm rạp, còn có tiếng chim thú không ngừng vang lên. Xa xa nhìn lại, có thể thấy trên
+                núi có một phần giống như được năm ngọn núi hợp lại, trông như năm ngón tay người giơ lên trời cao.
                 </p>
                 <div className={cx('info-container')}>
                     <Button className={cx('info')} leftIcon={<FontAwesomeIcon icon={faFire} />}>

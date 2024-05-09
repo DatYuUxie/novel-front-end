@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import PremiumCard from './PremiumCard';
+import PremiumCardActive from './PremiumCardActive';
+import Coin from '../../assets/img/coin-svgrepo-com.svg';
+
 import CoinItem from './CoinItem';
 import '../../assets/css/grid.css';
 import coin5 from '../../assets/img/coin5.png';
@@ -7,6 +10,7 @@ import coin4 from '../../assets/img/coin4.png';
 import coin3 from '../../assets/img/coin3.png';
 import coin2 from '../../assets/img/coin2.png';
 import coin1 from '../../assets/img/coin1.png';
+import './Coin.scss';
 
 const CoinTable = [
     {
@@ -38,8 +42,6 @@ const CoinTable = [
         value: 3590,
         price: 990000,
     },
-
-    
 ];
 
 function CoinComponent() {
@@ -50,69 +52,28 @@ function CoinComponent() {
     };
     return (
         <div>
+            <div className="card-inline1">
+                <div className="card-inline2">
+                    <img crossOrigin="anonymous" className="dib" width="40" height="40" alt="coins" src={coin1} />
+                    <p>2000</p>
+                </div>
+            </div>
+
             <div className="buy1-container">
                 <div className="buy-container">
                     <div className="plans">
-                        <div className="title">Chọn phương thức thanh toán</div>
-                        <label
-                            className={`plan basic-plan ${selectedPlan === 'basic' ? 'selected' : ''}`}
-                            htmlFor="basic"
-                        >
-                            <input
-                                type="radio"
-                                name="plan"
-                                id="basic"
-                                checked={selectedPlan === 'basic'}
-                                onChange={handlePlanChange}
-                            />
-                            <div className="plan-content">
-                                <img
-                                    loading="lazy"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQULr3Ust3Yw-IS1KvGuHQFys81W1ava9Ohd8gduuRPXA&s"
-                                    alt=""
-                                />
-                                <div className="plan-details">
-                                    <span>VNpay</span>
-                                    <p>Thanh toán bằng tài khoản VNpay.</p>
-                                </div>
-                            </div>
-                        </label>
-
-                        <label
-                            className={`plan complete-plan ${selectedPlan === 'complete' ? 'selected' : ''}`}
-                            htmlFor="complete"
-                        >
-                            <input
-                                type="radio"
-                                name="plan"
-                                id="complete"
-                                checked={selectedPlan === 'complete'}
-                                onChange={handlePlanChange}
-                            />
-                            <div className="plan-content">
-                                <img
-                                    loading="lazy"
-                                    src="https://play-lh.googleusercontent.com/dQbjuW6Jrwzavx7UCwvGzA_sleZe3-Km1KISpMLGVf1Be5N6hN6-tdKxE5RDQvOiGRg"
-                                    alt=""
-                                />
-                                <div className="plan-details">
-                                    <span>Momo</span>
-                                    <p>Thanh toán bằng tài khoản momo.</p>
-                                </div>
-                            </div>
-                        </label>
+                        <div className="title">Gói tài khoản hiện tại của bạn</div>
+                        <PremiumCardActive />
                     </div>
                 </div>
                 <PremiumCard />
             </div>
-
             <div className="title2">Mua xu</div>
-
             <div className="buy1-container grid">
                 <div className="row">
-                {CoinTable.map((item, index) => {
-                            return <CoinItem data={item} />;
-                        })}
+                    {CoinTable.map((item, index) => {
+                        return <CoinItem data={item} />;
+                    })}
                 </div>
             </div>
         </div>

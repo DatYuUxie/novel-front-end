@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '../Button';
 import Intro from './Intro';
 import Reviews from './Reviews';
+import Comments from './Comments';
 import List from './List';
 import styles from './BookContent.module.scss';
 
@@ -32,7 +33,7 @@ function BookContent({ bookID }) {
                 {tab === 0 && <Intro />}
                 {tab === 1 && <Reviews />}
                 {tab === 2 && <List bookID={bookID} />}
-                {tab === 3 && <Reviews />}
+                {tab === 3 && <Comments />}
             </div>
         </div>
     );

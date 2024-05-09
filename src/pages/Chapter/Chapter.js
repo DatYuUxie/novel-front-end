@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import Button from '../../components/Button';
 import List from '../../components/BookContent/List';
-import Reviews from '../../components/BookContent/Reviews';
+import Comments from '../../components/BookContent/Comments';
 import { ColorFonts } from '../../constants/ColorFont';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -201,7 +201,7 @@ function Chapter() {
                     <>
                         <hr className={cx('hr')} />
 
-                        <Reviews />
+                        <Comments />
                     </>
                 )}
             </div>

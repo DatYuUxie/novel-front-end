@@ -20,8 +20,8 @@ const cx = classNames.bind(styles);
 
 const notifyData = [
     {
-        title: 'New message from Sophie',
-        description: <>2 days ago</>,
+        title: 'Cầu ma ra chương mới',
+        description: <>3 ngày trước</>,
 
         avatar: (
             <Avatar
@@ -32,8 +32,8 @@ const notifyData = [
         ),
     },
     {
-        title: 'New album by Travis Scott',
-        description: <>2 days ago</>,
+        title: 'Tiên nghịch ra chương mới',
+        description: <>3 ngày trước</>,
 
         avatar: (
             <Avatar
@@ -44,8 +44,8 @@ const notifyData = [
         ),
     },
     {
-        title: 'Payment completed',
-        description: <>2 days ago</>,
+        title: 'Thanh toán premium thành công',
+        description: <>3 ngày trước</>,
         avatar: (
             <Avatar
                 className={cx('shape-avatar')}

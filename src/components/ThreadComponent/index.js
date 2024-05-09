@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommenting, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
-import Reviews from '../BookContent/Reviews';
+import Comments from '../BookContent/Comments';
 import { Reply } from '../../assets/icon';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
@@ -36,9 +36,11 @@ function ThreadComponent() {
                 ở đấy có cỏ cây rậm rạp, còn có tiếng chim thú không ngừng vang lên. Xa xa nhìn lại, có thể thấy trên
                 núi có một phần giống như được năm ngọn núi hợp lại, trông như năm ngón tay người giơ lên trời cao.
                 <br />
+                <br />
                 Trong đó có một ngọn núi trung đoạn(1) , một người thiếu niên đang tựa vào một khối đá lớn hơi bị lõm
                 sâu vào để tránh nắng. Bên cạnh hắn có một cái sọt mây, trong đó có dựng một chút dược thảo, mùi thuốc
                 tản phát ra lượn lờ khắp bốn phía.
+                <br />
                 <br />
                 Thiếu niên này mi thanh mục tú, nhưng thân thể lại hơi ốm yếu, thoạt nhìn có chút suy nhược. Hắn mặc một
                 cái áo được làm bằng da thú, cổ đeo một vòng thú cốt màu trắng hình trăng lưỡi liềm, đầu tóc rối bù được
@@ -49,7 +51,7 @@ function ThreadComponent() {
                 <FontAwesomeIcon icon={faThumbsUp} className={cx('icon')} />
                 <FontAwesomeIcon icon={faCommenting} className={cx('icon')} />
             </div>
-            <Reviews />
+            <Comments />
         </div>
     );
 }

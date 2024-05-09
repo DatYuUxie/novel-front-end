@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function ListResult({ data }) {
     
     return (
-        <div className={cx('container')}>
+        <div className={cx('list-result-container')}>
             <div className="grid">
                 <div className="row">
                 {data.map((item, index) => {
