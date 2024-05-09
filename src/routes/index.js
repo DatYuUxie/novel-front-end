@@ -11,7 +11,7 @@ import Thread from '../pages/Thread';
 import SearchResult from '../pages/SearchResult';
 import { Setting, Account, Coin } from '../pages/Settings';
 import CreateNovel from '../authorPages/CreateNovel';
-import {CreateChapter, EditChapter} from '../authorPages/CreateChapter';
+import { CreateChapter, EditChapter } from '../authorPages/CreateChapter';
 import ManageUsers from '../adminPages/ManageUsers';
 import ManageBooks from '../adminPages/ManageBooks';
 import AdminLayout from '../layouts/AdminLayout';
@@ -40,7 +40,7 @@ const publicRoutes = [
     { path: '/account/setting', component: Setting },
     { path: '/account/coin', component: Coin },
     { path: '/account/:userId', component: Account },
-    { path: '/search', component: SearchResult },
+    { path: '/search/:bookName', component: SearchResult },
 
     { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
     { path: '/author/create-novel', component: CreateNovel, layout: AuthorLayout },
@@ -51,7 +51,6 @@ const publicRoutes = [
     { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
     { path: '/author/edit-novel/:bookID', component: EditNovel, layout: AuthorLayout },
     { path: '/author/edit-chapter/:chapterID', component: EditChapter, layout: AuthorLayout },
-
 
     { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
     { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },

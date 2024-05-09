@@ -1,15 +1,17 @@
-import styles from './Search.module.scss';
-import { useEffect, useState, useRef } from 'react';
-import classNames from 'classnames/bind';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '../Popper';
+import classNames from 'classnames/bind';
+import { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDebounce } from '../../Hooks';
+import { Wrapper as PopperWrapper } from '../Popper';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Search() {
+    const navigate = useNavigate();
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [showResult, setShowResult] = useState(true);
@@ -20,6 +22,9 @@ function Search() {
     const debounced = useDebounce(searchValue, 500);
     const inputRef = useRef();
 
+    const handleSearch = async (searchValue) => {
+        navigate(`/search/${searchValue}`);
+    };
     useEffect(() => {
         if (!debounced.trim()) {
             setSearchResult([]);
@@ -54,11 +59,9 @@ function Search() {
             render={(attrs) => (
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
-                            <h4 className={cx('search-title')}>{searchResult}</h4>
-                            <h4 className={cx('search-title')}>{searchResult}</h4>
-                            <h4 className={cx('search-title')}>{searchResult}</h4>
-
-                   
+                        <h4 className={cx('search-title')}>{searchResult}</h4>
+                        <h4 className={cx('search-title')}>{searchResult}</h4>
+                        <h4 className={cx('search-title')}>{searchResult}</h4>
                     </PopperWrapper>
                 </div>
             )}
@@ -73,7 +76,6 @@ function Search() {
                     onChange={(e) => setSearchValue(e.target.value)}
                 />
 
-
                 {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClear}>
                         <FontAwesomeIcon icon={faCircleXmark} />
@@ -81,7 +83,7 @@ function Search() {
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onClick={() => handleSearch(searchValue)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>

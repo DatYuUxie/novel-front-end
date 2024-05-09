@@ -1,45 +1,44 @@
-import SearchSidebar from '../../components/SearchSidebar';
-import ListResult from '../../components/ListResult';
 import classNames from 'classnames/bind';
+import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { searchBook } from '../../api/api';
+import ListResult from '../../components/ListResult';
+import SearchSidebar from '../../components/SearchSidebar';
 import styles from './SearchResult.module.scss';
-import { getBooks } from '../../api/api';
-import { useEffect, useState, useCallback } from 'react';
 
 const cx = classNames.bind(styles);
 function SearchResult() {
+    const { bookName } = useParams();
     const [mine, setMine] = useState([]);
     const [allResult, setAllResult] = useState([]);
-
-    const Novels = async () => {
+    const handleSearch = async () => {
         try {
-            let res = await getBooks();
-            if (res && res.data && res.data.DT) {
-                return res.data.DT;
-            }
+            let res = await searchBook(bookName);
+            console.log('res', res);
+            return res.data.DT;
         } catch (error) {
-            console.log(error);
+            console.log('error', error);
         }
     };
-    // let rank1, rank2, rank3;
     useEffect(() => {
         const fetchNovels = async () => {
-            const novels = await Novels();
+            const novels = await handleSearch();
             setAllResult(novels);
             setMine(novels);
         };
         fetchNovels();
-    }, []);
-
-    const handleTagChange = useCallback((selectedTags) => {
-        if (selectedTags == 'Tất cả') {
-            setMine(allResult);
-        } else {
-            let result = allResult.filter((item) => item.tag === selectedTags);
-            setMine(result);
-        }
-        console.log("minnnnnne",mine);
-    }, [mine]);
-
+    }, [bookName]);
+    const handleTagChange = useCallback(
+        (selectedTags) => {
+            if (selectedTags === 'Tất cả') {
+                setMine(allResult);
+            } else {
+                let result = allResult.filter((item) => item.tag === selectedTags);
+                setMine(result);
+            }
+        },
+        [mine],
+    );
     return (
         <div className={cx('container')}>
             <SearchSidebar onTagChange={handleTagChange} />
@@ -49,5 +48,4 @@ function SearchResult() {
         </div>
     );
 }
-
 export default SearchResult;
