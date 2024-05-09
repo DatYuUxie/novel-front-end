@@ -3,7 +3,8 @@ import styles from './BookContent.module.scss';
 import classNames from 'classnames/bind';
 import { getDraftChapter, updatepublishChapter, deleteChapter } from '../../api/api';
 import { useEffect, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 function DraftItem({ bookID }) {
@@ -29,13 +30,18 @@ function DraftItem({ bookID }) {
     };
 
     const handleDeleteChapter = async (id) => {
-        let res = await deleteChapter(id);
-        if (res && res.data && res.data.DT) {
-            fetchDraft();
-            return res.data.DT;
+        try {
+            let res = await deleteChapter(id);
+            console.log('res', res);
+            if (res && res.data && res.data.EC === 0) {
+                fetchDraft();
+                message.success('Xóa chương thành công');
+            }
+        } catch (error) {
+            message.error('Xóa chương thất bại');
         }
-    }
-    
+    };
+
     const handleEditChapter = (chapterID) => {
         navigate(`/author/edit-chapter/${chapterID}`);
         console.log('an trong ediiiiiiiit');
