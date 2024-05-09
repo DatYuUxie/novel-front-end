@@ -29,6 +29,7 @@ const Login = (props) => {
         let response = await login(email, password);
         if (response && response.data && +response.data.EC === 0) {
             // success
+            let userID = response.data.DT.userID;
             let role = response.data.DT.role;
             let email = response.data.DT.email;
             let username = response.data.DT.username;
@@ -36,7 +37,7 @@ const Login = (props) => {
             let data = {
                 isAuthenticated: true,
                 token: token,
-                account: { role, email, username },
+                account: { role, email, username, userID },
             };
             // sessionStorage.setItem('account', JSON.stringify(data));
             localStorage.setItem('jwt', token);

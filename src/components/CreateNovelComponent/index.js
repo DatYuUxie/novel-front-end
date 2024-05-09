@@ -1,43 +1,46 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import './CreateNovelComponent.scss';
 import { message, Select, Tag } from 'antd';
 import { createBook, createImgLink } from '../../api/api';
 import _, { set } from 'lodash';
-const options = [
-    {
-        value: 'gold',
-    },
-    {
-        value: 'lime',
-    },
-    {
-        value: 'green',
-    },
-    {
-        value: 'cyan',
-    },
-];
-const tagRender = (props) => {
-    const { label, value, closable, onClose } = props;
-    const onPreventMouseDown = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-    return (
-        <Tag
-            color={value}
-            onMouseDown={onPreventMouseDown}
-            closable={closable}
-            onClose={onClose}
-            style={{
-                marginInlineEnd: 4,
-            }}
-        >
-            {label}
-        </Tag>
-    );
-};
+import { UserContext } from '../../context/UserContext';
+// const options = [
+//     {
+//         value: 'gold',
+//     },
+//     {
+//         value: 'lime',
+//     },
+//     {
+//         value: 'green',
+//     },
+//     {
+//         value: 'cyan',
+//     },
+// ];
+// const tagRender = (props) => {
+//     const { label, value, closable, onClose } = props;
+//     const onPreventMouseDown = (event) => {
+//         event.preventDefault();
+//         event.stopPropagation();
+//     };
+//     return (
+//         <Tag
+//             color={value}
+//             onMouseDown={onPreventMouseDown}
+//             closable={closable}
+//             onClose={onClose}
+//             style={{
+//                 marginInlineEnd: 4,
+//             }}
+//         >
+//             {label}
+//         </Tag>
+//     );
+// };
 function CreateNovelComponent() {
+    const { user } = useContext(UserContext);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImage2, setSelectedImage2] = useState(null);
 
@@ -79,27 +82,20 @@ function CreateNovelComponent() {
         try {
             let imgLink = await createImgLink(selectedImage2);
             let poster = imgLink.data.DT.path;
-            console.log('img link', poster);
-            let updatedFormData = { ...formData, poster: poster };
+            let updatedFormData = { ...formData, poster: poster, writerID: user.account.userID };
             setFormData(updatedFormData);
-            console.log('formData', updatedFormData);
             let response = await createBook(updatedFormData);
             if (response.data.EC === 0) {
                 message.success('Tạo sách thành công');
-                // console.log('formData', formData);
-                // alert('Tạo sách thành công');
             }
         } catch (error) {
             message.error('Tạo sách thất bại');
         }
+        setIsSubmitting(false);
     };
     return (
         <div className="create-novel__account">
-            <form
-                // action=""
-                // method="post"
-                onSubmit={handleCreateBook}
-            >
+            <form onSubmit={handleCreateBook}>
                 <h3 className="settingsP">Thông tin sách:</h3>
 
                 <fieldset>
@@ -181,19 +177,6 @@ function CreateNovelComponent() {
                         value={formData.author}
                         onChange={(e) => handleOnChangeInput(e.target.value, 'author')}
                     />
-
-                    {/* <label htmlFor="gender">
-                        <h5>Danh mục tag:</h5>
-                    </label>
-                    <Select
-                        mode="multiple"
-                        tagRender={tagRender}
-                        defaultValue={[]}
-                        style={{
-                            width: '100%',
-                        }}
-                        options={options}
-                    /> */}
                 </fieldset>
 
                 <div className="btns-box">

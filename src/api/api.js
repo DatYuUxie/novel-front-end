@@ -94,6 +94,14 @@ const updateBook = async (data) => {
         throw new Error(error);
     }
 };
+const searchBook = async (data) => {
+    try {
+        return axios.get(`/api/v1/book/by-name/${data}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 
 // ===========   chapter api   ===========
 const getChapterbyBookId = async (id) => {
@@ -159,6 +167,25 @@ const payment = (data) => {
         console.error(error);
     }
 };
+
+// =========== Review api ===========
+const getReviewsbyBookID = async (bookID) => {
+    try {
+        return axios.get(`/api/v1/review/read/${bookID}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const createReview = async (data) => {
+    try {
+        return axios.post('/api/v1/review/create', data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+
 export {
     getBooks,
     getBookById,
@@ -178,4 +205,7 @@ export {
     deleteChapter,
     updateChapter,
     payment,
+    searchBook,
+    createReview,
+    getReviewsbyBookID,
 };
