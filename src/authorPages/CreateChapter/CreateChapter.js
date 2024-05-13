@@ -40,7 +40,7 @@ function CreateChapter() {
     const handleCreateChapter = async (e) => {
         e.preventDefault();
         try {
-            console.log('chapter', chapter);
+            // console.log('chapter', chapter);
             let res = await createChapter(chapter);
             console.log('res', res);
             if (res.data.EC === 0) {

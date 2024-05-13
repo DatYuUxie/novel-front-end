@@ -1,36 +1,20 @@
-import React, { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
-
 import Button from '../Button';
-import img from '../../assets/img';
-import Search from '../Search';
 import Menu from '../Popper/Menu';
-
+import Search from '../Search';
 import Tippy from '@tippyjs/react';
+import { Avatar, Dropdown, List } from 'antd';
 import 'tippy.js/dist/tippy.css';
-import { Row, Col, List, Avatar, Input, Drawer, Typography,   Dropdown,
-} from 'antd';
-
+import { faBars, faCoins, faGear, faPenNib, faQuran, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faBars,
-    faQuran,
-    faCoins,
-    faBell,
-    faEllipsisVertical,
-    faGear,
-    faKeyboard,
-    faSignOut,
-    faUser,
-    faPenNib,
-} from '@fortawesome/free-solid-svg-icons';
-import { InboxIcon } from '../../assets/icon';
-import classNames from 'classnames/bind';
-import styles from './Header.module.scss';
 import { message } from 'antd';
-import { UserContext } from '../../context/UserContext';
+import classNames from 'classnames/bind';
 import { logout } from '../../api/api';
+import { InboxIcon } from '../../assets/icon';
+import { UserContext } from '../../context/UserContext';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -72,6 +56,7 @@ const CATEGORY_ITEMS = [
 
 function Header() {
     const { user, logoutContext } = useContext(UserContext);
+    console.log('check user', user);
     const navigate = useNavigate();
     // const currentUser = false;
     const handleLogout = async () => {
@@ -91,7 +76,7 @@ function Header() {
         {
             title: 'Cầu ma ra chương mới',
             description: <>3 ngày trước</>,
-    
+
             avatar: (
                 <Avatar
                     className={cx('shape-avatar')}
@@ -103,7 +88,7 @@ function Header() {
         {
             title: 'Tiên nghịch ra chương mới',
             description: <>3 ngày trước</>,
-    
+
             avatar: (
                 <Avatar
                     className={cx('shape-avatar')}
@@ -124,7 +109,7 @@ function Header() {
             ),
         },
     ];
-    
+
     const notifyMenu = (
         <List
             min-width="100%"
@@ -151,7 +136,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faUser} />,
             title: 'Hồ sơ',
-            to: '/account/:userId',
+            to: `/account/${user.account.userID}`,
         },
         {
             icon: <FontAwesomeIcon icon={faPenNib} />,
@@ -222,7 +207,12 @@ function Header() {
                                     <h4 className={cx('title-icon__name')}>Kệ sách</h4>
                                 </Link>
                                 <Dropdown overlay={notifyMenu} trigger={['click']}>
-                                    <a href="#pablo" placement="bottomRight" className={cx('ant-dropdown-link')} onClick={(e) => e.preventDefault()}>
+                                    <a
+                                        href="#pablo"
+                                        placement="bottomRight"
+                                        className={cx('ant-dropdown-link')}
+                                        onClick={(e) => e.preventDefault()}
+                                    >
                                         <Tippy delay={[0, 50]} content="Thông báo" placement="bottom">
                                             <button className={cx('action-btn')}>
                                                 <InboxIcon />
@@ -234,7 +224,10 @@ function Header() {
 
                                 <Menu items={userMenu} onChange={handleMenuChange}>
                                     <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8FAhwhYIjaPus1tva6Pb8Upi4KBwRothf0vP_7-jRz4VNPgVmRHqWstkDyc3ATGRwPyo&usqp=CAU"
+                                        src={
+                                            user.account.avatar ||
+                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8FAhwhYIjaPus1tva6Pb8Upi4KBwRothf0vP_7-jRz4VNPgVmRHqWstkDyc3ATGRwPyo&usqp=CAU'
+                                        }
                                         alt="logo"
                                         className={cx('user-avatar')}
                                     />

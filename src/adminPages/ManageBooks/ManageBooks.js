@@ -1,28 +1,10 @@
+import { Avatar, Button, Card, Col, Row, Table, Typography } from 'antd';
+import { useEffect, useState } from 'react';
+import { getAllBooks } from '../../api/api';
 import './ManageBooks.scss';
 
-import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
-import { ToTopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 const { Title } = Typography;
 // import './ManageUser.scss';
-
-const formProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-        authorization: 'authorization-text',
-    },
-    onChange(info) {
-        if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
 
 // table code start
 const columns = [
@@ -49,363 +31,53 @@ const columns = [
         dataIndex: 'chapter',
     },
 ];
-
-const data = [
-    {
-        key: '1',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cầu ma</Title>
-                        <p>Nhĩ Căn</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Tiên hiệp</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>456</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cổ chân nhân</Title>
-                        <p>Quang Khải</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Ngôn tình</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>88</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '1',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cầu ma</Title>
-                        <p>Nhĩ Căn</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Tiên hiệp</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>456</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cổ chân nhân</Title>
-                        <p>Quang Khải</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Ngôn tình</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>88</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '1',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cầu ma</Title>
-                        <p>Nhĩ Căn</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Tiên hiệp</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>456</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cổ chân nhân</Title>
-                        <p>Quang Khải</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Ngôn tình</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>88</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '1',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cầu ma</Title>
-                        <p>Nhĩ Căn</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Tiên hiệp</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>456</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Cổ chân nhân</Title>
-                        <p>Quang Khải</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-                </div>
-            </>
-        ),
-
-        type: (
-            <>
-                <Button className="tag-badge">Ngôn tình</Button>
-            </>
-        ),
-        chapter: (
-            <>
-                <div className="ant-employed">
-                    <span>88</span>
-                    <div>
-                        <Button className="detail">Xem chi tiết</Button>
-                        <a href="#pablo">Edit</a>
-                    </div>
-                </div>
-            </>
-        ),
-    },
-];
 function ManageBooks() {
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        getBooks();
+    }, []);
+    const getBooks = async () => {
+        let response = await getAllBooks();
+        console.log('response', response.data.DT);
+        const formattedBooks = response.data.DT.map((book, index) => ({
+            key: index + 1,
+            name: (
+                <>
+                    <Avatar.Group>
+                        <Avatar className="shape-avatar" shape="square" size={40} src={book.poster}></Avatar>
+                        <div className="avatar-info">
+                            <Title level={5}>{book.bookName}</Title>
+                            <p>{book.author}</p>
+                        </div>
+                    </Avatar.Group>{' '}
+                </>
+            ),
+            id: (
+                <>
+                    <div className="author-info">
+                        <Title level={5}>{book.bookID}</Title>
+                    </div>
+                </>
+            ),
+            type: (
+                <>
+                    <Button className="tag-badge">{book.tag}</Button>
+                </>
+            ),
+            chapter: (
+                <>
+                    <div className="ant-employed">
+                        <span>{book.Chapters.length}</span>
+                        <div>
+                            <Button className="detail">Xem chi tiết</Button>
+                            <a href="#pablo">Edit</a>
+                        </div>
+                    </div>
+                </>
+            ),
+        }));
+        setBooks(formattedBooks);
+    };
     return (
         <div className="manage-book-tabled">
             <Row gutter={[24, 0]}>
@@ -414,7 +86,7 @@ function ManageBooks() {
                         <div className="table-responsive">
                             <Table
                                 columns={columns}
-                                dataSource={data}
+                                dataSource={books}
                                 pagination={false}
                                 className="ant-border-space"
                             />

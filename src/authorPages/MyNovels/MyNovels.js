@@ -1,31 +1,14 @@
-import './MyNovels.scss';
-import { Row, Col, Card, Table, message, Avatar, Typography } from 'antd';
-import 'tippy.js/dist/tippy.css';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import Button from '../../components/Button';
-import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Avatar, Card, Col, Row, Table, Typography } from 'antd';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import 'tippy.js/dist/tippy.css';
 import { getBookByUserId } from '../../api/api';
-const { Title } = Typography;
+import Button from '../../components/Button';
+import './MyNovels.scss';
 
-const formProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-        authorization: 'authorization-text',
-    },
-    onChange(info) {
-        if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
+const { Title } = Typography;
 
 // table code start
 const columns = [
@@ -66,6 +49,7 @@ function MyNovels() {
     }, []);
     const getBooksByUserId = async () => {
         let response = await getBookByUserId(userId);
+        console.log('response', response.data.DT);
         const formattedBooks = response.data.DT.map((book, index) => ({
             key: index + 1,
             name: (
@@ -104,8 +88,7 @@ function MyNovels() {
             chapter: (
                 <>
                     <div className="ant-employed">
-                        {/* đang bị sai số chương */}
-                        <span className="author-info">{book.vote}</span>
+                        <span className="author-info">{book.Chapters.length}</span>
                         <div>
                             <Link to={`/author/novel-detail/${book.bookID}`}>
                                 <Button className="detail">Xem chi tiết</Button>
@@ -120,7 +103,6 @@ function MyNovels() {
         }));
         setBooks(formattedBooks);
     };
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
     return (
         <div className="manage-book-tabled">
             <Row gutter={[24, 0]}>

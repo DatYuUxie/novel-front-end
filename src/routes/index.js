@@ -39,7 +39,7 @@ const publicRoutes = [
     { path: '/register', component: Register, layout: null },
     { path: '/account/setting', component: Setting },
     { path: '/account/coin', component: Coin },
-    { path: '/account/:userId', component: Account },
+    { path: '/account/:userID', component: Account },
     { path: '/search/:bookName', component: SearchResult },
 
     { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },

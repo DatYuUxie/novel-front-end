@@ -1,31 +1,12 @@
+import { Avatar, Button, Card, Col, Radio, Row, Table, Typography } from 'antd';
+import { useEffect, useState } from 'react';
+import { getAllUser } from '../../api/api';
 import './ManageUser.scss';
 
-import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
-import { ToTopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 const { Title } = Typography;
-
-const formProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-        authorization: 'authorization-text',
-    },
-    onChange(info) {
-        if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
 
 // table code start
 const columns = [
-    
     {
         title: 'ID',
         dataIndex: 'id',
@@ -39,104 +20,72 @@ const columns = [
     },
 
     {
-        title: 'Trạng thái',
+        title: 'Role',
         key: 'status',
         dataIndex: 'status',
     },
     {
-        title: 'Số điện thoại',
-        key: 'phone',
-        dataIndex: 'phone',
-    },
-];
-
-const data = [
-    {
-        key: '1',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Michael John</Title>
-                        <p>michael@mail.com</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
-                </div>
-            </>
-        ),
-
-        status: (
-            <>
-                <Button type="primary" className="tag-primary">
-                    ONLINE
-                </Button>
-            </>
-        ),
-        phone: (
-            <>
-                <div className="ant-employed">
-                    <span>0123456</span>
-                    <a href="#pablo">Chỉnh sửa</a>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        name: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Alexa Liras</Title>
-                        <p>alexa@mail.com</p>
-                    </div>
-                </Avatar.Group>{' '}
-            </>
-        ),
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-               </div>
-            </>
-        ),
-
-        status: (
-            <>
-                <Button className="tag-badge">OFFLINE</Button>
-            </>
-        ),
-        phone: (
-            <>
-                <div className="ant-employed">
-                    <span>099888</span>
-                    <a href="#pablo">Chỉnh sửa</a>
-                </div>
-            </>
-        ),
+        title: 'Giới tính',
+        key: 'gender',
+        dataIndex: 'gender',
     },
 ];
 function ManageUsers() {
     const onChange = (e) => console.log(`radio checked:${e.target.value}`);
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers();
+    }, []);
+    const getUsers = async () => {
+        let response = await getAllUser();
+        console.log('response', response.data.DT);
+        const formattedUsers = response.data.DT.map((user, index) => ({
+            key: index + 1,
+            name: (
+                <>
+                    <Avatar.Group>
+                        <Avatar
+                            className="shape-avatar"
+                            shape="square"
+                            size={40}
+                            src={
+                                user.avatar ||
+                                'https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg'
+                            }
+                        ></Avatar>
+                        <div className="avatar-info">
+                            <Title level={5}>{user.username}</Title>
+                            <p>{user.email}</p>
+                        </div>
+                    </Avatar.Group>{' '}
+                </>
+            ),
+            id: (
+                <>
+                    <div className="author-info">
+                        <Title level={5}>{user.userID}</Title>
+                    </div>
+                </>
+            ),
+
+            status: (
+                <>
+                    <Button type="primary" className="tag-primary">
+                        {user.role}
+                    </Button>
+                </>
+            ),
+            gender: (
+                <>
+                    <div className="ant-employed">
+                        <span>{user.gender}</span>
+                        <a href="#pablo">Chỉnh sửa</a>
+                    </div>
+                </>
+            ),
+        }));
+        setUsers(formattedUsers);
+    };
 
     return (
         <div className="tabled">
@@ -158,7 +107,7 @@ function ManageUsers() {
                         <div className="table-responsive">
                             <Table
                                 columns={columns}
-                                dataSource={data}
+                                dataSource={users}
                                 pagination={false}
                                 className="ant-border-space"
                             />
