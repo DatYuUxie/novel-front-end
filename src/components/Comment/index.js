@@ -10,7 +10,7 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function Comment() {
+function Comment({ data }) {
     const [rating, setRating] = useState(5);
 
     // Catch Rating value
@@ -23,23 +23,23 @@ function Comment() {
             <div className={cx('avatar')}>
                 <img
                     className={cx('user-img')}
-                    src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg"
+                    src={
+                        data.User.avatar ||
+                        'https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3NjM@._V1_FMjpg_UX1000_.jpg'
+                    }
                     alt="user"
                 />
             </div>
             <div className={cx('review-content')}>
                 <div className={cx('review-info')}>
-                    <h3>Nobita</h3>
+                    <h3>{data.User.username}</h3>
                     <p className={cx('chapter')}>Chương 12</p>
 
-                    <p className={cx('review-time')}>3 ngày trước</p>
+                    <p className={cx('review-time')}>
+                        {new Date(data.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
+                    </p>
                 </div>
-                <p>
-                    Một kiệt tác cho cuốn tiểu thuyết đầu tiên mà tác giả này tạo ra, đã rất nhiều năm rồi tôi mới đọc
-                    được thứ gì đó có lối viết và mô tả đỉnh cao, kết hợp với lịch sử và nhân vật chính tuyệt vời. Và
-                    Tác giả nói chuyện và nhận xét với mọi người như thể anh ấy thực sự vui mừng vì tác phẩm và phản hồi
-                    của mình. Bất cứ ai nỗ lực đều xứng đáng được tôn trọng.
-                </p>
+                <p>{data.content}</p>
 
                 <div className={cx('review-footer')}>
                     <FontAwesomeIcon icon={faThumbsUp} className={cx('icon')} />

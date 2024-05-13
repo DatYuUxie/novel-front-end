@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, message } from 'antd';
-import { LockOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
-import './Login.scss';
-import logo from '../../assets/img/logo.png';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../api/api';
+import logo from '../../assets/img/logo.png';
 import { UserContext } from '../../context/UserContext';
+import './Login.scss';
 
 const onFinish = (values) => {
     console.log('Success:', values);
@@ -34,16 +34,17 @@ const Login = (props) => {
             let email = response.data.DT.email;
             let username = response.data.DT.username;
             let token = response.data.DT.access_token;
+            let avatar = response.data.DT.avatar;
             let data = {
                 isAuthenticated: true,
                 token: token,
-                account: { role, email, username, userID },
+                account: { role, email, username, userID, avatar },
             };
             // sessionStorage.setItem('account', JSON.stringify(data));
             localStorage.setItem('jwt', token);
             loginContext(data);
             if (role === 'ADMIN') {
-                navigate('/admin/manage-user');
+                navigate('/admin/dashboard');
             }
             if (role === 'USER') {
                 navigate('/');

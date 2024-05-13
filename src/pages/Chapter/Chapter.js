@@ -66,7 +66,7 @@ function Chapter() {
         };
         getChapter();
     }, []);
-    console.log('chapter:', chapter);
+    // console.log('chapter:', chapter);
 
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -170,7 +170,11 @@ function Chapter() {
                 <div className={cx('paragraph')} style={{ fontSize: fontSize + 'px' }}>
                     <div className="cha-content" data-report-l1="3">
                         {chapter.content &&
-                            chapter.content.split('\n').map((paragraph, index) => <p className={cx('paragraph1')}  key={index}>{paragraph}</p>)}
+                            chapter.content.split('\n').map((paragraph, index) => (
+                                <p className={cx('paragraph1')} key={index}>
+                                    {paragraph}
+                                </p>
+                            ))}
                     </div>
                 </div>
                 <div className={cx('foot')}>

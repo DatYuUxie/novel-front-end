@@ -39,7 +39,39 @@ const getUserAccount = async () => {
         throw new Error(error);
     }
 };
+const getInforUser = async (id) => {
+    try {
+        return axios.get(`/api/v1/user/read/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const updateUserAccount = async (data) => {
+    try {
+        return axios.put('/api/v1/user/update', data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const getAllUser = async () => {
+    try {
+        return axios.get('/api/v1/user/read');
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 // ===========   book api   ===========
+const getAllBooks = async () => {
+    try {
+        return await axios.get('/api/v1/book/read-all');
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 const getBooks = async () => {
     try {
         return await axios.get('/api/v1/book/read');
@@ -186,6 +218,24 @@ const createReview = async (data) => {
     }
 };
 
+// =========== Comment api ===========
+const getCommentsbyChapterID = async (chapterID) => {
+    try {
+        return axios.get(`/api/v1/comment/read/${chapterID}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+const createComment = async (data) => {
+    try {
+        return axios.post('/api/v1/comment/create', data);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
+
 export {
     getBooks,
     getBookById,
@@ -208,4 +258,10 @@ export {
     searchBook,
     createReview,
     getReviewsbyBookID,
+    createComment,
+    getCommentsbyChapterID,
+    updateUserAccount,
+    getInforUser,
+    getAllUser,
+    getAllBooks,
 };

@@ -1,13 +1,13 @@
-import Comment from '../Comment';
-import { useState } from 'react';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useContext } from 'react';
 import Modal from 'react-modal';
 import Button from '../Button';
-import { Rating } from 'react-simple-star-rating';
-
+import Comment from '../Comment';
 import classNames from 'classnames/bind';
 import styles from './BookContent.module.scss';
+import { getCommentsbyChapterID, createComment } from '../../api/api';
+import { useParams } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 
@@ -26,14 +26,11 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function Comments() {
+    const { user } = useContext(UserContext);
+    const { chapterID } = useParams();
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [rating, setRating] = useState(0);
-
-    // Catch Rating value
-    const handleRating = (rate) => {
-        setRating(rate);
-    };
+    const [content, setContent] = useState('');
 
     function openModal() {
         setIsOpen(true);
@@ -46,8 +43,39 @@ function Comments() {
 
     function closeModal() {
         setIsOpen(false);
-        setRating(0);
     }
+    const handleCreateComment = async () => {
+        try {
+            const data = {
+                content: content,
+                chapterID: chapterID,
+                userID: user.account.userID,
+            };
+            console.log(data);
+            let res = await createComment(data);
+            if (res.data.EC === 0) {
+                message.success('content success');
+            }
+
+            closeModal();
+        } catch (error) {
+            console.log('Failed to create review: ', error);
+            message.error('Đánh giá của bạn không thể gửi');
+        }
+    };
+    const [comments, setComments] = useState([]);
+    const handleGetReviewsbyBookID = async () => {
+        try {
+            let res = await getCommentsbyChapterID(chapterID);
+            console.log(res);
+            setComments(res.data.DT);
+        } catch (error) {
+            console.log('Failed to get comments: ', error);
+        }
+    };
+    React.useEffect(() => {
+        handleGetReviewsbyBookID();
+    }, []);
 
     return (
         <div>
@@ -73,6 +101,8 @@ function Comments() {
                                     name="review"
                                     autoFocus
                                     placeholder="Viết bình luận của bạn ở đây. Hãy viết bình luận chi tiết nhất có thể, đánh giá của bạn sẽ rất quan trọng đến tác phẩm."
+                                    value={content}
+                                    onChange={(e) => setContent(e.target.value)}
                                 />
                             </div>
                         </form>
@@ -82,16 +112,16 @@ function Comments() {
                         <Button primary onClick={closeModal}>
                             Đóng
                         </Button>
-                        <Button primary2 onClick={closeModal}>
+                        <Button primary2 onClick={(e) => handleCreateComment(e)} type="submit">
                             Đăng đánh giá
                         </Button>
                     </div>
                 </div>
             </Modal>
 
-            <Comment />
-            <Comment />
-            <Comment />
+            {comments.map((item, index) => (
+                <Comment data={item} />
+            ))}
         </div>
     );
 }

@@ -23,7 +23,7 @@ function EditNovel() {
     const getBook = async () => {
         try {
             const response = await getBookById(bookID);
-            setBook(response.data.DT);
+            // setBook(response.data.DT);
             setFormFields({
                 bookName: response.data.DT.bookName,
                 description: response.data.DT.desciption,
