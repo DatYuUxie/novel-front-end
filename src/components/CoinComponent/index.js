@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import PremiumCard from './PremiumCard';
 import PremiumCardActive from './PremiumCardActive';
+import FreeCard from './FreeCard';
+
 import Coin from '../../assets/img/coin-svgrepo-com.svg';
 
 import CoinItem from './CoinItem';
@@ -63,7 +65,7 @@ function CoinComponent() {
                 <div className="buy-container">
                     <div className="plans">
                         <div className="title">Gói tài khoản hiện tại của bạn</div>
-                        <PremiumCardActive />
+                        <FreeCard />
                     </div>
                 </div>
                 <PremiumCard />

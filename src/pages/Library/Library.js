@@ -19,7 +19,7 @@ const Novels = [
         des: 'Ai đi vào sinh mệnh của ngươi, là do vận mệnh quyết định, ai dừng lại trong sinh mệnh của ngươi, vận mệnh cũng vô pháp quyết định, chân chính có thể quyết định, chỉ có chính mình. Đã không thể quên được, liền dứt khoát không quên, cho dù hết thảy thành không… cho dù, hết thảy trở thành hoàng hôn dư huy, theo đêm tối phủ xuống, tiêu tán không tìm được bóng dáng.',
     },
     {
-        img: 'https://th.bing.com/th?id=OIF.%2fkwTnvwmi6hew0Kql6O1DQ&rs=1&pid=ImgDetMain',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBCyyIyeMtWco-50cvlzIDVnKJjMB4UsfNrw&usqp=CAU',
         name: 'Ta Tại Quỷ Dị Thế Giới Cẩn Thận Tu Tiên',
         rank: '2',
         tag: 'Tiên hiệp',

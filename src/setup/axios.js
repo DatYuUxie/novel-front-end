@@ -3,7 +3,7 @@ import { message } from 'antd';
 
 // Set config defaults when creating the instance
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'http://localhost:3001',
 });
 
 instance.defaults.withCredentials = true;

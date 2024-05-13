@@ -1,10 +1,11 @@
+import './Coin.scss';
+import Coin from '../../assets/img/coin-svgrepo-com.svg';
 import clock from '../../assets/img/clock2.png';
 import Button from '../Button';
-import './Coin.scss';
-function PremiumCardActive() {
+function FreeCard() {
     return (
         <div>
-            <main className="blue">
+            <main className="free">
                 <svg
                     className="logo"
                     width="32"
@@ -61,7 +62,7 @@ function PremiumCardActive() {
                     <g opacity="0.25" filter="url(#filter0_f_13_39662)">
                         <path
                             d="M32.8926 75.7102C74.4101 86.8348 72.7576 113.38 61.5916 155.052C50.4256 196.724 10.4228 228.836 -31.0947 217.712C-72.6122 206.587 -73.8431 157.63 -62.6771 115.958C-51.5111 74.2857 -8.62491 64.5856 32.8926 75.7102Z"
-                            fill="#22CAAD"
+                            fill="#FFF"
                         />
                     </g>
                     <defs>
@@ -81,30 +82,20 @@ function PremiumCardActive() {
                     </defs>
                 </svg>
                 <div className="flex">
-                    <h5>Premium card</h5>
+                    <h5>Free card</h5>
                     <div className="cards">
                         <div className="card-inline">
-                            <h3>Bạn đang sử dụng gói premium</h3>
+                            <h3>Bạn đang sử dụng gói miễn phí</h3>
                         </div>
-                        <div className="card-inline">
-                            <img
-                                crossOrigin="anonymous"
-                                className="dib"
-                                width="20"
-                                height="20"
-                                alt="coins"
-                                src={clock}
-                            />
-                            <h4>Thời gian còn lại: 29 ngày</h4>
-                        </div>
+
+                        <h4>Hãy đăng kí premium để có những </h4>
+                        <h4>trải nghiệm tối hơn</h4>
                     </div>
                 </div>
-                <footer>
-                    <Button className="btn-buy"> Điểm danh</Button>
-                </footer>
+                <footer></footer>
             </main>
         </div>
     );
 }
 
-export default PremiumCardActive;
+export default FreeCard;

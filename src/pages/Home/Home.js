@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 
 const rank1 = [
     {
-        img: 'https://th.bing.com/th?id=OIF.%2fkwTnvwmi6hew0Kql6O1DQ&rs=1&pid=ImgDetMain',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBCyyIyeMtWco-50cvlzIDVnKJjMB4UsfNrw&usqp=CAU',
         name: 'Ta Tại Quỷ Dị Thế Giới Cẩn Thận Tu Tiên',
         rank: '1',
         tag: 'Tiên hiệp',
@@ -54,7 +54,7 @@ const rank1 = [
 
 const rank2 = [
     {
-        img: 'https://th.bing.com/th?id=OIF.%2fkwTnvwmi6hew0Kql6O1DQ&rs=1&pid=ImgDetMain',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBCyyIyeMtWco-50cvlzIDVnKJjMB4UsfNrw&usqp=CAU',
         name: 'Ta Tại Quỷ Dị Thế Giới Cẩn Thận Tu Tiên',
         rank: '1',
         tag: 'Tiên hiệp',
@@ -93,7 +93,7 @@ const rank2 = [
 
 const rank3 = [
     {
-        img: 'https://th.bing.com/th?id=OIF.%2fkwTnvwmi6hew0Kql6O1DQ&rs=1&pid=ImgDetMain',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBCyyIyeMtWco-50cvlzIDVnKJjMB4UsfNrw&usqp=CAU',
         name: 'Ta Tại Quỷ Dị Thế Giới Cẩn Thận Tu Tiên',
         rank: '1',
         tag: 'Tiên hiệp',

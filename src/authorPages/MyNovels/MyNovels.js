@@ -5,7 +5,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import Button from '../../components/Button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { getBookByUserId } from '../../api/api';
 const { Title } = Typography;
 
@@ -61,11 +62,13 @@ function MyNovels() {
     const navigate = useNavigate();
     const { userId } = useParams();
     const [books, setBooks] = useState([]);
+    const { user } = useContext(UserContext);
+
     useEffect(() => {
         getBooksByUserId();
     }, []);
     const getBooksByUserId = async () => {
-        let response = await getBookByUserId(userId);
+        let response = await getBookByUserId(user.account.userID);
         const formattedBooks = response.data.DT.map((book, index) => ({
             key: index + 1,
             name: (

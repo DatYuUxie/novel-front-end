@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import './Login.scss';
-import logo from '../../assets/img/logo.png';
+import newLogo2 from '../../assets/img/newLogo2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../api/api';
 import { UserContext } from '../../context/UserContext';
@@ -85,11 +85,11 @@ const Login = (props) => {
                 onFinish={onFinish}
             >
                 <div className="centered-image">
-                    <img src={logo} width={200} />
+                    <img src={newLogo2} width={200} />
                 </div>
 
                 <div className="centered-welcome">
-                    <div className="title">Chào mừng Webnovel!</div>
+                    <div className="title">Chào mừng NovelVerse!</div>
                 </div>
 
                 <div className="centered-become">
