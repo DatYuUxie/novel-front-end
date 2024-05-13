@@ -30,10 +30,11 @@ const UserProvider = ({ children }) => {
             let username = response.data.DT.username;
             let userID = response.data.DT.userID;
             let token = response.data.DT.access_token;
+            let avatar = response.data.DT.avatar;
             let data = {
                 isAuthenticated: true,
                 token: token,
-                account: { role, email, username, userID },
+                account: { role, email, username, userID, avatar },
                 isLoading: false,
             };
             // console.log('data', data);

@@ -36,13 +36,13 @@ function EditChapter() {
         e.preventDefault();
         try {
             handleOnchangeInput(contentRef.current.textContent, 'content');
-            console.log(contentRef.current.textContent);
-            console.log('chapter', chapter);
+            // console.log(contentRef.current.textContent);
+            // console.log('chapter', chapter);
             let newChapter = { ...chapter, content: contentRef.current.textContent };
-            console.log('new chapter', newChapter);
+            // console.log('new chapter', newChapter);
 
             let res = await updateChapter(newChapter);
-            console.log('res', res);
+            // console.log('res', res);
             if (res.data.EC === 0) {
                 message.success('Edit chương thành công');
             }

@@ -10,8 +10,6 @@ import { useParams } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function Review({ data }) {
-    console.log('data: ', data);
-    const { bookID } = useParams();
     const [ratting, setRatting] = useState(5);
 
     // Catch Rating value
