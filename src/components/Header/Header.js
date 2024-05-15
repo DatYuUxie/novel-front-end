@@ -1,11 +1,8 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
-<<<<<<< HEAD
 import newLogo2 from '../../assets/img/newLogo2.png';
 
-=======
->>>>>>> 651d4053e95bb165105cc57cdba228a6e8a65235
 import Button from '../Button';
 import Menu from '../Popper/Menu';
 import Search from '../Search';

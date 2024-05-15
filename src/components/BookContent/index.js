@@ -25,15 +25,12 @@ function BookContent({ bookID }) {
                 <div className={cx('tab-item', tab === 2 && active)} onClick={() => setTab(2)}>
                     Danh sách chương
                 </div>
-                <div className={cx('tab-item', tab === 3 && active)} onClick={() => setTab(3)}>
-                    Bình luận
-                </div>
+                
             </div>
             <div className={cx('content')}>
                 {tab === 0 && <Intro />}
                 {tab === 1 && <Reviews />}
                 {tab === 2 && <List bookID={bookID} />}
-                {tab === 3 && <Comments />}
             </div>
         </div>
     );

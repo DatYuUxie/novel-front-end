@@ -1,12 +1,8 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, message } from 'antd';
-<<<<<<< HEAD
-import { LockOutlined, UserOutlined, CloseOutlined } from '@ant-design/icons';
 import './Login.scss';
 import newLogo2 from '../../assets/img/newLogo2.png';
-=======
 import { useContext, useState } from 'react';
->>>>>>> 651d4053e95bb165105cc57cdba228a6e8a65235
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../api/api';
 import logo from '../../assets/img/logo.png';
@@ -104,18 +100,18 @@ const Login = (props) => {
                 </div>
 
                 <Form.Item
-                    name="username"
+                    name="Email"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            message: 'Hãy nhập email đăng nhập của bạn!',
                         },
                     ]}
                 >
                     <Input
                         size="large"
                         prefix={<UserOutlined className="site-form-item-icon" />}
-                        placeholder="Username"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -125,7 +121,7 @@ const Login = (props) => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Password!',
+                            message: 'Hãy nhập mật khẩu của bạn!',
                         },
                     ]}
                 >

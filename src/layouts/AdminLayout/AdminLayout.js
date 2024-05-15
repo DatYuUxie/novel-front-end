@@ -2,7 +2,7 @@ import AdminSidebar from './Adminsidebar';
 import AdminHeader from '../../components/AdminHeader';
 function AdminLayout({ children }) {
     return (
-        <div className="layout">
+        <div className="author-layout">
             <div className="wrapper">
                 <AdminSidebar />
 

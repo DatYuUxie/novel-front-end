@@ -1,3 +1,5 @@
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Button, Card, Col, Row, Table, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { getAllBooks } from '../../api/api';
@@ -49,7 +51,7 @@ function ManageBooks() {
                             <Title level={5}>{book.bookName}</Title>
                             <p>{book.author}</p>
                         </div>
-                    </Avatar.Group>{' '}
+                    </Avatar.Group>
                 </>
             ),
             id: (
@@ -70,7 +72,7 @@ function ManageBooks() {
                         <span>{book.Chapters.length}</span>
                         <div>
                             <Button className="detail">Xem chi tiết</Button>
-                            <a href="#pablo">Edit</a>
+                            <FontAwesomeIcon icon={faPenToSquare} />
                         </div>
                     </div>
                 </>

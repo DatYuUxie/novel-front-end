@@ -1,15 +1,9 @@
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-<<<<<<< HEAD
-import Button from '../../components/Button';
-import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
-=======
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Card, Col, Row, Table, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
->>>>>>> 651d4053e95bb165105cc57cdba228a6e8a65235
 import { getBookByUserId } from '../../api/api';
 import Button from '../../components/Button';
 import './MyNovels.scss';
@@ -50,18 +44,13 @@ function MyNovels() {
     const navigate = useNavigate();
     const { userId } = useParams();
     const [books, setBooks] = useState([]);
-    const { user } = useContext(UserContext);
 
     useEffect(() => {
         getBooksByUserId();
     }, []);
     const getBooksByUserId = async () => {
-<<<<<<< HEAD
-        let response = await getBookByUserId(user.account.userID);
-=======
         let response = await getBookByUserId(userId);
         console.log('response', response.data.DT);
->>>>>>> 651d4053e95bb165105cc57cdba228a6e8a65235
         const formattedBooks = response.data.DT.map((book, index) => ({
             key: index + 1,
             name: (

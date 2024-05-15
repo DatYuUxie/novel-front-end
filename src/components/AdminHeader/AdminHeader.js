@@ -9,6 +9,8 @@ import { List, Avatar, Dropdown } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoins, faGear, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 import { InboxIcon } from '../../assets/icon';
+import newLogo2 from '../../assets/img/newLogo2.png';
+
 import classNames from 'classnames/bind';
 import styles from './AdminHeader.module.scss';
 import { message } from 'antd';
@@ -130,9 +132,10 @@ function AdminHeader() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <p>.</p>
+                <div className={cx('logo-link')}>
+                    <img src={newLogo2} alt="logo" className={cx('logo')} />
+                </div>
                 <Search />
-
                 <div className={cx('title-group')}>
                     <div className={cx('actions')}>
                         {user && user.isAuthenticated === true ? (
