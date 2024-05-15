@@ -30,8 +30,8 @@ import EditNovel from '../authorPages/EditNovel';
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/book/:bookID', component: Book },
-    { path: '/chapter/:chapterID', component: Chapter },
-    { path: '/library', component: Library },
+    { path: '/chapter/:bookID/:orderNumber', component: Chapter },
+    { path: '/library/:userID', component: Library },
     { path: '/rankings', component: Rankings },
     { path: '/forum', component: Forum },
     { path: '/thread/:threadId', component: Thread },

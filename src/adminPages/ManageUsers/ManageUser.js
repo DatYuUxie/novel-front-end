@@ -38,7 +38,6 @@ function ManageUsers() {
     }, []);
     const getUsers = async () => {
         let response = await getAllUser();
-        console.log('response', response.data.DT);
         const formattedUsers = response.data.DT.map((user, index) => ({
             key: index + 1,
             name: (

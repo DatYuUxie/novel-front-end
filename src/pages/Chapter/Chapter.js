@@ -1,28 +1,27 @@
-import classNames from 'classnames/bind';
-import Button from '../../components/Button';
-import List from '../../components/BookContent/List';
-import Comments from '../../components/BookContent/Comments';
-import { ColorFonts } from '../../constants/ColorFont';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Modal from 'react-modal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommenting } from '@fortawesome/free-regular-svg-icons';
 import {
     faArrowLeft,
     faArrowRight,
     faBook,
-    faUserEdit,
+    faCircleMinus,
+    faCirclePlus,
     faClock,
     faExclamationTriangle,
-    faCirclePlus,
-    faCircleMinus,
+    faUserEdit,
     faXmark,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { getChapterbyBookId, getChapterbyId } from '../../api/api';
+import { Dialog, Playlist, Reply, Revote, Widget } from '../../assets/icon';
+import Comments from '../../components/BookContent/Comments';
+import List from '../../components/BookContent/List';
+import Button from '../../components/Button';
+import { ColorFonts } from '../../constants/ColorFont';
 import styles from './Chapter.module.scss';
-import { Dialog, Widget, Revote, Reply, Playlist } from '../../assets/icon';
-import { Link } from 'react-router-dom';
-import { faCommenting } from '@fortawesome/free-regular-svg-icons';
-import { getChapterbyId } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -52,22 +51,43 @@ const customStyles2 = {
 
 // Modal.setAppElement('#root');
 function Chapter() {
-    const { chapterID } = useParams();
+    const navigate = useNavigate();
+    const { bookID, orderNumber } = useParams();
     const [chapter, setChapter] = useState({});
+    const [chapterList, setChapterList] = useState([]);
+    const [orderNumberInit, setOrderNumberInit] = useState(orderNumber);
+    const handleDecrease = () => {
+        let newOrderNumber = parseInt(orderNumber) - 1;
+        if (newOrderNumber < 1) return;
+        setOrderNumberInit(newOrderNumber);
+        navigate(`/chapter/${bookID}/${newOrderNumber}`);
+    };
+    const handleIncrease = () => {
+        let newOrderNumber = parseInt(orderNumber) + 1;
+        if (newOrderNumber > setChapterList.length + 1) return;
+        setOrderNumberInit(newOrderNumber);
+        navigate(`/chapter/${bookID}/${newOrderNumber}`);
+    };
 
+    const getChapter = async (bookID, orderNumberInit) => {
+        try {
+            const response = await getChapterbyId(bookID, orderNumberInit);
+            setChapter(response.data.DT);
+        } catch (error) {
+            console.log('Failed to fetch chapter data:', error);
+        }
+    };
+    const getChapterList = async (bookID) => {
+        try {
+            const response = await getChapterbyBookId(bookID);
+            setChapterList(response.data.DT);
+        } catch (error) {
+            console.log('Failed to fetch chapter data:', error);
+        }
+    };
     useEffect(() => {
-        const getChapter = async () => {
-            try {
-                const response = await getChapterbyId(chapterID);
-                setChapter(response.data.DT);
-            } catch (error) {
-                console.log('Failed to fetch chapter data:', error);
-            }
-        };
-        getChapter();
-    }, []);
-    // console.log('chapter:', chapter);
-
+        getChapter(bookID, orderNumberInit);
+    }, [orderNumberInit]);
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [fontSize, setFontSize] = useState(16);
@@ -82,10 +102,11 @@ function Chapter() {
     useEffect(() => {
         const themeColorId = localStorage.getItem('chapterTheme');
         if (themeColorId) {
-            const color = ColorFonts.find((item) => item.id == themeColorId);
+            const color = ColorFonts.find((item) => item.id === themeColorId);
             setBackgroundColor(color.bg);
             setTextColor(color.text);
         }
+        getChapterList(bookID);
     }, []);
 
     const increaseFontSize = () => {
@@ -123,7 +144,7 @@ function Chapter() {
 
     const handleTextColorChange = (event) => {
         const newColorId = event.target.value;
-        const color = ColorFonts.find((item) => item.id == newColorId);
+        const color = ColorFonts.find((item) => item.id === newColorId);
         setBackgroundColor(color.bg);
         setTextColor(color.text);
         localStorage.setItem('chapterTheme', newColorId); // Lưu giá trị vào local storage
@@ -132,10 +153,10 @@ function Chapter() {
         <div className={cx('container')}>
             <div className={cx('content')} style={{ backgroundColor: backgroundColor, color: textColor }}>
                 <div className={cx('head')}>
-                    <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>
+                    <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />} onClick={handleDecrease}>
                         Chương trước
                     </Button>
-                    <Button rounded tag rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>
+                    <Button rounded tag rightIcon={<FontAwesomeIcon icon={faArrowRight} />} onClick={handleIncrease}>
                         Chương sau
                     </Button>
                 </div>
@@ -178,10 +199,10 @@ function Chapter() {
                     </div>
                 </div>
                 <div className={cx('foot')}>
-                    <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}>
+                    <Button rounded tag leftIcon={<FontAwesomeIcon icon={faArrowLeft} />} onClick={handleDecrease}>
                         Chương trước
                     </Button>
-                    <Button rounded tag rightIcon={<FontAwesomeIcon icon={faArrowRight} />}>
+                    <Button rounded tag rightIcon={<FontAwesomeIcon icon={faArrowRight} />} onClick={handleIncrease}>
                         Chương sau
                     </Button>
                 </div>
@@ -205,7 +226,7 @@ function Chapter() {
                     <>
                         <hr className={cx('hr')} />
 
-                        <Comments />
+                        <Comments chapterID={chapter.chapterID} />
                     </>
                 )}
             </div>
@@ -229,7 +250,7 @@ function Chapter() {
                     <span>Danh sách chương</span>
                 </Link>
                 <Link
-                    className={cx('icon', mark == true && active)}
+                    className={cx('icon', mark === true && active)}
                     onClick={() => {
                         setMark(!mark);
                     }}
@@ -389,7 +410,7 @@ function Chapter() {
                             <FontAwesomeIcon icon={faXmark} onClick={closeModal2} className={cx('close-btn')} />
                         </div>
                         <div>
-                            <List />
+                            <List bookID={bookID} />
                         </div>
                     </div>
                 </Modal>

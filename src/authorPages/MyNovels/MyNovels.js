@@ -49,7 +49,6 @@ function MyNovels() {
     }, []);
     const getBooksByUserId = async () => {
         let response = await getBookByUserId(userId);
-        console.log('response', response.data.DT);
         const formattedBooks = response.data.DT.map((book, index) => ({
             key: index + 1,
             name: (

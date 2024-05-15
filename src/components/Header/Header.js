@@ -56,7 +56,6 @@ const CATEGORY_ITEMS = [
 
 function Header() {
     const { user, logoutContext } = useContext(UserContext);
-    console.log('check user', user);
     const navigate = useNavigate();
     // const currentUser = false;
     const handleLogout = async () => {
@@ -202,7 +201,7 @@ function Header() {
                     <div className={cx('actions')}>
                         {user && user.isAuthenticated === true ? (
                             <>
-                                <Link to={config.library} className={cx('title-icon', 'bxh')}>
+                                <Link to={`/library/${user.account.userID}`} className={cx('title-icon', 'bxh')}>
                                     <FontAwesomeIcon icon={faQuran} />
                                     <h4 className={cx('title-icon__name')}>Kệ sách</h4>
                                 </Link>

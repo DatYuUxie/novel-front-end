@@ -134,6 +134,43 @@ const searchBook = async (data) => {
         throw new Error(error);
     }
 };
+const addToBookshelf = async (data) => {
+    try {
+        return axios.post('/api/v1/bookshelf/create', data);
+    } catch (error) {
+        console.error(error);
+    }
+};
+const getBookshelf = async (id) => {
+    try {
+        return axios.get(`/api/v1/bookshelf/read/${id}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// ===========   forum api   ===========
+const createForum = async (data) => {
+    try {
+        return axios.post('/api/v1/forum/create', data);
+    } catch (error) {
+        console.error(error);
+    }
+};
+const getAllForum = async () => {
+    try {
+        return axios.get('/api/v1/forum/read');
+    } catch (error) {
+        console.error(error);
+    }
+};
+const getForumByForumId = async (forumID) => {
+    try {
+        return axios.get(`/api/v1/forum/read/${forumID}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 // ===========   chapter api   ===========
 const getChapterbyBookId = async (id) => {
@@ -144,9 +181,9 @@ const getChapterbyBookId = async (id) => {
         throw new Error(error);
     }
 };
-const getChapterbyId = async (id) => {
+const getChapterbyId = async (bookID, orderNumber) => {
     try {
-        return axios.get(`/api/v1/chapter/read/${id}`);
+        return axios.get(`/api/v1/chapter/read/${bookID}/${orderNumber}`);
     } catch (error) {
         console.log(error);
         throw new Error(error);
@@ -227,6 +264,14 @@ const getCommentsbyChapterID = async (chapterID) => {
         throw new Error(error);
     }
 };
+const getCommentsbyForumID = async (forumID) => {
+    try {
+        return axios.get(`/api/v1/comment/read/post/${forumID}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 const createComment = async (data) => {
     try {
         return axios.post('/api/v1/comment/create', data);
@@ -264,4 +309,10 @@ export {
     getInforUser,
     getAllUser,
     getAllBooks,
+    addToBookshelf,
+    getBookshelf,
+    createForum,
+    getAllForum,
+    getForumByForumId,
+    getCommentsbyForumID,
 };

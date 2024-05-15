@@ -1,17 +1,15 @@
-import classNames from 'classnames/bind';
-import styles from './NovelItem2.module.scss';
-import Button from '../Button';
-import '../../assets/css/grid.css';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faEdit } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames/bind';
+import '../../assets/css/grid.css';
+import styles from './NovelItem2.module.scss';
 const cx = classNames.bind(styles);
 
-function NovelItem2({to, isEdit, data}) {
+function NovelItem2({ to, isEdit, data }) {
     let responsive = 'l-2 m-3 c-6';
-    console.log('is edit:', isEdit);
     return (
         <div className={cx('container', responsive)}>
-            {isEdit == true && (
+            {isEdit === true && (
                 <>
                     <div className={cx('check-icon')}>
                         <FontAwesomeIcon icon={faCheck} size="4x" />
@@ -22,11 +20,7 @@ function NovelItem2({to, isEdit, data}) {
             <label className={cx('novel-item-container')} for="instagram">
                 <div className={cx('cover-novel-item')}>
                     <div className={cx('cover-novel-img')}>
-                        <img
-                            src={data.img}
-                            alt="cover-img"
-                            className={cx('cover-img')}
-                        />
+                        <img src={data.poster} alt="cover-img" className={cx('cover-img')} />
                     </div>
                     <h3 className={cx('name')}>{data.name}</h3>
                     <p className={cx('progress')}>Tiến trình 20/1890</p>

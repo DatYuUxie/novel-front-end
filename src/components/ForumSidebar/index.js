@@ -1,13 +1,14 @@
-import Button from '../Button';
+import { faAward, faHeart, faPoll, faSpa } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAward, faEdit, faHeart, faPoll, faSpa } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import Modal from 'react-modal';
-
-import classNames from 'classnames/bind';
-import styles from './ForumSidebar.module.scss';
+import Button from '../Button';
 import { faReadme } from '@fortawesome/free-brands-svg-icons';
-import { useState } from 'react';
+import classNames from 'classnames/bind';
+import { useState, useContext } from 'react';
+import styles from './ForumSidebar.module.scss';
+import { createForum } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 const customStyles = {
@@ -24,11 +25,23 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 function ForumSidebar() {
+    const { user } = useContext(UserContext);
     const [active, setActive] = useState('Tất cả');
     let activeCss = cx('active');
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [rating, setRating] = useState(0);
+    const [forum, setForum] = useState({
+        title: '',
+        tag: '',
+        content: '',
+    });
+    const handleChange = (e) => {
+        setForum({
+            ...forum,
+            [e.target.name]: e.target.value,
+        });
+    };
 
     function openModal() {
         setIsOpen(true);
@@ -43,6 +56,22 @@ function ForumSidebar() {
         setIsOpen(false);
         setRating(0);
     }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            let data = { ...forum, userID: user.account.userID };
+
+            const response = await createForum(data);
+            if (response.data.EC === 0) {
+                message.success('Tạo bài viết thành công');
+            }
+        } catch (error) {
+            console.error(error);
+            message.error('Tạo bài viết thất bại');
+        }
+        // setIsOpen(false);
+        // setRating(0);
+    };
     const handleclick = (e) => {
         console.log(e.target.innerText);
         setActive(e.target.innerText);
@@ -54,7 +83,7 @@ function ForumSidebar() {
             </Button>
             <h3 className={cx('title')}>Tags:</h3>
             <Button
-                className={cx('item', active == 'Tất cả' && activeCss)}
+                className={cx('item', active === 'Tất cả' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faPoll} />}
@@ -62,7 +91,7 @@ function ForumSidebar() {
                 Tất cả
             </Button>
             <Button
-                className={cx('item', active == 'Hỏi & đáp' && activeCss)}
+                className={cx('item', active === 'Hỏi & đáp' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faPoll} />}
@@ -70,7 +99,7 @@ function ForumSidebar() {
                 Hỏi & đáp
             </Button>
             <Button
-                className={cx('item', active == 'Bàn luận truyện' && activeCss)}
+                className={cx('item', active === 'Bàn luận truyện' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faReadme} />}
@@ -78,7 +107,7 @@ function ForumSidebar() {
                 Bàn luận truyện
             </Button>
             <Button
-                className={cx('item', active == 'Báo cáo lỗi' && activeCss)}
+                className={cx('item', active === 'Báo cáo lỗi' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faAward} />}
@@ -86,7 +115,7 @@ function ForumSidebar() {
                 Báo cáo lỗi
             </Button>
             <Button
-                className={cx('item', active == 'Góp ý' && activeCss)}
+                className={cx('item', active === 'Góp ý' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faSpa} />}
@@ -94,7 +123,7 @@ function ForumSidebar() {
                 Góp ý
             </Button>
             <Button
-                className={cx('item', active == 'Đề cử' && activeCss)}
+                className={cx('item', active === 'Đề cử' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faHeart} />}
@@ -102,7 +131,7 @@ function ForumSidebar() {
                 Đề cử
             </Button>
             <Button
-                className={cx('item', active == 'Sự kiện' && activeCss)}
+                className={cx('item', active === 'Sự kiện' && activeCss)}
                 onClick={(e) => handleclick(e)}
                 rounded
                 leftIcon={<FontAwesomeIcon icon={faSpa} />}
@@ -125,11 +154,24 @@ function ForumSidebar() {
                             <label htmlFor="name">
                                 <h4>Tiêu đề:</h4>
                             </label>
-                            <input className={cx('input')} type="text" id="name" name="threadName" />
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                id="title"
+                                name="title"
+                                value={forum.title}
+                                onChange={handleChange}
+                            />
                             <label htmlFor="gender">
                                 <h4>Danh mục:</h4>
                             </label>
-                            <select className={cx('input')} id="tag" name="tag">
+                            <select
+                                className={cx('input')}
+                                id="tag"
+                                name="tag"
+                                value={forum.tag}
+                                onChange={handleChange}
+                            >
                                 <option value="">Chọn danh mục tag</option>
 
                                 <option value="Hỏi & đáp">Hỏi & đáp</option>
@@ -145,9 +187,11 @@ function ForumSidebar() {
                             <div>
                                 <textarea
                                     className={cx('textarea')}
-                                    id="review"
-                                    name="review"
+                                    id="content"
+                                    name="content"
                                     placeholder="Nhập nội dung bài viết ở đây"
+                                    value={forum.content}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </fieldset>
@@ -157,7 +201,7 @@ function ForumSidebar() {
                         <Button primary onClick={closeModal}>
                             Đóng
                         </Button>
-                        <Button primary2 onClick={closeModal}>
+                        <Button primary2 onClick={handleSubmit}>
                             Đăng bài viết
                         </Button>
                     </div>
