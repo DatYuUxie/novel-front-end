@@ -15,7 +15,7 @@ function ListItem({ chapter }) {
         <div className={cx('padding-item', responsive)}>
             <div className={cx('item', evenNumber && item2)}>
                 <p>{chapter.orderNumber}</p>
-                <Link to={`/chapter/${chapter.chapterID}`} className={cx('item-content')}>
+                <Link to={`/chapter/${chapter.bookID}/${chapter.orderNumber}`} className={cx('item-content')}>
                     <p className={cx('name')}>{chapter.chapterName}</p>
                     <p className={cx('time')}>
                         {new Date(chapter.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}

@@ -1,18 +1,21 @@
 import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { getBookById } from '../../api/api';
+import { getBookById, addToBookshelf } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
 
 import styles from './BookHeader.module.scss';
+import { message } from 'antd';
 
 const cx = classNames.bind(styles);
 
 function BookHeader({ bookID }) {
     const [rating, setRating] = useState(5);
     const [book, setBook] = useState({});
+    const { user } = useContext(UserContext);
     // Catch Rating value
     const handleRating = (rate) => {
         setRating(rate);
@@ -21,6 +24,20 @@ function BookHeader({ bookID }) {
         const res = await getBookById(bookID);
         if (res && res.data && res.data.DT) {
             return res.data.DT;
+        }
+    };
+    const handleAddToBookshelf = async () => {
+        try {
+            const data = {
+                bookID: bookID,
+                userID: user.account.userID,
+            };
+            const res = await addToBookshelf(data);
+            if (res && res.data && res.data.DT) {
+                message.success('Thêm vào kệ sách thành công');
+            }
+        } catch (error) {
+            message.error('Thêm vào kệ sách thất bại');
         }
     };
     useEffect(() => {
@@ -65,7 +82,12 @@ function BookHeader({ bookID }) {
                     <Button primary2 tag>
                         Đọc truyện
                     </Button>
-                    <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
+                    <Button
+                        primary2
+                        tag
+                        leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}
+                        onClick={handleAddToBookshelf}
+                    >
                         Thêm vào kệ sách
                     </Button>
                 </div>

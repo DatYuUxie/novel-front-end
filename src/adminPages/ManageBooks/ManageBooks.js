@@ -40,7 +40,6 @@ function ManageBooks() {
     }, []);
     const getBooks = async () => {
         let response = await getAllBooks();
-        console.log('response', response.data.DT);
         const formattedBooks = response.data.DT.map((book, index) => ({
             key: index + 1,
             name: (

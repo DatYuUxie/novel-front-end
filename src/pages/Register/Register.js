@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Checkbox, Form, Input, notification, message } from 'antd';
-import { LockOutlined, UserOutlined, CloseOutlined, PhoneOutlined } from '@ant-design/icons';
-import './Register.scss';
-import logo from '../../assets/img/logo.png';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input, message } from 'antd';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerNewUser } from '../../api/api';
+import logo from '../../assets/img/logo.png';
+import './Register.scss';
 
 const onFinish = (values) => {
     console.log('Success:', values);
 };
-
 const Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
     const navigate = useNavigate();
-    // const handleBackToLogin = () => {
-    //   navigate("/");
-    // };
-    useEffect(() => {
-        // axios
-        //   .get("http://localhost:5000/api/v1/test-api")
-        //   .then((data) => {
-        //     console.log("check data:", data);
-        //   })
-        //   .catch((err) => console.log(err));
-    }, []);
     const isValidInput = () => {
         if (email === '') {
             message.error('Email không được để trống!');
@@ -52,7 +39,6 @@ const Register = (props) => {
         return true;
     };
     const handleRegister = async () => {
-        // message.success("Đăng kí thành công!");
         let isValid = isValidInput();
         if (isValid === true) {
             let response = await registerNewUser(email, password);
@@ -63,7 +49,6 @@ const Register = (props) => {
             } else {
                 message.error(serverData.EM);
             }
-            console.log(response);
         }
     };
 
@@ -78,7 +63,7 @@ const Register = (props) => {
                 onFinish={onFinish}
             >
                 <div className="centered-image">
-                    <img src={logo} width={200} />
+                    <img src={logo} width={200} alt="Logo" />
                 </div>
 
                 <div className="centered-welcome">

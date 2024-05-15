@@ -19,7 +19,6 @@ function AccountComponent() {
     const handleGetUserInfor = async () => {
         try {
             const response = await getInforUser(userID);
-            console.log(response);
             setFormFields({
                 username: response.data.DT.username,
                 birthday: response.data.DT.birthday,
@@ -70,7 +69,7 @@ function AccountComponent() {
                 userID: userID,
                 avatar: avatar,
             };
-            // console.log(data);
+            console.log(data);
             let res = await updateUserAccount(data);
             console.log(res);
             if (res.data.EC === 0) {
@@ -92,9 +91,8 @@ function AccountComponent() {
                         <div className="avatar" onClick={handleButtonClick}>
                             <img
                                 src={
-                                    selectedImage ||
+                                    formFields.avatar || selectedImage
                                     // 'https://th.bing.com/th?id=OIF.%2fkwTnvwmi6hew0Kql6O1DQ&rs=1&pid=ImgDetMain'
-                                    formFields.avatar
                                 }
                                 alt="Uploaded"
                                 className="user-img"

@@ -12,6 +12,7 @@ const cx = classNames.bind(styles);
 
 function Comment({ data }) {
     const [rating, setRating] = useState(5);
+    console.log(data);
 
     // Catch Rating value
     const handleRating = (rate) => {
@@ -33,8 +34,6 @@ function Comment({ data }) {
             <div className={cx('review-content')}>
                 <div className={cx('review-info')}>
                     <h3>{data.User.username}</h3>
-                    <p className={cx('chapter')}>Chương 12</p>
-
                     <p className={cx('review-time')}>
                         {new Date(data.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
                     </p>

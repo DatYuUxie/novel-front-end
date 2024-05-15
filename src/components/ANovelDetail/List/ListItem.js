@@ -23,9 +23,10 @@ function ListItem({ chapter }) {
         <div className={cx('padding-item', responsive)}>
             <div className={cx('item', evenNumber && item2)}>
                 <p>{chapter.orderNumber}</p>
-                <div to={`/chapter/${chapter.chapterID}`} className={cx('item-content')}>
+
+                <div className={cx('item-content')}>
                     <div className={cx('gr-row')}>
-                        <Link to={`/chapter/${chapter.chapterID}`}>
+                        <Link to={`/chapter/${chapter.bookID}/${chapter.orderNumber}`}>
                             <p className={cx('name')}>{chapter.chapterName}</p>
                         </Link>
                         <FontAwesomeIcon
@@ -34,7 +35,6 @@ function ListItem({ chapter }) {
                             icon={status ? faLock : faUnlock}
                         />
                     </div>
-
                     <p className={cx('time')}>
                         {new Date(chapter.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
                     </p>

@@ -4,7 +4,7 @@ import Button from '../Button';
 import Comment from '../Comment';
 import classNames from 'classnames/bind';
 import styles from './BookContent.module.scss';
-import { getCommentsbyChapterID, createComment } from '../../api/api';
+import { getCommentsbyChapterID, createComment, getCommentsbyForumID } from '../../api/api';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { message } from 'antd';
@@ -25,9 +25,9 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-function Comments() {
+function Comments({ chapterID }) {
     const { user } = useContext(UserContext);
-    const { chapterID } = useParams();
+    const { threadId } = useParams();
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [content, setContent] = useState('');
@@ -46,15 +46,20 @@ function Comments() {
     }
     const handleCreateComment = async () => {
         try {
-            const data = {
+            let data = {
                 content: content,
-                chapterID: chapterID,
                 userID: user.account.userID,
             };
+            if (chapterID !== undefined) {
+                data.chapterID = chapterID;
+            }
+            if (threadId !== undefined) {
+                data.postID = threadId;
+            }
             console.log(data);
             let res = await createComment(data);
             if (res.data.EC === 0) {
-                message.success('content success');
+                message.success('Đánh giá của bạn đã được gửi thành công');
             }
 
             closeModal();
@@ -64,17 +69,22 @@ function Comments() {
         }
     };
     const [comments, setComments] = useState([]);
-    const handleGetReviewsbyBookID = async () => {
+    const handleGetReviewsbyID = async () => {
         try {
-            let res = await getCommentsbyChapterID(chapterID);
-            console.log(res);
-            setComments(res.data.DT);
+            if (chapterID !== undefined) {
+                let res = await getCommentsbyChapterID(chapterID);
+                setComments(res.data.DT);
+            }
+            if (threadId !== undefined) {
+                let res = await getCommentsbyForumID(threadId);
+                setComments(res.data.DT);
+            }
         } catch (error) {
             console.log('Failed to get comments: ', error);
         }
     };
     React.useEffect(() => {
-        handleGetReviewsbyBookID();
+        handleGetReviewsbyID();
     }, []);
 
     return (
