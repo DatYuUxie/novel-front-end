@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
+import newLogo2 from '../../assets/img/newLogo2.png';
+
 import Button from '../Button';
 import Menu from '../Popper/Menu';
 import Search from '../Search';
@@ -173,7 +175,7 @@ function Header() {
                 <div className={cx('title-group')}>
                     <Link to={config.home} className={cx('logo-link')}>
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8FAhwhYIjaPus1tva6Pb8Upi4KBwRothf0vP_7-jRz4VNPgVmRHqWstkDyc3ATGRwPyo&usqp=CAU"
+                            src={newLogo2}
                             alt="logo"
                             className={cx('logo')}
                         />

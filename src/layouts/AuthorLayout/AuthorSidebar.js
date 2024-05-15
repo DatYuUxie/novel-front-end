@@ -11,7 +11,7 @@ import { UserContext } from '../../context/UserContext';
 function AuthorSidebar() {
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
-    // console.log(user);
+    console.log("userrrrrrrrrr",user);
     return (
         <aside className="sidebar-wrapper">
             {/* <div

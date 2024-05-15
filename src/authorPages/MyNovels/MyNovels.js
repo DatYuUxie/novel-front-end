@@ -44,6 +44,7 @@ function MyNovels() {
     const navigate = useNavigate();
     const { userId } = useParams();
     const [books, setBooks] = useState([]);
+
     useEffect(() => {
         getBooksByUserId();
     }, []);

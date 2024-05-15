@@ -10,7 +10,6 @@ import Button from '../../components/Button';
 import NovelItem2 from '../../components/NovelItem2';
 import styles from './Library.module.scss';
 const cx = classNames.bind(styles);
-
 function Library() {
     const [Novels, setNovels] = useState([]);
     const { userID } = useParams();

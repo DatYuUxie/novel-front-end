@@ -1,5 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, message } from 'antd';
+import './Login.scss';
+import newLogo2 from '../../assets/img/newLogo2.png';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../api/api';
@@ -86,11 +88,11 @@ const Login = (props) => {
                 onFinish={onFinish}
             >
                 <div className="centered-image">
-                    <img src={logo} width={200} />
+                    <img src={newLogo2} width={200} />
                 </div>
 
                 <div className="centered-welcome">
-                    <div className="title">Chào mừng Webnovel!</div>
+                    <div className="title">Chào mừng NovelVerse!</div>
                 </div>
 
                 <div className="centered-become">
@@ -98,18 +100,18 @@ const Login = (props) => {
                 </div>
 
                 <Form.Item
-                    name="username"
+                    name="Email"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            message: 'Hãy nhập email đăng nhập của bạn!',
                         },
                     ]}
                 >
                     <Input
                         size="large"
                         prefix={<UserOutlined className="site-form-item-icon" />}
-                        placeholder="Username"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -119,7 +121,7 @@ const Login = (props) => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Password!',
+                            message: 'Hãy nhập mật khẩu của bạn!',
                         },
                     ]}
                 >
