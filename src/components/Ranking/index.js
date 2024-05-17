@@ -12,7 +12,7 @@ function Ranking({ title, data }) {
         <div className={cx('container')}>
             <h2 className={cx('title')}>{title}</h2>
             {data.map((item, index) => {
-                return <RankingItem data={item} />;
+                return <RankingItem data={item} order={index + 1} />;
             })}
         </div>
     );
