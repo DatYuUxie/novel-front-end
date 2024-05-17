@@ -14,9 +14,6 @@ import { getBooks } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
-const rank1 = [];
-const rank3 = [];
-
 function Home() {
     const [mine, setMine] = useState([]);
     const [page, setPage] = useState(1);

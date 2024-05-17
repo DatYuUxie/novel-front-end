@@ -1,3 +1,5 @@
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar, Button, Card, Col, Radio, Row, Table, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { getAllUser } from '../../api/api';
@@ -77,8 +79,8 @@ function ManageUsers() {
             gender: (
                 <>
                     <div className="ant-employed">
-                        <span>{user.gender}</span>
-                        <a href="#pablo">Chỉnh sửa</a>
+                        <span>{user.gender||"Chưa xác nhận"}</span>
+                        <FontAwesomeIcon icon={faPenToSquare} />
                     </div>
                 </>
             ),

@@ -30,13 +30,13 @@ function AdminSidebar() {
                         <span className="nav-label">Quản lí sách, truyện</span>
                     </NavLink>
                 </Menu.Item>
-                <Menu.Item key="3">
+                {/* <Menu.Item key="3">
                     <NavLink to="/admin/manage-authors">
                     <FontAwesomeIcon icon={faUserEdit} />
 
                         <span className="nav-label">Quản lí tác giả </span>
                     </NavLink>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="4">
                     <NavLink to="/admin/manage-user">
                     <FontAwesomeIcon icon={faUserAlt} />

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import PremiumCard from './PremiumCard';
 import PremiumCardActive from './PremiumCardActive';
+import FreeCard from './FreeCard';
+
 import Coin from '../../assets/img/coin-svgrepo-com.svg';
 
 import CoinItem from './CoinItem';
@@ -16,19 +18,19 @@ const CoinTable = [
     {
         img: coin1,
         value: 99,
-        price: 390000,
+        price: 39000,
     },
 
     {
         img: coin2,
         value: 300,
-        price: 990000,
+        price: 99000,
     },
 
     {
         img: coin3,
         value: 980,
-        price: 2990000,
+        price: 299000,
     },
 
     {
@@ -63,7 +65,7 @@ function CoinComponent() {
                 <div className="buy-container">
                     <div className="plans">
                         <div className="title">Gói tài khoản hiện tại của bạn</div>
-                        <PremiumCardActive />
+                        <FreeCard />
                     </div>
                 </div>
                 <PremiumCard />
