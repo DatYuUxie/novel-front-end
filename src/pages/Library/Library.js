@@ -11,7 +11,7 @@ import NovelItem2 from '../../components/NovelItem2';
 import styles from './Library.module.scss';
 const cx = classNames.bind(styles);
 function Library() {
-    const [Novels, setNovels] = useState([]);
+    const [novels, setNovels] = useState([]);
     const { userID } = useParams();
     const [tab, setTab] = useState(0);
     const [editClick, setEditClick] = useState(true);
@@ -24,6 +24,7 @@ function Library() {
     };
     const getBookshelfData = async () => {
         const response = await getBookshelf(userID);
+        console.log(response);
         const data = response.data.DT.flatMap((list) =>
             list.Books.map((book) => ({
                 poster: book.poster,
@@ -72,7 +73,7 @@ function Library() {
             <div className={cx('content')}>
                 <div className="grid">
                     <div className="row">
-                        {Novels.map((item, index) => {
+                        {novels.map((item, index) => {
                             return <NovelItem2 data={item} isEdit={!editClick} />;
                         })}
                     </div>
