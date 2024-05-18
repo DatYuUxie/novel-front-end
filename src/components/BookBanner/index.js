@@ -1,16 +1,71 @@
-import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import Button from '../Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Modal } from 'antd';
+import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { getBookById } from '../../api/api';
+import '../../assets/css/grid.css';
+import coin1 from '../../assets/img/coin1.png';
+import Button from '../Button';
 import styles from './BookBanner.module.scss';
+import GiftCard from './GiftCard';
 
 const cx = classNames.bind(styles);
 
+const giftList = [
+    {
+        img: 'https://cdn3d.iconscout.com/3d/premium/thumb/rose-flower-4843306-4039585.png?f=webp',
+        price: 1,
+    },
+    {
+        img: 'https://cdn3d.iconscout.com/3d/premium/thumb/vegetable-paper-bag-6874591-5655173.png',
+        price: 5,
+    },
+    {
+        img: 'https://cdn3d.iconscout.com/3d/premium/thumb/fast-food-7493762-6154401.png?f=webp',
+        price: 10,
+    },
+    {
+        img: 'https://png.pngtree.com/png-vector/20230831/ourmid/pngtree-cute-cat-3d-rendering-png-image_9205746.png',
+        price: 50,
+    },
+    {
+        img: 'https://png.pngtree.com/png-vector/20240101/ourmid/pngtree-3d-cartoon-lion-design-png-image_11398860.png',
+        price: 100,
+    },
+    {
+        img: 'https://png.pngtree.com/png-clipart/20230408/ourmid/pngtree-pony-unicorn-cartoon-3d-stereo-cute-model-png-image_6683928.png',
+        price: 200,
+    },
+    {
+        img: 'https://static.vecteezy.com/system/resources/thumbnails/029/822/719/small_2x/baby-dragon-transparent-background-png.png',
+        price: 500,
+    },
+    {
+        img: 'https://static.vecteezy.com/system/resources/thumbnails/022/534/113/small/mystical-mythical-character-phoenix-phoenix-bird-on-a-transparent-background-phoenix-logo-generative-ai-png.png',
+        price: 1000,
+    },
+];
+
 function BookBanner({ bookID }) {
     const [book, setBook] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [gift, setGift] = useState(0);
+    const [giftIndex, setGiftIndex] = useState(0);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+    const handleGiftClick = (coin, index) => {
+        setGift(coin);
+        setGiftIndex(index);
+    };
     // Catch Rating value
     const bookByID = async () => {
         const res = await getBookById(bookID);
@@ -67,12 +122,63 @@ function BookBanner({ bookID }) {
                         <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
                             Bình chọn
                         </Button>
-                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
+                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} onClick={showModal}>
                             Tặng thưởng
                         </Button>
                     </div>
                 </div>
             </div>
+            <Modal
+                title="Tặng thưởng"
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                width={600}
+                footer={[
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            fontWeight: 600,
+                            fontSize: '16px',
+                        }}
+                    >
+                        <Button large rounded primary2 onClick={handleOk}>
+                            Tặng thưởng
+                        </Button>
+                    </div>,
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                            fontWeight: 600,
+                            fontSize: '16px',
+                        }}
+                    >
+                        Coin của bạn: 1000
+                        <img crossOrigin="anonymous" className="dib" width="40" height="40" alt="coins" src={coin1} />
+                    </div>,
+                ]}
+            >
+                <div className="grid">
+                    <div className="row">
+                        {giftList.map((item, index) => {
+                            return (
+                                <GiftCard
+                                    index={index}
+                                    data={item}
+                                    handleClick={handleGiftClick}
+                                    isActive={giftIndex == index}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 }
