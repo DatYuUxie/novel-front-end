@@ -1,30 +1,10 @@
 import './Report.scss';
-
-import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
-import { ToTopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Avatar, Button, Card, Col, message, Row, Table, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
-
-const formProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-        authorization: 'authorization-text',
-    },
-    onChange(info) {
-        if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
 
 // table code start
 const columns = [
@@ -58,7 +38,7 @@ const data = [
         content: (
             <>
                 <div className="author-info">
-                    <p>Chương 5: bỗng dưng quay đầu</p>
+                    <p>Chương 2: Bỗng dưng quay đầu</p>
                 </div>
             </>
         ),
@@ -69,7 +49,7 @@ const data = [
                         className="shape-avatar"
                         shape="square"
                         size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhegpPNPQyfEAJtmb5QFa3gjZZjHjVRpOCWA&usqp=CAU"
                     ></Avatar>
                     <div className="avatar-info">
                         <Title level={5}>Cầu ma</Title>
@@ -86,7 +66,7 @@ const data = [
         report: (
             <>
                 <div className="ant-employed">
-                    <span>Nội dung liên quan đến chính trị, tôn giáo</span>
+                    <span>Nội dung có xuất hiện những từ không đúng thuần phong</span>
                     <div>
                         <Link to={'/novel-detail'}>
                             <Button className="detail">Xem chi tiết</Button>
@@ -105,7 +85,7 @@ const data = [
         content: (
             <>
                 <div className="author-info">
-                    <p>Kìn cha nà, kìn cha hề dô, đeng đeng đeng</p>
+                    <p>Chương 1: Tô minh</p>
                 </div>
             </>
         ),
@@ -116,10 +96,10 @@ const data = [
                         className="shape-avatar"
                         shape="square"
                         size={40}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXA5L-BqlT7_nZ2rdyPwsN2IyvjnHdWxYj0w6xB9ay87meEjqeda_i10fr_VkaRaPzejE&usqp=CAU"
                     ></Avatar>
                     <div className="avatar-info">
-                        <Title level={5}>Trần Quang khải</Title>
+                        <Title level={5}>Ta theo hệ chữa trị trò chơi</Title>
                     </div>
                 </Avatar.Group>
             </>
@@ -127,7 +107,7 @@ const data = [
 
         type: (
             <>
-                <Button className="detail">Bình luận</Button>
+                <Button className="detail">Sách</Button>
             </>
         ),
         report: (
@@ -148,8 +128,6 @@ const data = [
     },
 ];
 function Report() {
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
     return (
         <div className="manage-feedback-tabled">
             <Row gutter={[24, 0]}>

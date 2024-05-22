@@ -229,9 +229,18 @@ const updateChapter = async (data) => {
         throw new Error(error);
     }
 };
+
+// =========== payment api ===========
 const payment = (data) => {
     try {
         return axios.post('/api/v1/create-payment-link', data);
+    } catch (error) {
+        console.error(error);
+    }
+};
+const getAllPayments = async () => {
+    try {
+        return axios.get('/api/v1/payment/read');
     } catch (error) {
         console.error(error);
     }
@@ -315,4 +324,5 @@ export {
     getAllForum,
     getForumByForumId,
     getCommentsbyForumID,
+    getAllPayments,
 };
