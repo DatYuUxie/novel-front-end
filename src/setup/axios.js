@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { message } from 'antd';
 
+const beURL = process.env.BE_URL || 'http://localhost:5000';
+console.log(beURL);
 // Set config defaults when creating the instance
 const instance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: beURL || 'http://localhost:5000',
 });
 
 instance.defaults.withCredentials = true;

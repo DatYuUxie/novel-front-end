@@ -35,7 +35,7 @@ const getUserAccount = async () => {
     try {
         return await axios.get('/api/v1/account');
     } catch (error) {
-        console.log(error);
+        console.log("not login",error);
         throw new Error(error);
     }
 };

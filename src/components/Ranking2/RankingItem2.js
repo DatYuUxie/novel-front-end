@@ -14,15 +14,15 @@ function RankingItem2({data}) {
 
             <div className={cx('cover-img')}>
                 <img
-                    src={data.img}
-                    alt="cover-img"
+                    src={data.poster}
+                    alt="poster"
                     className={cx('img')}
                 />
             </div>
             <div className={cx('content')}>
-                <h3 className={cx('name')}>{data.name}</h3>
+                <h3 className={cx('name')}>{data.bookName}</h3>
                 <p className={cx('des')}>
-                    {data.des}
+                    {data.desciption}
                 </p>
                 <div className={cx('info-container')}>
                     <Button className={cx('info')} leftIcon={<FontAwesomeIcon icon={faUserEdit} />}>Nhĩ Căn</Button>

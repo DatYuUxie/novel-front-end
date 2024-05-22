@@ -1,6 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import { useState } from 'react';
+import newLogo2 from '../../assets/img/newLogo2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerNewUser } from '../../api/api';
 import logo from '../../assets/img/logo.png';
@@ -63,15 +64,15 @@ const Register = (props) => {
                 onFinish={onFinish}
             >
                 <div className="centered-image">
-                    <img src={logo} width={200} alt="Logo" />
+                    <img src={newLogo2} width={200} alt="Logo" />
                 </div>
 
                 <div className="centered-welcome">
-                    <div className="title">Chào mừng Webnovel!</div>
+                    <div className="title">Chào mừng NovelVerse!</div>
                 </div>
 
                 <div className="centered-become">
-                    <div className="title">Tạo tài khoản Webnovel.</div>
+                    <div className="title">Tạo tài khoản NovelVerse.</div>
                 </div>
 
                 <Form.Item
