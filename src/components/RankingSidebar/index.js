@@ -9,55 +9,33 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-function RankingSidebar() {
+function RankingSidebar({ onTagChange }) {
+    const [tags, setTags] = useState([
+        { name: 'Thịnh hành', icon: <FontAwesomeIcon icon={faPoll} /> },
+        { name: 'Đọc nhiều', icon: <FontAwesomeIcon icon={faReadme} /> },
+        { name: 'Tặng thưởng', icon: <FontAwesomeIcon icon={faAward} /> },
+        { name: 'Đề cử', icon: <FontAwesomeIcon icon={faSpa} /> },
+        { name: 'Yêu thích', icon: <FontAwesomeIcon icon={faHeart} /> },
+    ]);
     const [active, setActive] = useState('Thịnh hành');
     let activeCss = cx('active');
     const handleclick = (e) => {
-        console.log(e.target.innerText);
         setActive(e.target.innerText);
+        onTagChange(e.target.innerText);
     };
+
     return (
         <div className={cx('sidebar')}>
-            <Button
-                className={cx('item', active == 'Thịnh hành' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faPoll} />}
-            >
-                Thịnh hành
-            </Button>
-            <Button
-                className={cx('item', active == 'Đọc nhiều' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faReadme} />}
-            >
-                Đọc nhiều
-            </Button>
-            <Button
-                className={cx('item', active == 'Tặng thưởng' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faAward} />}
-            >
-                Tặng thưởng
-            </Button>
-            <Button
-                className={cx('item', active == 'Đề cử' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faSpa} />}
-            >
-                Đề cử
-            </Button>
-            <Button
-                className={cx('item', active == 'Yêu thích' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faHeart} />}
-            >
-                Yêu thích
-            </Button>
+            {tags.map((item, index) => (
+                <Button
+                    className={cx('item', active == item.name && activeCss)}
+                    onClick={(e) => handleclick(e)}
+                    rounded
+                    leftIcon={item.icon}
+                >
+                    {item.name}
+                </Button>
+            ))}
         </div>
     );
 }

@@ -8,7 +8,7 @@ import { message } from 'antd';
 function PremiumCard() {
     const data = {
         amount: 69000,
-        description: 'Payment for order',
+        description: 'id' + ' ' + 'premium',
     };
     const handleBuy = async (data) => {
         try {

@@ -34,7 +34,7 @@ function Home() {
                 let dataCopy3 = [...res.data.DT];
 
                 // Sort the data in descending order of views
-                let sortedData1 = dataCopy1.sort((a, b) => b.view + b.nomination * 5 - (a.view + a.nomination * 2));
+                let sortedData1 = dataCopy1.sort((a, b) => b.view + b.nomination * 5 - (a.view + a.nomination * 5));
                 let sortedData2 = dataCopy2.sort((a, b) => b.view - a.view);
                 let sortedData3 = dataCopy3.sort((a, b) => b.nomination - a.nomination);
 
