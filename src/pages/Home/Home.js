@@ -1,15 +1,13 @@
-import Banner from '../../components/Banner';
-import NovelItem from '../../components/NovelItem';
 import classNames from 'classnames/bind';
-import styles from './Home.module.scss';
-import Ranking from '../../components/Ranking';
+import Banner from '../../components/Banner';
 import Button from '../../components/Button';
-
+import NovelItem from '../../components/NovelItem';
+import Ranking from '../../components/Ranking';
+import styles from './Home.module.scss';
+import { Pagination } from 'antd';
+import { useEffect, useState } from 'react';
 import '../../assets/css/grid.css';
 import NewUpdate from '../../components/NewUpdate';
-import { useEffect, useState } from 'react';
-import { Pagination } from 'antd';
-
 import { getBooks } from '../../api/api';
 
 const cx = classNames.bind(styles);

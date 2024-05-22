@@ -1,20 +1,20 @@
-import './Coin.scss';
-import Coin from '../../assets/img/coin-svgrepo-com.svg';
 import Coin1 from '../../assets/img/coin1.png';
-
-import Button from '../Button';
-import { payment } from '../../api/api';
+import './Coin.scss';
 import { message } from 'antd';
+import { payment } from '../../api/api';
+import Button from '../Button';
+import React, { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 function PremiumCard() {
+    const { user } = useContext(UserContext);
     const data = {
-        amount: 69000,
-        description: 'id' + ' ' + 'premium',
+        amount: 2000,
+        description: `${user.account.userID} premium`,
     };
     const handleBuy = async (data) => {
         try {
-            console.log('data', data);
             let res = await payment(data);
-            console.log('res', res);
+            // console.log('res', res);
             if (res && res.status === 200) {
                 window.open(res.data.checkoutUrl, '_blank');
             }

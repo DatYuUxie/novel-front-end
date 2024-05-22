@@ -1,27 +1,8 @@
+import { Avatar, Card, Col, Row, Table, Typography } from 'antd';
 import './ManagePayments.scss';
-
-import { Row, Col, Card, Radio, Table, Upload, message, Progress, Button, Avatar, Typography } from 'antd';
-import { ToTopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { getAllPayments } from '../../api/api';
+import React, { useEffect, useState } from 'react';
 const { Title } = Typography;
-
-const formProps = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-        authorization: 'authorization-text',
-    },
-    onChange(info) {
-        if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
-        }
-        if (info.file.status === 'done') {
-            message.success(`${info.file.name} file uploaded successfully`);
-        } else if (info.file.status === 'error') {
-            message.error(`${info.file.name} file upload failed.`);
-        }
-    },
-};
 
 // table code start
 const columns = [
@@ -58,126 +39,125 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        key: '1',
-        user: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Michael John</Title>
-                        <p>michael@mail.com</p>
-                    </div>
-                </Avatar.Group>
-            </>
-        ),
+// const data = [
+//     {
+//         key: '1',
+//         user: (
+//             <>
+//                 <Avatar.Group>
+//                     <Avatar
+//                         className="shape-avatar"
+//                         shape="square"
+//                         size={40}
+//                         src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
+//                     ></Avatar>
+//                     <div className="avatar-info">
+//                         <Title level={5}>Michael John</Title>
+//                         <p>user@mail.com</p>
+//                     </div>
+//                 </Avatar.Group>
+//             </>
+//         ),
 
-        name: (
-            <>
-                <div className="ant-employed">
-                    <span>Mua đá</span>
-                </div>
-            </>
-        ),
+//         name: (
+//             <>
+//                 <div className="ant-employed">
+//                     <span>Đăng kí premium</span>
+//                 </div>
+//             </>
+//         ),
 
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>002</Title>
-                </div>
-            </>
-        ),
+//         id: (
+//             <>
+//                 <div className="author-info">
+//                     <Title level={5}>001</Title>
+//                 </div>
+//             </>
+//         ),
 
-        money: (
-            <>
-                <div className="ant-employed">
-                    <span>0123456</span>
-                </div>
-            </>
-        ),
-        time: (
-            <>
-                <div className="ant-employed">
-                    <span>20:20 20-12-2023 </span>
-                </div>
-            </>
-        ),
-        status: (
-            <>
-                <div className="ant-employed">
-                    <span>Đã thanh toán</span>
-                </div>
-            </>
-        ),
-    },
-
-    {
-        key: '2',
-        user: (
-            <>
-                <Avatar.Group>
-                    <Avatar
-                        className="shape-avatar"
-                        shape="square"
-                        size={40}
-                        src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
-                    ></Avatar>
-                    <div className="avatar-info">
-                        <Title level={5}>Michael John</Title>
-                        <p>michael@mail.com</p>
-                    </div>
-                </Avatar.Group>
-            </>
-        ),
-
-        name: (
-            <>
-                <div className="ant-employed">
-                    <span>Đăng kí premium</span>
-                </div>
-            </>
-        ),
-
-        id: (
-            <>
-                <div className="author-info">
-                    <Title level={5}>001</Title>
-                </div>
-            </>
-        ),
-
-        money: (
-            <>
-                <div className="ant-employed">
-                    <span>0123456</span>
-                </div>
-            </>
-        ),
-        time: (
-            <>
-                <div className="ant-employed">
-                    <span>20:20 20-12-2023 </span>
-                </div>
-            </>
-        ),
-        status: (
-            <>
-                <div className="ant-employed">
-                    <span>Đã thanh toán</span>
-                </div>
-            </>
-        ),
-    },
-];
+//         money: (
+//             <>
+//                 <div className="ant-employed">
+//                     <span>60000</span>
+//                 </div>
+//             </>
+//         ),
+//         time: (
+//             <>
+//                 <div className="ant-employed">
+//                     <span>20:20 20-12-2023 </span>
+//                 </div>
+//             </>
+//         ),
+//         status: (
+//             <>
+//                 <div className="ant-employed">
+//                     <span>Đã thanh toán</span>
+//                 </div>
+//             </>
+//         ),
+//     },
+// ];
 function ManagePayments() {
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
+    const [payments, setPayments] = useState([]);
+    useEffect(() => {
+        getPayments();
+    }, []);
+    const getPayments = async () => {
+        let response = await getAllPayments();
+        const formattedPayments = response.data.DT.map((payment, index) => ({
+            key: index + 1,
+            user: (
+                <>
+                    <Avatar.Group>
+                        <Avatar className="shape-avatar" shape="square" size={40} src={payment.User.avatar}></Avatar>
+                        <div className="avatar-info">
+                            <Title level={5}>{payment.User.username}</Title>
+                            <p>{payment.User.email}</p>
+                        </div>
+                    </Avatar.Group>
+                </>
+            ),
+            name: (
+                <>
+                    <div className="ant-employed">
+                        <span>{payment.serviceName}</span>
+                    </div>
+                </>
+            ),
+            id: (
+                <>
+                    <div className="author-info">
+                        <Title level={5}>{payment.codePayment}</Title>
+                    </div>
+                </>
+            ),
+            money: (
+                <>
+                    <div className="ant-employed">
+                        <span>{payment.amount}</span>
+                    </div>
+                </>
+            ),
+            time: (
+                <>
+                    <div className="ant-employed">
+                        <span>
+                            {new Date(payment.time).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
+                        </span>
+                    </div>
+                </>
+            ),
+            status: (
+                <>
+                    <div className="ant-employed">
+                        <span>{payment.status}</span>
+                    </div>
+                </>
+            ),
+        }));
+        setPayments(formattedPayments);
+    };
     return (
         <div className="tabled">
             <Row gutter={[24, 0]}>
@@ -186,7 +166,7 @@ function ManagePayments() {
                         <div className="table-responsive">
                             <Table
                                 columns={columns}
-                                dataSource={data}
+                                dataSource={payments}
                                 pagination={false}
                                 className="ant-border-space"
                             />
@@ -197,5 +177,4 @@ function ManagePayments() {
         </div>
     );
 }
-
 export default ManagePayments;
