@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { message } from 'antd';
 
-const beURL = process.env.BE_URL || 'http://localhost:5000';
-console.log(beURL);
+const beURL = process.env.REACT_APP_BE_URL || 'http://localhost:5000';
+console.log("REACT_APP_BE_URL",beURL);
 // Set config defaults when creating the instance
 const instance = axios.create({
     baseURL: beURL || 'http://localhost:5000',
