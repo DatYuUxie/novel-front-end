@@ -1,11 +1,10 @@
 import { message, Spin } from 'antd';
 import _ from 'lodash';
-import React, { useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createBook, createImgLink } from '../../api/api';
 import { UserContext } from '../../context/UserContext';
 import './CreateNovelComponent.scss';
-import { useNavigate } from 'react-router-dom';
 
 function CreateNovelComponent() {
     const navigate = useNavigate();
