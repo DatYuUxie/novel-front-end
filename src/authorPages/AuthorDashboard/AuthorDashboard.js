@@ -1,20 +1,46 @@
-import './AuthorDashboard.scss';
-
-import { useState } from 'react';
-
-import { Card, Col, Row, Typography, Tooltip, Progress, Upload, message, Button, Timeline, Radio } from 'antd';
-import { ToTopOutlined, MenuUnfoldOutlined, RightOutlined } from '@ant-design/icons';
-import Paragraph from 'antd/lib/typography/Paragraph';
-import LineChart from '../../components/LineChart';
+import { Card, Col, Row, Typography } from 'antd';
 import IncomeListBooks from '../../components/IncomeListBooks';
+import LineChart from '../../components/LineChart';
+import './AuthorDashboard.scss';
+import { getBookByUserId } from '../../api/api';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function AuthorDashboard() {
-    const { Title, Text } = Typography;
+    const { Title } = Typography;
+    const { userID } = useParams();
 
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
+    const [books, setBooks] = useState([]);
+    const [totalViews, setTotalViews] = useState(0);
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalReward, setTotalReward] = useState(0);
+    const getBooksByUserId = async () => {
+        try {
+            let response = await getBookByUserId(userID);
+            console.log('response.data.DT', response.data.DT);
+            setBooks(response.data.DT);
 
-    const [reverse, setReverse] = useState(false);
+            // Calculate total income
+            const totalIncome = response.data.DT.reduce((sum, book) => {
+                const viewIncome = parseInt(book.view, 10) * 5;
+                const rewardIncome = (book.reward || 0) * 200;
+                return sum + viewIncome + rewardIncome;
+            }, 0);
+            setTotalIncome(totalIncome);
 
+            // Calculate total views
+            const totalViews = response.data.DT.reduce((sum, book) => sum + parseInt(book.view, 10), 0);
+            setTotalViews(totalViews);
+            // Calculate total reward
+            const totalReward = response.data.DT.reduce((sum, book) => sum + parseInt(book.reward, 10), 0);
+            setTotalReward(totalReward);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getBooksByUserId();
+    }, []);
     const dollor = [
         <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" key={0}>
             <path
@@ -74,29 +100,28 @@ function AuthorDashboard() {
     const count = [
         {
             today: 'Thu nhập',
-            title: '$50',
+            title: `${totalIncome}`,
             persent: '+30%',
             icon: dollor,
             bnb: 'bnb2',
         },
         {
             today: 'Tổng lượt xem',
-            title: '3,200',
+            title: `${totalViews}`,
             persent: '+20%',
             icon: profile,
             bnb: 'bnb2',
         },
         {
             today: 'Tổng thưởng',
-            title: '120',
-            persent: '-20%',
-            icon: heart,
+            title: `${totalReward}`,
+            icon: dollor,
             bnb: 'redtext',
         },
         {
             today: 'Số tác phẩm',
-            title: '3',
-            persent: '10%',
+            title: `${books.length}`,
+            // persent: '10%',
             icon: cart,
             bnb: 'bnb2',
         },

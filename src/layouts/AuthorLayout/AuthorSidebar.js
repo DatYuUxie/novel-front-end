@@ -11,7 +11,6 @@ import { UserContext } from '../../context/UserContext';
 function AuthorSidebar() {
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
-    console.log("userrrrrrrrrr",user);
     return (
         <aside className="sidebar-wrapper">
             {/* <div
@@ -23,10 +22,10 @@ function AuthorSidebar() {
                 <img src={logo} alt="" style={{ width: '80px' }} />
             </div> */}
             {/* <hr /> */}
-            <div className='front'> good morning :3</div>
+            <div className="front"> good morning :3</div>
             <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
-                    <NavLink to="/author/dashboard">
+                    <NavLink to={`/author/dashboard/${user.account.userID}`}>
                         <FontAwesomeIcon icon={faColumns} />
 
                         <span className="nav-label">Tổng quan</span>

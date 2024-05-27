@@ -1,8 +1,4 @@
-// import PostItem from '../../components/PostItem';
-// import SettingSideBar from '../../components/SettingSideBar';
-// import { Fragment } from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import CreateNovelComponent from '../../components/CreateNovelComponent';
+import { useParams } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import classNames from 'classnames/bind';

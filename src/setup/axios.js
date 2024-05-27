@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { message } from 'antd';
+// import { message } from 'antd';
 
 const beURL = process.env.REACT_APP_BE_URL || 'http://localhost:5000';
 console.log("REACT_APP_BE_URL",beURL);

@@ -28,7 +28,7 @@ function Home() {
             if (res && res.data && res.data.DT) {
                 // Convert the view count to integer
                 res.data.DT.forEach((item) => (item.view = parseInt(item.view)));
-                res.data.DT.forEach((item) => (item.nomination = parseInt(item.nomination)));
+                res.data.DT.forEach((item) => (item.vote = parseInt(item.vote)));
 
                 // Create copies of the array
                 let dataCopy1 = [...res.data.DT];
@@ -36,17 +36,17 @@ function Home() {
                 let dataCopy3 = [...res.data.DT];
 
                 // Sort the data in descending order of views
-                let sortedData1 = dataCopy1.sort((a, b) => b.view + b.nomination * 5 - (a.view + a.nomination * 5));
+                let sortedData1 = dataCopy1.sort((a, b) => b.view + b.vote * 5 - (a.view + a.vote * 5));
                 let sortedData2 = dataCopy2.sort((a, b) => b.view - a.view);
-                let sortedData3 = dataCopy3.sort((a, b) => b.nomination - a.nomination);
+                let sortedData3 = dataCopy3.sort((a, b) => b.vote - a.vote);
 
                 // Get the top 5 books
                 let top5Trending = sortedData1.slice(0, 5);
                 let top5View = sortedData2.slice(0, 5);
-                let top5Nomination = sortedData3.slice(0, 5);
+                let top5vote = sortedData3.slice(0, 5);
                 setRank1(top5Trending);
                 setRank2(top5View);
-                setRank3(top5Nomination);
+                setRank3(top5vote);
                 return res.data.DT;
             }
         } catch (error) {

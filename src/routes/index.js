@@ -42,7 +42,7 @@ const publicRoutes = [
     { path: '/account/:userID', component: Account },
     { path: '/search/:bookName', component: SearchResult },
 
-    { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
+    { path: '/author/dashboard/:userID', component: AuthorDashboard, layout: AuthorLayout },
     { path: '/author/create-novel', component: CreateNovel, layout: AuthorLayout },
     { path: '/author/create-chapter/:bookID', component: CreateChapter, layout: AuthorLayout },
     { path: '/author/my-novels/:userId', component: MyNovels, layout: AuthorLayout },

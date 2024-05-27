@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-import config from '../../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import classNames from 'classnames/bind';
 import styles from './List.module.scss';
 import '../../../assets/css/grid.css';
@@ -14,7 +12,7 @@ function ListItem({ chapter }) {
     const [status, setStatus] = useState(false);
     const item2 = cx('item2');
     let responsive = 'm-6 c-12';
-    const evenNumber = chapter.orderNumber % 4 == 0 || chapter.orderNumber % 4 == 3;
+    const evenNumber = chapter.orderNumber % 4 === 0 || chapter.orderNumber % 4 === 3;
 
     const handleChangeStatus = () => {
         setStatus(!status);

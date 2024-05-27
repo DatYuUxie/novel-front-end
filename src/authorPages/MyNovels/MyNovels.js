@@ -44,7 +44,6 @@ function MyNovels() {
     const navigate = useNavigate();
     const { userId } = useParams();
     const [books, setBooks] = useState([]);
-
     useEffect(() => {
         getBooksByUserId();
     }, []);
@@ -72,11 +71,7 @@ function MyNovels() {
             ),
             status: (
                 <>
-                    <Button className="detail">
-                        {/* thêm trạng thái */}
-                        {/* {book.tag} */}
-                        Đang ra
-                    </Button>
+                    <Button className="detail">{book.status}</Button>
                 </>
             ),
 
@@ -88,7 +83,7 @@ function MyNovels() {
             chapter: (
                 <>
                     <div className="ant-employed">
-                        <span className="author-info">{book.Chapters.length}</span>
+                        <span className="author-info">{book.Chapters ? book.Chapters.length : 0}</span>
                         <div>
                             <Link to={`/author/novel-detail/${book.bookID}`}>
                                 <Button className="detail">Xem chi tiết</Button>
