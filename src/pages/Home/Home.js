@@ -1,15 +1,15 @@
+import { Pagination } from 'antd';
 import classNames from 'classnames/bind';
+import { useContext, useEffect, useState } from 'react';
+import { getBooks, getBookshelf } from '../../api/api';
+import '../../assets/css/grid.css';
 import Banner from '../../components/Banner';
 import Button from '../../components/Button';
+import NewUpdate from '../../components/NewUpdate';
 import NovelItem from '../../components/NovelItem';
 import Ranking from '../../components/Ranking';
-import styles from './Home.module.scss';
-import { Pagination } from 'antd';
-import { useContext, useEffect, useState } from 'react';
-import '../../assets/css/grid.css';
-import NewUpdate from '../../components/NewUpdate';
-import { getBooks, getBookshelf } from '../../api/api';
 import { UserContext } from '../../context/UserContext';
+import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -104,7 +104,7 @@ function Home() {
 
                     <div className={cx('continued')}>
                         {library.map((item, index) => {
-                            return <NovelItem data={item} library/>;
+                            return <NovelItem data={item} library />;
                         })}
                     </div>
                 </div>

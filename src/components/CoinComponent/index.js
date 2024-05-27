@@ -21,25 +21,25 @@ const CoinTable = [
     {
         img: coin2,
         value: 300,
-        price: 3000,
+        price: 20000,
     },
 
     {
         img: coin3,
         value: 980,
-        price: 299000,
+        price: 60000,
     },
 
     {
         img: coin4,
         value: 1990,
-        price: 590000,
+        price: 100000,
     },
 
     {
         img: coin5,
         value: 3590,
-        price: 990000,
+        price: 150000,
     },
 ];
 

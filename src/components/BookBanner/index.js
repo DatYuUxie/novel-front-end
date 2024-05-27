@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { message, Modal } from 'antd';
 import classNames from 'classnames/bind';
 import { useContext, useEffect, useState } from 'react';
-import { getBookById } from '../../api/api';
+import { getBookById, giveCoupon, voteBook } from '../../api/api';
 import '../../assets/css/grid.css';
 import coin1 from '../../assets/img/coin1.png';
 import { UserContext } from '../../context/UserContext';
 import Button from '../Button';
 import styles from './BookBanner.module.scss';
 import GiftCard from './GiftCard';
-import { giveCoupon } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -68,6 +67,18 @@ function BookBanner({ bookID }) {
             }
         } catch (error) {
             message.error('Tặng thưởng không thành công');
+            console.log(error);
+        }
+    };
+    const handleVote = async () => {
+        try {
+            let res = await voteBook(bookID);
+            console.log('vote: ', res);
+            if (res && res.data && res.data.EC === 0) {
+                message.success('Bình chọn thành công');
+            }
+        } catch (error) {
+            message.error('Bình chọn không thành công');
             console.log(error);
         }
     };
@@ -142,7 +153,7 @@ function BookBanner({ bookID }) {
                         </div>
                     </div>
                     <div className={cx('button')}>
-                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />}>
+                        <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} onClick={handleVote}>
                             Bình chọn
                         </Button>
                         <Button primary2 tag leftIcon={<FontAwesomeIcon icon={faPlusSquare} />} onClick={showModal}>
