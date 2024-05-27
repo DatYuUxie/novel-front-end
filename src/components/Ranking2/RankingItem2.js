@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
+import styles from './Ranking2.module.scss';
 
 const cx = classNames.bind(styles);
 
-function RankingItem2({data, order}) {
-
+function RankingItem2({ data, order }) {
     return (
         <Link to={`/book/${data.bookID}`} className={cx('container-item')}>
             <h3 className={cx('rank')}>{order}</h3>

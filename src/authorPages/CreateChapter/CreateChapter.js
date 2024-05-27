@@ -1,12 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useMemo } from 'react';
-import classNames from 'classnames/bind';
-import styles from './CreateChapter.module.scss';
-import { createChapter } from '../../api/api';
-import _ from 'lodash';
 import { message } from 'antd';
+import classNames from 'classnames/bind';
+import _ from 'lodash';
+import { useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { createChapter } from '../../api/api';
 import IsValidContent from '../../services/IsValidContent';
+import styles from './CreateChapter.module.scss';
 
 const cx = classNames.bind(styles);
 
