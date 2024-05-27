@@ -1,3 +1,8 @@
+// Import các component và layout cần thiết
+import AdminLayout from '../layouts/AdminLayout';
+import AuthorLayout from '../layouts/AuthorLayout';
+// import { getRole } from '../utils/auth'; // Import hàm getRole để xác định vai trò
+
 // Pages
 import Home from '../pages/Home';
 import Book from '../pages/Book';
@@ -14,8 +19,6 @@ import CreateNovel from '../authorPages/CreateNovel';
 import { CreateChapter, EditChapter } from '../authorPages/CreateChapter';
 import ManageUsers from '../adminPages/ManageUsers';
 import ManageBooks from '../adminPages/ManageBooks';
-import AdminLayout from '../layouts/AdminLayout';
-import AuthorLayout from '../layouts/AuthorLayout';
 import AuthorDashboard from '../authorPages/AuthorDashboard';
 import MyNovels from '../authorPages/MyNovels';
 import AuthorNovelDetail from '../authorPages/AuthorNovelDetail';
@@ -26,7 +29,14 @@ import ManagePayments from '../adminPages/ManagePayments';
 import Report from '../adminPages/Report';
 import AdminDashboard from '../adminPages/AdminDashboard';
 import EditNovel from '../authorPages/EditNovel';
-// Public routes
+import { UserContext } from '../context/UserContext';
+import { useContext } from 'react';
+
+const GetRole = () => {
+    const { user } = useContext(UserContext);
+    return user.account.role;
+};
+// Public routes và private routes
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/book/:bookID', component: Book },
@@ -41,25 +51,51 @@ const publicRoutes = [
     { path: '/account/coin', component: Coin },
     { path: '/account/:userID', component: Account },
     { path: '/search/:bookName', component: SearchResult },
-
-    { path: '/author/dashboard', component: AuthorDashboard, layout: AuthorLayout },
-    { path: '/author/create-novel', component: CreateNovel, layout: AuthorLayout },
-    { path: '/author/create-chapter/:bookID', component: CreateChapter, layout: AuthorLayout },
-    { path: '/author/my-novels/:userId', component: MyNovels, layout: AuthorLayout },
-    { path: '/author/novel-detail/:bookID', component: AuthorNovelDetail, layout: AuthorLayout },
-    { path: '/author/feedbacks', component: Feedback, layout: AuthorLayout },
-    { path: '/author/income', component: IncomeDashboard, layout: AuthorLayout },
-    { path: '/author/edit-novel/:bookID', component: EditNovel, layout: AuthorLayout },
-    { path: '/author/edit-chapter/:chapterID', component: EditChapter, layout: AuthorLayout },
-
-    { path: '/admin/manage-user', component: ManageUsers, layout: AdminLayout },
-    { path: '/admin/manage-books', component: ManageBooks, layout: AdminLayout },
-    { path: '/admin/manage-authors', component: ManageAuthors, layout: AdminLayout },
-    { path: '/admin/manage-payment', component: ManagePayments, layout: AdminLayout },
-    { path: '/admin/manage-report', component: Report, layout: AdminLayout },
-    { path: '/admin/dashboard', component: AdminDashboard, layout: AdminLayout },
 ];
 
-const privateRoutes = [];
+const privateRoutes = [
+    // Các route cho vai trò author
 
+    {
+        path: '/author/**',
+        layout: AuthorLayout,
+        routes: [
+            { path: '/author/dashboard', component: AuthorDashboard },
+            { path: '/author/create-novel', component: CreateNovel },
+            { path: '/author/create-chapter/:bookID', component: CreateChapter },
+            { path: '/author/my-novels/:userId', component: MyNovels },
+            { path: '/author/novel-detail/:bookID', component: AuthorNovelDetail },
+            { path: '/author/feedbacks', component: Feedback },
+            { path: '/author/income', component: IncomeDashboard },
+            { path: '/author/edit-novel/:bookID', component: EditNovel },
+            { path: '/author/edit-chapter/:chapterID', component: EditChapter },
+        ],
+        authCondition: () => {
+            console.log('Running authCondition for author route');
+            console.log('getrole', GetRole() == 'USER');
+            return GetRole() == 'USER';
+        },
+    },
+    // Các route cho vai trò admin
+    {
+        path: '/admin/**',
+        layout: AdminLayout,
+        routes: [
+            { path: '/admin/manage-user', component: ManageUsers },
+            { path: '/admin/manage-books', component: ManageBooks },
+            { path: '/admin/manage-authors', component: ManageAuthors },
+            { path: '/admin/manage-payment', component: ManagePayments },
+            { path: '/admin/manage-report', component: Report },
+            { path: '/admin/dashboard', component: AdminDashboard },
+        ],
+        authCondition: () => {
+            console.log('Running authCondition for admin route');
+
+            console.log('getrole', GetRole());
+            return GetRole() == 'ADMIN';
+        },
+    },
+];
+
+// Export các routes
 export { publicRoutes, privateRoutes };
