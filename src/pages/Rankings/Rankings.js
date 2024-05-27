@@ -11,7 +11,7 @@ function Rankings() {
     const [novelsSorted, setNovelsSorted] = useState([]);
     const [tag, setTag] = useState('Thịnh hành');
 
-    const listNovels = async () => {
+    const getListNovels = async () => {
         try {
             let res = await getBooks();
             if (res && res.data && res.data.DT) {
@@ -23,21 +23,19 @@ function Rankings() {
     };
     useEffect(() => {
         const fetchNovels = async () => {
-            const novel = await listNovels();
+            const novel = await getListNovels();
             setNovels(novel);
             let result = RankingOrder(novel, 'Thịnh hành');
             setNovelsSorted(result);
-            console.log(result);
         };
         fetchNovels();
     }, []);
-    useEffect(() => {
-        let result = RankingOrder(novels, tag);
-        setNovelsSorted(result);
-    }, [tag]);
+
 
     const handleTagChange = (selectedTags) => {
         setTag(selectedTags);
+        let result = RankingOrder(novels, selectedTags);
+        setNovelsSorted(result);
     };
 
     return (

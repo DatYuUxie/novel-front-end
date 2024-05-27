@@ -24,7 +24,6 @@ function Library() {
     };
     const getBookshelfData = async () => {
         const response = await getBookshelf(userID);
-        console.log(response);
         const data = response.data.DT.map((book) => ({
             poster: book.poster,
             name: book.bookName,

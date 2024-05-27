@@ -102,7 +102,7 @@ function Chapter() {
     useEffect(() => {
         const themeColorId = localStorage.getItem('chapterTheme');
         if (themeColorId) {
-            const color = ColorFonts.find((item) => item.id === themeColorId);
+            const color = ColorFonts.find((item) => item.id == themeColorId);
             setBackgroundColor(color.bg);
             setTextColor(color.text);
         }
@@ -144,7 +144,7 @@ function Chapter() {
 
     const handleTextColorChange = (event) => {
         const newColorId = event.target.value;
-        const color = ColorFonts.find((item) => item.id === newColorId);
+        const color = ColorFonts.find((item) => item.id == newColorId);
         setBackgroundColor(color.bg);
         setTextColor(color.text);
         localStorage.setItem('chapterTheme', newColorId); // Lưu giá trị vào local storage

@@ -24,21 +24,6 @@ const CATEGORY_ITEMS = [
     },
     {
         title: 'Kì ảo',
-        children: {
-            title: 'Language',
-            data: [
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-            ],
-        },
     },
     {
         title: 'Tiên hiệp',
@@ -51,6 +36,15 @@ const CATEGORY_ITEMS = [
     },
     {
         title: 'Khoa học',
+    },
+    {
+        title: 'Quân sự',
+    },
+    {
+        title: 'Đô thị',
+    },
+    {
+        title: 'Lịch sử',
     },
 ];
 
@@ -71,37 +65,37 @@ function Header() {
 
     const notifyData = [
         {
-            title: 'Cầu ma ra chương mới',
-            description: <>3 ngày trước</>,
+            title: 'Truyện bạn theo dõi Cầu ma ra chương mới',
+            description: <>1 ngày trước</>,
 
             avatar: (
                 <Avatar
                     className={cx('shape-avatar')}
                     shape="square"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhegpPNPQyfEAJtmb5QFa3gjZZjHjVRpOCWA&usqp=CAU"
                 ></Avatar>
             ),
         },
         {
-            title: 'Tiên nghịch ra chương mới',
+            title: 'Truyện bạn theo dõi Tiên nghịch ra chương mới',
             description: <>3 ngày trước</>,
 
             avatar: (
                 <Avatar
                     className={cx('shape-avatar')}
                     shape="square"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgK4QteMlYJ4p_AQoqS6KXh_UcisUWNZ0pefn4lXHFfoyxR9tSiojpn13flHdebZqLREM&usqp=CAU"
                 ></Avatar>
             ),
         },
         {
             title: 'Thanh toán premium thành công',
-            description: <>3 ngày trước</>,
+            description: <>7 ngày trước</>,
             avatar: (
                 <Avatar
                     className={cx('shape-avatar')}
                     shape="square"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                    src="https://icon-library.com/images/cogwheel-icon/cogwheel-icon-14.jpg"
                 ></Avatar>
             ),
         },
@@ -114,7 +108,7 @@ function Header() {
             itemLayout="horizontal"
             dataSource={notifyData}
             renderItem={(item) => (
-                <List.Item>
+                <List.Item className={cx('ant-list-item')}>
                     <List.Item.Meta
                         avatar={<Avatar shape="square" src={item.avatar} />}
                         title={item.title}

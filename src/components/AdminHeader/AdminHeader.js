@@ -22,14 +22,14 @@ const cx = classNames.bind(styles);
 
 const notifyData = [
     {
-        title: 'Cầu ma ra chương mới',
+        title: 'Truyện bạn theo dõi cầu ma ra chương mới',
         description: <>3 ngày trước</>,
 
         avatar: (
             <Avatar
                 className={cx('shape-avatar')}
                 shape="square"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhegpPNPQyfEAJtmb5QFa3gjZZjHjVRpOCWA&usqp=CAU"
             ></Avatar>
         ),
     },
@@ -52,7 +52,7 @@ const notifyData = [
             <Avatar
                 className={cx('shape-avatar')}
                 shape="square"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwPa559GHFA8zlQYixUpRG5eTx0XNfXcm1bISubnXfW4_nBzsStFPnA7RXVLHpEDEio9c&usqp=CAU"
+                src="https://icon-library.com/images/cogwheel-icon/cogwheel-icon-14.jpg"
             ></Avatar>
         ),
     },
@@ -65,7 +65,7 @@ const notifyMenu = (
         itemLayout="horizontal"
         dataSource={notifyData}
         renderItem={(item) => (
-            <List.Item>
+            <List.Item className={cx('ant-list-item')}>
                 <List.Item.Meta
                     avatar={<Avatar shape="square" src={item.avatar} />}
                     title={item.title}

@@ -9,7 +9,7 @@ function Ranking2({ data }) {
     return (
         <div className={cx('container')}>
             {data.map((item, index) => {
-                return <RankingItem2 data={item} />;
+                return <RankingItem2 data={item} order={index + 1} />;
             })}
         </div>
     );

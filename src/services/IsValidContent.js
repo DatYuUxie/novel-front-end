@@ -6,9 +6,9 @@ function IsValidContent(text) {
     const obsceneWords = ['tục', 'tỉu', 'lờ', 'đụ', 'cc', 'đm', 'đmm', 'duma'];
     const obsceneRegex = new RegExp(obsceneWords.join('|'), 'gi');
 
-    if (obsceneRegex.test(text)) return false; //invalid
-    if (linkRegex.test(text)) return false; //invalid
-    return true; //valid
+    if (obsceneRegex.test(text)) return 1; //invalid
+    if (linkRegex.test(text)) return 2; //invalid
+    return 0; //valid
 }
 
 export default IsValidContent;

@@ -1,7 +1,13 @@
+import classNames from 'classnames/bind';
+import styles from './BookContent.module.scss';
+
+
+const cx = classNames.bind(styles);
+
 function Intro() {
     return (
         <>
-            <p>
+            <p className={cx('intro')}>
                 Tác giả: Nhĩ Căn
                 <br />
                 <br />

@@ -9,6 +9,7 @@ import { UserContext } from '../../context/UserContext';
 import { getReviewsbyBookID, createReview } from '../../api/api';
 import { useParams } from 'react-router-dom';
 import { message } from 'antd';
+import IsValidContent from '../../services/IsValidContent';
 
 const cx = classNames.bind(styles);
 
@@ -61,9 +62,16 @@ function Reviews() {
             bookID: bookID,
         };
         try {
-            const response = await createReview(formData);
-            if (response.data.EC === 0) {
-                message.success('Đánh giá của bạn đã được gửi');
+            if (IsValidContent(content) == 1) {
+                message.error('Không đăng đánh giá chứa nội dung vi phạm tiêu chuẩn cộng đồng');
+            } else if (IsValidContent(content) == 2) {
+                message.error('Không đăng đánh giá chứa đường dẫn bên ngoài');
+            } else if (IsValidContent(content) == 0) {
+                const response = await createReview(formData);
+                if (response.data.EC === 0) {
+                    message.success('Đánh giá của bạn đã được gửi');
+                }
+                window.location.reload();
             }
         } catch (error) {
             console.log('Failed to create review: ', error);
@@ -108,8 +116,9 @@ function Reviews() {
                                 <h3>/5</h3>
                             </div>
 
-                            <div>
+                            <div className={cx('review-font')}>
                                 <textarea
+                                    className={cx('review-font')}
                                     id="content"
                                     name="content"
                                     autoFocus

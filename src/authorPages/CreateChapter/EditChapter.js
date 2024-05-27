@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CreateChapter.module.scss';
 import { getChapterbyId, updateChapter } from '../../api/api';
 import _ from 'lodash';
 import { message } from 'antd';
+import IsValidContent from '../../services/IsValidContent';
 
 const cx = classNames.bind(styles);
 
@@ -13,6 +14,7 @@ function EditChapter() {
     const { chapterID } = useParams();
     const [chapter, setChapter] = useState({});
     const contentRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getChapter = async () => {
@@ -35,16 +37,23 @@ function EditChapter() {
     const handleEditChapter = async (e) => {
         e.preventDefault();
         try {
-            handleOnchangeInput(contentRef.current.textContent, 'content');
-            // console.log(contentRef.current.textContent);
-            // console.log('chapter', chapter);
-            let newChapter = { ...chapter, content: contentRef.current.textContent };
-            // console.log('new chapter', newChapter);
+            if (IsValidContent(chapter.content) == 1) {
+                message.error('Nội dung chương không được chứa nội dung vi phạm tiêu chuẩn cộng đồng');
+            } else if (IsValidContent(chapter.content) == 2) {
+                message.error('Nội dung chương không được chứa đường dẫn bên ngoài');
+            } else if (IsValidContent(chapter.content) == 0) {
+                handleOnchangeInput(contentRef.current.textContent, 'content');
+                // console.log(contentRef.current.textContent);
+                // console.log('chapter', chapter);
+                let newChapter = { ...chapter, content: contentRef.current.textContent };
+                // console.log('new chapter', newChapter);
 
-            let res = await updateChapter(newChapter);
-            // console.log('res', res);
-            if (res.data.EC === 0) {
-                message.success('Edit chương thành công');
+                let res = await updateChapter(newChapter);
+                // console.log('res', res);
+                if (res.data.EC === 0) {
+                    message.success('Chỉnh sửa chương thành công');
+                    navigate(`/author/novel-detail/${bookID}`);
+                }
             }
         } catch (error) {
             message.error('Edit chương thất bại');

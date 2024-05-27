@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import classNames from 'classnames/bind';
 import styles from './CreateChapter.module.scss';
 import { createChapter } from '../../api/api';
 import _ from 'lodash';
 import { message } from 'antd';
+import IsValidContent from '../../services/IsValidContent';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +18,8 @@ function CreateChapter() {
     //     content: '',
     //     bookID: bookID,
     // };
+    const navigate = useNavigate();
+
     const defaultFormData = useMemo(
         () => ({
             orderNumber: '',
@@ -35,11 +39,17 @@ function CreateChapter() {
     const handleCreateChapter = async (e) => {
         e.preventDefault();
         try {
-            // console.log('chapter', chapter);
-            let res = await createChapter(chapter);
-            console.log('res', res);
-            if (res.data.EC === 0) {
-                message.success('Tạo chương thành công');
+            if (IsValidContent(chapter.content) == 1) {
+                message.error('Nội dung chương không được chứa nội dung vi phạm tiêu chuẩn cộng đồng');
+            } else if (IsValidContent(chapter.content) == 2) {
+                message.error('Nội dung chương không được chứa đường dẫn bên ngoài');
+            } else if (IsValidContent(chapter.content) == 0) {
+                let res = await createChapter(chapter);
+                console.log('res', res);
+                if (res.data.EC === 0) {
+                    message.success('Tạo chương mới thành công');
+                    navigate(`/author/novel-detail/${bookID}`);
+                }
             }
         } catch (error) {
             message.error('Tạo chương thất bại');

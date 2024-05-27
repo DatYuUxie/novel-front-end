@@ -2,14 +2,15 @@ import { faFire, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import Button from '../Button';
-import styles from './Ranking2.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function RankingItem2({ data }) {
+function RankingItem2({data, order}) {
+
     return (
-        <div className={cx('container-item')}>
-            <h3 className={cx('rank')}>{data.rank}</h3>
+        <Link to={`/book/${data.bookID}`} className={cx('container-item')}>
+            <h3 className={cx('rank')}>{order}</h3>
 
             <div className={cx('cover-img')}>
                 <img src={data.poster} alt="poster" className={cx('img')} />
@@ -27,7 +28,7 @@ function RankingItem2({ data }) {
                     <Button className={cx('info')}>#{data.tag}</Button>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 
