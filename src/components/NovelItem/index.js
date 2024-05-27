@@ -7,12 +7,10 @@ import Button from '../Button';
 import '../../assets/css/grid.css';
 const cx = classNames.bind(styles);
 
-function NovelItem({ data, search = false }) {
+function NovelItem({ data, search = false, library = false }) {
     let responsive = search ? 'l-4 m-6 c-12' : 'l-3 m-4 c-6';
-    // console.log("Search",data);
-
     return (
-        <div className={cx('container', responsive)}>
+        <div className={library ? cx('container2', responsive) : cx('container', responsive)}>
             <Link to={`/book/${data.bookID}`} className={cx('novel-item-container')}>
                 <div className={cx('cover-novel-item')}>
                     <div className={cx('cover-novel-img')}>

@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import '../../assets/css/grid.css';
 import styles from './NovelItem2.module.scss';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function NovelItem2({ to, isEdit, data }) {
     let responsive = 'l-2 m-3 c-6';
+
     return (
-        <div className={cx('container', responsive)}>
+        <Link to={`/book/${data.bookID}`} className={cx('container', responsive)}>
             {isEdit === true && (
                 <>
                     <div className={cx('check-icon')}>
@@ -23,10 +25,10 @@ function NovelItem2({ to, isEdit, data }) {
                         <img src={data.poster} alt="cover-img" className={cx('cover-img')} />
                     </div>
                     <h3 className={cx('name')}>{data.name}</h3>
-                    <p className={cx('progress')}>Tiến trình 20/1890</p>
+                    <p className={cx('progress')}>Tiến trình 1/30</p>
                 </div>
             </label>
-        </div>
+        </Link>
     );
 }
 

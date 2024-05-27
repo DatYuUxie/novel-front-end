@@ -8,6 +8,7 @@ import { getCommentsbyChapterID, createComment, getCommentsbyForumID } from '../
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { message } from 'antd';
+import IsValidContent from '../../services/IsValidContent';
 
 const cx = classNames.bind(styles);
 
@@ -46,20 +47,26 @@ function Comments({ chapterID }) {
     }
     const handleCreateComment = async () => {
         try {
-            let data = {
-                content: content,
-                userID: user.account.userID,
-            };
-            if (chapterID !== undefined) {
-                data.chapterID = chapterID;
-            }
-            if (threadId !== undefined) {
-                data.postID = threadId;
-            }
-            console.log(data);
-            let res = await createComment(data);
-            if (res.data.EC === 0) {
-                message.success('Đánh giá của bạn đã được gửi thành công');
+            if (IsValidContent(content) == 1) {
+                message.error('Không đăng bình luận chứa nội dung vi phạm tiêu chuẩn cộng đồng');
+            } else if (IsValidContent(content) == 2) {
+                message.error('Không đăng bình luận chứa đường dẫn bên ngoài');
+            } else if (IsValidContent(content) == 0) {
+                let data = {
+                    content: content,
+                    userID: user.account.userID,
+                };
+                if (chapterID !== undefined) {
+                    data.chapterID = chapterID;
+                }
+                if (threadId !== undefined) {
+                    data.postID = threadId;
+                }
+                console.log(data);
+                let res = await createComment(data);
+                if (res.data.EC === 0) {
+                    message.success('Đánh giá của bạn đã được gửi thành công');
+                }
             }
 
             closeModal();
@@ -107,6 +114,7 @@ function Comments({ chapterID }) {
                         <form>
                             <div>
                                 <textarea
+                                    className={cx('review-font')}
                                     id="review"
                                     name="review"
                                     autoFocus

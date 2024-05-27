@@ -5,10 +5,11 @@ import NovelItem from '../../components/NovelItem';
 import Ranking from '../../components/Ranking';
 import styles from './Home.module.scss';
 import { Pagination } from 'antd';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../../assets/css/grid.css';
 import NewUpdate from '../../components/NewUpdate';
-import { getBooks } from '../../api/api';
+import { getBooks, getBookshelf } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,9 @@ function Home() {
     const [rank1, setRank1] = useState([]);
     const [rank2, setRank2] = useState([]);
     const [rank3, setRank3] = useState([]);
+    const [library, setLibrary] = useState([]);
+    let { user } = useContext(UserContext);
+    console.log(user);
     const Novels = async () => {
         try {
             let res = await getBooks();
@@ -50,6 +54,31 @@ function Home() {
         }
     };
     // let rank1, rank2, rank3;
+    const getBookshelfData = async () => {
+        console.log('2');
+
+        if (user.isAuthenticated) {
+            try {
+                const response = await getBookshelf(user.account.userID);
+                console.log('user.account.userId', user.account);
+
+                const data = response.data.DT.flatMap((list) =>
+                    list.Books.map((book) => ({
+                        bookID: book.bookID,
+                        poster: book.poster,
+                        bookName: book.bookName,
+                        ratting: book.ratting,
+                        tag: book.tag,
+                        desciption: book.desciption,
+                    })),
+                );
+                setLibrary(data);
+                console.log('data', data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
     useEffect(() => {
         const fetchNovels = async () => {
             const novels = await Novels();
@@ -57,22 +86,30 @@ function Home() {
         };
         fetchNovels();
     }, []);
+    useEffect(() => {
+        console.log('1');
+
+        getBookshelfData();
+    }, [user]);
+    console.log('library', library);
     return (
         <>
             <div className={cx('top')}>
                 <Banner />
                 <NewUpdate />
             </div>
+            {user.isAuthenticated && (
+                <div className={cx('container')}>
+                    <h2 className={cx('title')}>Tiếp tục xem</h2>
 
-            <div className={cx('container')}>
-                <h2 className={cx('title')}>Tiếp tục xem</h2>
-
-                <div className={cx('continued')}>
-                    {mine.map((item, index) => {
-                        return <NovelItem data={item} />;
-                    })}
+                    <div className={cx('continued')}>
+                        {library.map((item, index) => {
+                            return <NovelItem data={item} library/>;
+                        })}
+                    </div>
                 </div>
-            </div>
+            )}
+
             <div className={cx('ranking-container')}>
                 <Ranking title="Top thịnh hành" data={rank1} />
                 <Ranking title="Top đọc nhiều" data={rank2} />
@@ -98,16 +135,16 @@ function Home() {
                         Đô thị
                     </Button>
                     <Button text tag>
-                        Huyền huyễn
+                        Tiên hiệp
                     </Button>
                     <Button text tag>
-                        Ngôn tình
+                        Lịch sử
                     </Button>
                     <Button text tag>
-                        Khoa học
+                        Kì ảo
                     </Button>
                     <Button text tag>
-                        Đô thị
+                        Quân sự
                     </Button>
                 </div>
                 <div className={cx('content')}>

@@ -28,6 +28,18 @@ const Register = (props) => {
             message.error('Xác nhận mật khẩu không được để trống!');
             return false;
         }
+        if (password.length < 8) {
+            message.error('Mật khẩu phải có ít nhất 8 ký tự');
+            return false;
+        }
+        if (!/[A-Z]/.test(password)) {
+            message.error('Mật khẩu phải chứa ít nhất một ký tự viết hoa');
+            return false;
+        }
+        if (!/[^a-zA-Z0-9]/.test(password)) {
+            message.error('Mật khẩu phải chứa ít nhất một ký tự đặc biệt');
+            return false;
+        }
         if (password !== confirmPassword) {
             message.error('Xác nhận mật khẩu không khớp!');
             return false;
@@ -45,7 +57,7 @@ const Register = (props) => {
             let response = await registerNewUser(email, password);
             let serverData = response.data;
             if (+serverData.EC === 0) {
-                message.success(serverData.EM);
+                message.success("Đăng kí tài khoản thành công");
                 navigate('/login');
             } else {
                 message.error(serverData.EM);
@@ -102,13 +114,14 @@ const Register = (props) => {
                         },
                     ]}
                 >
-                    <Input
+                    <Input.Password
                         size="large"
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        visibilityToggle={true}
                     />
                 </Form.Item>
 
@@ -121,7 +134,7 @@ const Register = (props) => {
                         },
                     ]}
                 >
-                    <Input
+                    <Input.Password
                         size="large"
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"

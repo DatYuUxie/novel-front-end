@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faEdit, faFire, faHeart, faPoll, faSpa, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function RankingItem2({data}) {
+function RankingItem2({data, order}) {
     return (
-        <div className={cx('container-item')}>
-            <h3 className={cx('rank')}>{data.rank}</h3>
+        <Link to={`/book/${data.bookID}`} className={cx('container-item')}>
+            <h3 className={cx('rank')}>{order}</h3>
 
             <div className={cx('cover-img')}>
                 <img
@@ -30,7 +31,7 @@ function RankingItem2({data}) {
                     <Button className={cx('info')}>#{data.tag}</Button>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

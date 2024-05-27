@@ -1,3 +1,21 @@
 .list-result-container {
     margin-top: auto;
 }
+.cover-novel-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    .cover-img {
+        width: 300px;
+        border-radius: 2px;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out;
+    }
+    h3 {
+        color: rgb(145, 145, 145);
+    }
+}

@@ -4,6 +4,7 @@ import { message, Select, Tag } from 'antd';
 import { createBook, createImgLink } from '../../api/api';
 import _, { set } from 'lodash';
 import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 // const options = [
 //     {
 //         value: 'gold',
@@ -43,6 +44,7 @@ function CreateNovelComponent() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImage2, setSelectedImage2] = useState(null);
+    const navigate = useNavigate();
 
     const inputRef = useRef(null);
     const dafaultformData = {
@@ -87,6 +89,8 @@ function CreateNovelComponent() {
             let response = await createBook(updatedFormData);
             if (response.data.EC === 0) {
                 message.success('Tạo sách thành công');
+                navigate(`/author/my-novels/${user.account.userID}`);
+
             }
         } catch (error) {
             message.error('Tạo sách thất bại');
@@ -155,6 +159,14 @@ function CreateNovelComponent() {
                         <option value="">Chọn thể loại sáng tác</option>
                         <option value="Tiên hiệp">Tiên hiệp</option>
                         <option value="Quân sự">Quân sự</option>
+                        <option value="Ngôn tình">Ngôn tình</option>
+                        <option value="Kì ảo">Kì ảo</option>
+                        <option value="Lịch sử">Lịch sử</option>
+                        <option value="Huyền huyễn">Huyền huyễn</option>
+                        <option value="Khoa học">Khoa học</option>
+                        <option value="Đô thị">Đô thị</option>
+           
+
                     </select>
 
                     {/* <label htmlFor="gender">

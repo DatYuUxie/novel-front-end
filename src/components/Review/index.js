@@ -40,7 +40,7 @@ function Review({ data }) {
                         </p>
                     </div>
                 </div>
-                <p>{data.content}</p>
+                <p className={cx('review-content2')}>{data.content}</p>
 
                 <div className={cx('review-footer')}>
                     <FontAwesomeIcon icon={faThumbsUp} className={cx('icon')} />

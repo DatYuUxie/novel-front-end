@@ -84,8 +84,13 @@ textarea {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: var(--font-family);
+
     .modal-title {
         text-align: center;
         margin-bottom: 20px;
+    }
+    .review-font {
+        font-family: var(--font-family);
     }
 }

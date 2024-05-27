@@ -62,7 +62,9 @@ function Reviews() {
                 contentLabel="Example Modal"
             >
                 <div className={cx('modal')}>
-                    <h2 className={cx('modal-title')} ref={(_subtitle) => (subtitle = _subtitle)}>Viết đánh giá của bạn</h2>
+                    <h2 className={cx('modal-title')} ref={(_subtitle) => (subtitle = _subtitle)}>
+                        Viết đánh giá của bạn
+                    </h2>
                     <div>
                         <form>
                             <div className={cx('rating')}>
@@ -71,8 +73,9 @@ function Reviews() {
                                 <h3>/5</h3>
                             </div>
 
-                            <div>
+                            <div className={cx('review-font')}>
                                 <textarea
+                                    className={cx('review-font')}
                                     id="review"
                                     name="review"
                                     autoFocus
