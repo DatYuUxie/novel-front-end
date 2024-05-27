@@ -1,14 +1,16 @@
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Modal } from 'antd';
+import { message, Modal } from 'antd';
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getBookById } from '../../api/api';
 import '../../assets/css/grid.css';
 import coin1 from '../../assets/img/coin1.png';
+import { UserContext } from '../../context/UserContext';
 import Button from '../Button';
 import styles from './BookBanner.module.scss';
 import GiftCard from './GiftCard';
+import { giveCoupon } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -48,15 +50,32 @@ const giftList = [
 ];
 
 function BookBanner({ bookID }) {
+    const { user } = useContext(UserContext);
     const [book, setBook] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [gift, setGift] = useState(0);
     const [giftIndex, setGiftIndex] = useState(0);
-
+    const [sendGift, setSendGift] = useState({});
+    useEffect(() => {
+        setSendGift({ gift, bookID: +bookID, userID: user.account.userID });
+    }, [gift]);
+    const handleSendGift = async () => {
+        try {
+            console.log('sendGift: ', sendGift);
+            let res = await giveCoupon(sendGift);
+            if (res && res.data && res.data.EC === 0) {
+                message.success('Tặng thưởng thành công');
+            }
+        } catch (error) {
+            message.error('Tặng thưởng không thành công');
+            console.log(error);
+        }
+    };
     const showModal = () => {
         setIsModalOpen(true);
     };
     const handleOk = () => {
+        handleSendGift();
         setIsModalOpen(false);
     };
     const handleCancel = () => {
@@ -68,9 +87,13 @@ function BookBanner({ bookID }) {
     };
     // Catch Rating value
     const bookByID = async () => {
-        const res = await getBookById(bookID);
-        if (res && res.data && res.data.DT) {
-            return res.data.DT;
+        try {
+            const res = await getBookById(bookID);
+            if (res && res.data && res.data.DT) {
+                return res.data.DT;
+            }
+        } catch (error) {
+            console.log(error);
         }
     };
     useEffect(() => {
@@ -172,7 +195,7 @@ function BookBanner({ bookID }) {
                                     index={index}
                                     data={item}
                                     handleClick={handleGiftClick}
-                                    isActive={giftIndex == index}
+                                    isActive={giftIndex === index}
                                 />
                             );
                         })}

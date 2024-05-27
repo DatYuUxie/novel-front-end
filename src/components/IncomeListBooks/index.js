@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { useEffect, useState } from 'react';
 import 'swiper/css';
+import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-
 import classNames from 'classnames/bind';
-import styles from './IncomeListBooks.module.scss';
+import { getBookByUserId } from '../../api/api';
+import { getAllBooks } from '../../api/api';
 import UpdateItem from './IncomeListBooks';
-import { getBooks } from '../../api/api';
-import { set } from 'immutable';
+import styles from './IncomeListBooks.module.scss';
+import { useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function IncomeListBooks() {
+function IncomeListBooks({ admin = false }) {
+    const { userID } = useParams();
     const [rank, setRank] = useState({});
     const Novels = async () => {
         try {
-            let res = await getBooks();
+            let res = await getBookByUserId(userID);
+            if (res && res.data && res.data.DT) {
+                return res.data.DT;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const allNovels = async () => {
+        try {
+            let res = await getAllBooks();
             if (res && res.data && res.data.DT) {
                 return res.data.DT;
             }
@@ -32,7 +39,7 @@ function IncomeListBooks() {
 
     useEffect(() => {
         const fetchNovels = async () => {
-            const novels = await Novels();
+            const novels = admin ? await allNovels() : await Novels();
             setRank(novels);
         };
         fetchNovels();

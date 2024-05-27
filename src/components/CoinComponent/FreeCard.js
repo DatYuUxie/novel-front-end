@@ -1,7 +1,4 @@
 import './Coin.scss';
-import Coin from '../../assets/img/coin-svgrepo-com.svg';
-import clock from '../../assets/img/clock2.png';
-import Button from '../Button';
 function FreeCard() {
     return (
         <div>

@@ -1,19 +1,10 @@
+import { Card, Col, Row, Typography } from 'antd';
+import IncomeListBooks from '../../components/IncomeListBooks';
+import LineChart from '../../components/LineChart';
 import './IncomeDashboard.scss';
 
-import { useState } from 'react';
-
-import { Card, Col, Row, Typography, Tooltip, Progress, Upload, message, Button, Timeline, Radio } from 'antd';
-import { ToTopOutlined, MenuUnfoldOutlined, RightOutlined } from '@ant-design/icons';
-import Paragraph from 'antd/lib/typography/Paragraph';
-import LineChart from '../../components/LineChart';
-import IncomeListBooks from '../../components/IncomeListBooks';
-
 function IncomeDashboard() {
-    const { Title, Text } = Typography;
-
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
-    const [reverse, setReverse] = useState(false);
+    const { Title } = Typography;
 
     const dollor = [
         <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" key={0}>
@@ -133,7 +124,7 @@ function IncomeDashboard() {
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={12} xl={12} className="criclebox-container">
                     <Card bordered={false} className="criclebox h-full">
-                        <IncomeListBooks/>
+                        <IncomeListBooks />
                     </Card>
                 </Col>
             </Row>

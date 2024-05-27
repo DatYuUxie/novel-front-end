@@ -35,7 +35,7 @@ const getUserAccount = async () => {
     try {
         return await axios.get('/api/v1/account');
     } catch (error) {
-        console.log("not login",error);
+        console.log('not login', error);
         throw new Error(error);
     }
 };
@@ -290,6 +290,15 @@ const createComment = async (data) => {
     }
 };
 
+// ===========   give coupon   ===========
+const giveCoupon = async (data) => {
+    try {
+        return axios.post('/api/v1/give-coupon/create', data);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export {
     getBooks,
     getBookById,
@@ -325,4 +334,5 @@ export {
     getForumByForumId,
     getCommentsbyForumID,
     getAllPayments,
+    giveCoupon,
 };

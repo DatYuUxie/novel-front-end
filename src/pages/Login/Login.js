@@ -37,10 +37,12 @@ const Login = (props) => {
             let username = response.data.DT.username;
             let token = response.data.DT.access_token;
             let avatar = response.data.DT.avatar;
+            let coin = response.data.DT.coin;
+            let typeOfAccount = response.data.DT.typeOfAccount;
             let data = {
                 isAuthenticated: true,
                 token: token,
-                account: { role, email, username, userID, avatar },
+                account: { role, email, username, userID, avatar, coin, typeOfAccount },
             };
             // sessionStorage.setItem('account', JSON.stringify(data));
             localStorage.setItem('jwt', token);

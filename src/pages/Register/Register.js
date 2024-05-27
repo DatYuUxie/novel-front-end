@@ -1,10 +1,9 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import { useState } from 'react';
-import newLogo2 from '../../assets/img/newLogo2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerNewUser } from '../../api/api';
-import logo from '../../assets/img/logo.png';
+import newLogo2 from '../../assets/img/newLogo2.png';
 import './Register.scss';
 
 const onFinish = (values) => {

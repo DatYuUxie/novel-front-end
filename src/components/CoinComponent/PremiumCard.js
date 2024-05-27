@@ -8,13 +8,12 @@ import { UserContext } from '../../context/UserContext';
 function PremiumCard() {
     const { user } = useContext(UserContext);
     const data = {
-        amount: 2000,
+        amount: 10000,
         description: `${user.account.userID} premium`,
     };
     const handleBuy = async (data) => {
         try {
             let res = await payment(data);
-            // console.log('res', res);
             if (res && res.status === 200) {
                 window.open(res.data.checkoutUrl, '_blank');
             }

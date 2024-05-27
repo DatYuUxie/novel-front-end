@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
-import styles from './BookBanner.module.scss';
 import coin1 from '../../assets/img/coin1.png';
+import styles from './BookBanner.module.scss';
 
 const cx = classNames.bind(styles);
 function GiftCard({ index, data, handleClick, isActive }) {

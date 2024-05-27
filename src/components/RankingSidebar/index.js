@@ -1,11 +1,10 @@
-import Button from '../Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAward, faEdit, faHeart, faPoll, faSpa } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import classNames from 'classnames/bind';
-import styles from './RankingSidebar.module.scss';
 import { faReadme } from '@fortawesome/free-brands-svg-icons';
+import { faAward, faHeart, faPoll, faSpa } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classNames from 'classnames/bind';
 import { useState } from 'react';
+import Button from '../Button';
+import styles from './RankingSidebar.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -28,7 +27,7 @@ function RankingSidebar({ onTagChange }) {
         <div className={cx('sidebar')}>
             {tags.map((item, index) => (
                 <Button
-                    className={cx('item', active == item.name && activeCss)}
+                    className={cx('item', active === item.name && activeCss)}
                     onClick={(e) => handleclick(e)}
                     rounded
                     leftIcon={item.icon}
