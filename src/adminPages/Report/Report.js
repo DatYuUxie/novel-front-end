@@ -1,8 +1,8 @@
-import './Report.scss';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Avatar, Button, Card, Col, message, Row, Table, Typography } from 'antd';
+import { Avatar, Button, Card, Col, Row, Table, Typography } from 'antd';
 import { Link } from 'react-router-dom';
+import './Report.scss';
 
 const { Title } = Typography;
 

@@ -24,16 +24,13 @@ function Library() {
     };
     const getBookshelfData = async () => {
         const response = await getBookshelf(userID);
-        const data = response.data.DT.flatMap((list) =>
-            list.Books.map((book) => ({
-                bookID: book.bookID,
-                poster: book.poster,
-                name: book.bookName,
-                rank: book.ratting,
-                tag: book.tag,
-                des: book.desciption,
-            })),
-        );
+        const data = response.data.DT.map((book) => ({
+            poster: book.poster,
+            name: book.bookName,
+            rank: book.ratting,
+            tag: book.tag,
+            des: book.description,
+        }));
         setNovels(data);
     };
     useEffect(() => {

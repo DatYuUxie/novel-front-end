@@ -60,7 +60,7 @@ const privateRoutes = [
         path: '/author/**',
         layout: AuthorLayout,
         routes: [
-            { path: '/author/dashboard', component: AuthorDashboard },
+            { path: '/author/dashboard/:userID', component: AuthorDashboard },
             { path: '/author/create-novel', component: CreateNovel },
             { path: '/author/create-chapter/:bookID', component: CreateChapter },
             { path: '/author/my-novels/:userId', component: MyNovels },

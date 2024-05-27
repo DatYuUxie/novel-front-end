@@ -1,28 +1,10 @@
-import './Feedback.scss';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Avatar, Button, Card, Col, message, Row, Table, Typography } from 'antd';
+import { Avatar, Button, Card, Col, Row, Table, Typography } from 'antd';
 import { Link } from 'react-router-dom';
+import './Feedback.scss';
 
 const { Title } = Typography;
-
-// const formProps = {
-//     name: 'file',
-//     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-//     headers: {
-//         authorization: 'authorization-text',
-//     },
-//     onChange(info) {
-//         if (info.file.status !== 'uploading') {
-//             console.log(info.file, info.fileList);
-//         }
-//         if (info.file.status === 'done') {
-//             message.success(`${info.file.name} file uploaded successfully`);
-//         } else if (info.file.status === 'error') {
-//             message.error(`${info.file.name} file upload failed.`);
-//         }
-//     },
-// };
 
 // table code start
 const columns = [
@@ -146,8 +128,6 @@ const data = [
     },
 ];
 function Feedback() {
-    const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
     return (
         <div className="manage-feedback-tabled">
             <Row gutter={[24, 0]}>

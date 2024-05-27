@@ -10,21 +10,16 @@ const UserProvider = ({ children }) => {
         account: {},
     };
     const [user, setUser] = useState(userDefault);
-
-    // Login updates the user data with a name parameter
     const loginContext = (userData) => {
         setUser({ ...userData, isLoading: false });
     };
-
-    // Logout updates the user data to default
     const logoutContext = () => {
         setUser({ ...userDefault, isLoading: false });
     };
-
-    // ham nay la ham fetchUser trong video 11.9
     const fetchUser = async () => {
-        try{
+        try {
             let response = await getUserAccount();
+            // console.log(response);
             if (response && response.data && response.data.EC === 0) {
                 let role = response.data.DT.role;
                 let email = response.data.DT.email;
@@ -32,28 +27,25 @@ const UserProvider = ({ children }) => {
                 let userID = response.data.DT.userID;
                 let token = response.data.DT.access_token;
                 let avatar = response.data.DT.avatar;
+                let coin = response.data.DT.coin;
+                let typeOfAccount = response.data.DT.typeOfAccount;
                 let data = {
                     isAuthenticated: true,
                     token: token,
-                    account: { role, email, username, userID, avatar },
+                    account: { role, email, username, userID, avatar, coin, typeOfAccount },
                     isLoading: false,
                 };
-                // console.log('data', data);
-                // setTimeout(() => {
                 setUser(data);
-                // }, 10000);
-                // setUser(data);
             } else {
                 setUser({ ...userDefault, isLoading: false });
             }
-        }catch (error) {
+        } catch (error) {
             if (error.response && error.response.status === 401) {
-                console.log("Unauthorized! Please log in."); // Thông báo lỗi cho người dùng qua console log
+                console.log('Unauthorized! Please log in.'); // Thông báo lỗi cho người dùng qua console log
             } else {
-                console.error("An error occurred:", error); // Nếu lỗi không phải là 401, in ra lỗi chi tiết
+                console.error('An error occurred:', error); // Nếu lỗi không phải là 401, in ra lỗi chi tiết
             }
         }
-        
     };
     useEffect(() => {
         // console.log(window.location);

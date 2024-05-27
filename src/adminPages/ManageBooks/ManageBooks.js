@@ -6,7 +6,6 @@ import { getAllBooks } from '../../api/api';
 import './ManageBooks.scss';
 
 const { Title } = Typography;
-// import './ManageUser.scss';
 
 // table code start
 const columns = [
@@ -68,7 +67,7 @@ function ManageBooks() {
             chapter: (
                 <>
                     <div className="ant-employed">
-                        <span>{book.Chapters.length}</span>
+                        <span>{book.Chapters ? book.Chapters.length : 0}</span>
                         <div>
                             <Button className="detail">Xem chi tiết</Button>
                             <FontAwesomeIcon icon={faPenToSquare} />

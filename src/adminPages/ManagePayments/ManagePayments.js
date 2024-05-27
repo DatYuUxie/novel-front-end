@@ -39,65 +39,6 @@ const columns = [
     },
 ];
 
-// const data = [
-//     {
-//         key: '1',
-//         user: (
-//             <>
-//                 <Avatar.Group>
-//                     <Avatar
-//                         className="shape-avatar"
-//                         shape="square"
-//                         size={40}
-//                         src="https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/hinh-anh-cute-anime-009.jpg"
-//                     ></Avatar>
-//                     <div className="avatar-info">
-//                         <Title level={5}>Michael John</Title>
-//                         <p>user@mail.com</p>
-//                     </div>
-//                 </Avatar.Group>
-//             </>
-//         ),
-
-//         name: (
-//             <>
-//                 <div className="ant-employed">
-//                     <span>Đăng kí premium</span>
-//                 </div>
-//             </>
-//         ),
-
-//         id: (
-//             <>
-//                 <div className="author-info">
-//                     <Title level={5}>001</Title>
-//                 </div>
-//             </>
-//         ),
-
-//         money: (
-//             <>
-//                 <div className="ant-employed">
-//                     <span>60000</span>
-//                 </div>
-//             </>
-//         ),
-//         time: (
-//             <>
-//                 <div className="ant-employed">
-//                     <span>20:20 20-12-2023 </span>
-//                 </div>
-//             </>
-//         ),
-//         status: (
-//             <>
-//                 <div className="ant-employed">
-//                     <span>Đã thanh toán</span>
-//                 </div>
-//             </>
-//         ),
-//     },
-// ];
 function ManagePayments() {
     const [payments, setPayments] = useState([]);
     useEffect(() => {

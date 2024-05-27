@@ -1,21 +1,19 @@
+import { faBars, faCoins, faGear, faPenNib, faQuran, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tippy from '@tippyjs/react';
+import { Avatar, Dropdown, List, message } from 'antd';
+import classNames from 'classnames/bind';
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import config from '../../config';
+import 'tippy.js/dist/tippy.css';
+import { logout } from '../../api/api';
+import { InboxIcon } from '../../assets/icon';
 import newlogo3 from '../../assets/img/newlogo3.png';
-
+import config from '../../config';
+import { UserContext } from '../../context/UserContext';
 import Button from '../Button';
 import Menu from '../Popper/Menu';
 import Search from '../Search';
-import Tippy from '@tippyjs/react';
-import { Avatar, Dropdown, List } from 'antd';
-import 'tippy.js/dist/tippy.css';
-import { faBars, faCoins, faGear, faPenNib, faQuran, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { message } from 'antd';
-import classNames from 'classnames/bind';
-import { logout } from '../../api/api';
-import { InboxIcon } from '../../assets/icon';
-import { UserContext } from '../../context/UserContext';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
@@ -53,10 +51,8 @@ const CATEGORY_ITEMS = [
 function Header() {
     const { user, logoutContext } = useContext(UserContext);
     const navigate = useNavigate();
-    // const currentUser = false;
     const handleLogout = async () => {
         let res = await logout();
-        // console.log('check logout', res);
         if (res && res.data && res.data.EC === 0) {
             localStorage.removeItem('jwt'); // clear the local storage
             logoutContext();
@@ -136,7 +132,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faPenNib} />,
             title: 'Sáng tác',
-            to: '/author/dashboard',
+            to: `/author/dashboard/${user.account.userID}`,
         },
         {
             icon: <FontAwesomeIcon icon={faGear} />,
@@ -214,14 +210,7 @@ function Header() {
                                 </Dropdown>
 
                                 <Menu items={userMenu} onChange={handleMenuChange}>
-                                    <img
-                                        src={
-                                            user.account.avatar ||
-                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8FAhwhYIjaPus1tva6Pb8Upi4KBwRothf0vP_7-jRz4VNPgVmRHqWstkDyc3ATGRwPyo&usqp=CAU'
-                                        }
-                                        alt="logo"
-                                        className={cx('user-avatar')}
-                                    />
+                                    <img src={user.account.avatar} alt="logo" className={cx('user-avatar')} />
                                 </Menu>
                             </>
                         ) : (

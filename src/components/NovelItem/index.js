@@ -18,7 +18,7 @@ function NovelItem({ data, search = false, library = false }) {
                     </div>
                     <div className={cx('novel-info')}>
                         <h3 className={cx('name')}>{data.bookName}</h3>
-                        <p className={cx('novel-des')}>{data.desciption}</p>
+                        <p className={cx('novel-des')}>{data.description}</p>
                         <h5 className={cx('type')}>#{data.tag}</h5>
                     </div>
                 </div>

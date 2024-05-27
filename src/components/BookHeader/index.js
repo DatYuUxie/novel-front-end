@@ -33,11 +33,13 @@ function BookHeader({ bookID }) {
                 userID: user.account.userID,
             };
             const res = await addToBookshelf(data);
-            if (res && res.data && res.data.DT) {
-                message.success('Thêm vào kệ sách thành công');
+            if (res && res.data && res.data.EC === 0) {
+                message.success(res.data.EM);
+            } else {
+                message.error(res.data.EM);
             }
         } catch (error) {
-            message.error('Thêm vào kệ sách thất bại');
+            message.error(error);
         }
     };
     useEffect(() => {
@@ -60,21 +62,21 @@ function BookHeader({ bookID }) {
                 </p>
                 <div className={cx('stat')}>
                     <div className={cx('stat-item')}>
-                        <h2>999</h2>
+                        <h2>{book.Chapters ? book.Chapters.length : 0}</h2>
                         <p>Chương</p>
                     </div>
                     <div className={cx('stat-item')}>
-                        <h2>{book.view > 0 ? book.view : 999}</h2>
+                        <h2>{book.view}</h2>
                         <p>Lượt đọc</p>
                     </div>
                     <div className={cx('stat-item')}>
-                        <h2>99.9k</h2>
+                        <h2>{book.follow}</h2>
                         <p>Theo dõi</p>
                     </div>
                 </div>
                 <div className={cx('rating')}>
                     <Rating onClick={handleRating} initialValue={rating} readonly />
-                    <h3>4.9</h3>
+                    <h3>{book.ratting}</h3>
                     <h3>/5</h3>
                     <p className={cx('rates')}>(99 lượt)</p>
                 </div>

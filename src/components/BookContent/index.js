@@ -1,12 +1,9 @@
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
-import Button from '../Button';
-import Intro from './Intro';
-import Reviews from './Reviews';
-import Comments from './Comments';
-import List from './List';
+import { useState } from 'react';
 import styles from './BookContent.module.scss';
+import Intro from './Intro';
+import List from './List';
+import Reviews from './Reviews';
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +22,6 @@ function BookContent({ bookID }) {
                 <div className={cx('tab-item', tab === 2 && active)} onClick={() => setTab(2)}>
                     Danh sách chương
                 </div>
-                
             </div>
             <div className={cx('content')}>
                 {tab === 0 && <Intro />}
