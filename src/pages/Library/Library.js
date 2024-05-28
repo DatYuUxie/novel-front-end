@@ -2,7 +2,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getBookshelf } from '../../api/api';
 import '../../assets/css/grid.css';
@@ -15,7 +15,7 @@ function Library() {
     const { userID } = useParams();
     const [tab, setTab] = useState(0);
     const [editClick, setEditClick] = useState(true);
-
+    const [listId, setListId] = useState([]);
     const active = cx('active');
     const hidden = cx('hidden');
     const toggleClick = () => {
@@ -37,6 +37,21 @@ function Library() {
     useEffect(() => {
         getBookshelfData();
     }, []);
+
+    const handleSelectId = (selectedId, optionIn = false) => {
+        if (optionIn) {
+            if (!listId.includes(selectedId)) {
+                setListId([...listId, selectedId]); 
+              }
+        } else {
+            setListId(listId.filter((id) => id !== selectedId));
+        }
+    };
+    const handleDelete=()=>{
+        console.log('listId: ', listId);
+
+    }
+
     return (
         <div>
             <div className={cx('head')}>
@@ -51,7 +66,7 @@ function Library() {
                         </div>
                     </div>
                     <div className={cx(editClick === true && hidden)}>
-                        <Button className={cx('remove')} leftIcon={<FontAwesomeIcon icon={faTrashAlt} />}>
+                        <Button className={cx('remove')} onClick={handleDelete} leftIcon={<FontAwesomeIcon icon={faTrashAlt} />}>
                             Xóa
                         </Button>
                         <Button className={cx('cancel')} onClick={toggleClick}>
@@ -72,7 +87,7 @@ function Library() {
                 <div className="grid">
                     <div className="row">
                         {novels.map((item, index) => {
-                            return <NovelItem2 data={item} isEdit={!editClick} />;
+                            return <NovelItem2 data={item} isEdit={!editClick} handleSelectId={handleSelectId} />;
                         })}
                     </div>
                 </div>

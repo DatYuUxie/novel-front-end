@@ -150,7 +150,7 @@ function AdminHeader() {
                                         <Tippy delay={[0, 50]} content="Thông báo" placement="bottom">
                                             <button className={cx('action-btn')}>
                                                 <InboxIcon />
-                                                <span className={cx('badge')}>12</span>
+                                                <span className={cx('badge')}>3</span>
                                             </button>
                                         </Tippy>
                                     </a>

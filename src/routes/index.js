@@ -64,7 +64,7 @@ const privateRoutes = [
             { path: '/author/my-novels/:userId', component: MyNovels },
             { path: '/author/novel-detail/:bookID', component: AuthorNovelDetail },
             { path: '/author/feedbacks', component: Feedback },
-            { path: '/author/income', component: IncomeDashboard },
+            { path: '/author/income/:userID', component: IncomeDashboard },
             { path: '/author/edit-novel/:bookID', component: EditNovel },
             { path: '/author/edit-chapter/:bookID/:orderNumber', component: EditChapter },
         ],

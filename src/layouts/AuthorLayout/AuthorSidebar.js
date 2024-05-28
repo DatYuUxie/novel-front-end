@@ -44,7 +44,7 @@ function AuthorSidebar() {
                     </NavLink>
                 </Menu.Item>
                 <Menu.Item key="4">
-                    <NavLink to="/author/income">
+                    <NavLink to={`/author/income/${user.account.userID}`}>
                         <FontAwesomeIcon icon={faMoneyBill} />
 
                         <span className="nav-label">Thu nhập </span>
