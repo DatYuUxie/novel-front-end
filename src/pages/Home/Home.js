@@ -91,6 +91,14 @@ function Home() {
     console.log('library', library);
     return (
         <>
+            {user.account.role == 'ADMIN' && (
+                <div className={cx('admin')}>
+                    <h3>Bạn đang đăng nhập ở vai trò ADMIN, Ấn vào đây để vào trang quản lí!</h3>
+                    <Button primary2 to="/admin/dashboard">
+                        Đến trang ADMIN
+                    </Button>
+                </div>
+            )}
             <div className={cx('top')}>
                 <Banner />
                 <NewUpdate />

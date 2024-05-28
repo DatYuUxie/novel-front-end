@@ -4,6 +4,7 @@ import { Avatar, Button, Card, Col, Row, Table, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { getAllBooks } from '../../api/api';
 import './ManageBooks.scss';
+import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -69,7 +70,9 @@ function ManageBooks() {
                     <div className="ant-employed">
                         <span>{book.Chapters ? book.Chapters.length : 0}</span>
                         <div>
-                            <Button className="detail">Xem chi tiết</Button>
+                            <Link to={`/book/${book.bookID}`}>
+                                <Button className="detail">Xem chi tiết</Button>
+                            </Link>
                             <FontAwesomeIcon icon={faPenToSquare} />
                         </div>
                     </div>

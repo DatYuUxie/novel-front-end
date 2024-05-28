@@ -22,7 +22,7 @@ const columns = [
         title: 'Nội dung bị báo cáo',
         dataIndex: 'content',
         key: 'content',
-        width: '32%',
+        width: '22%',
     },
 
     {

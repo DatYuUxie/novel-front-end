@@ -14,7 +14,7 @@ import newLogo2 from '../../assets/img/newLogo2.png';
 import classNames from 'classnames/bind';
 import styles from './AdminHeader.module.scss';
 import { message } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { logout } from '../../api/api';
 
@@ -132,9 +132,9 @@ function AdminHeader() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo-link')}>
+                <Link to={'/'} className={cx('logo-link')}>
                     <img src={newLogo2} alt="logo" className={cx('logo')} />
-                </div>
+                </Link>
                 <Search />
                 <div className={cx('title-group')}>
                     <div className={cx('actions')}>
