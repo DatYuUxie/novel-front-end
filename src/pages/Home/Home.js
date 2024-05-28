@@ -95,7 +95,7 @@ function Home() {
                 <Banner />
                 <NewUpdate />
             </div>
-            {user.isAuthenticated && (
+            {library.length > 0 && (
                 <div className={cx('container')}>
                     <h2 className={cx('title')}>Tiếp tục xem</h2>
 

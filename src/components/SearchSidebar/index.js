@@ -15,10 +15,10 @@ function SearchSidebar({ onTagChange }) {
         'Tiên hiệp',
         'Huyền huyễn',
         'Ngôn tình',
-        'Trinh thám',
+        'Quân sự',
         'Khoa học',
         'Đô thị',
-        'Võng du',
+        'Lịch sử',
     ]);
     const [active, setActive] = useState('Tất cả');
     let activeCss = cx('active');

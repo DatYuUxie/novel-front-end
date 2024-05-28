@@ -78,7 +78,7 @@ function BookHeader({ bookID }) {
                     <Rating onClick={handleRating} initialValue={rating} readonly />
                     <h3>{book.ratting}</h3>
                     <h3>/5</h3>
-                    <p className={cx('rates')}>(99 lượt)</p>
+                    <p className={cx('rates')}>(9 lượt)</p>
                 </div>
                 <div className={cx('buttons')}>
                     <Button primary2 tag>
