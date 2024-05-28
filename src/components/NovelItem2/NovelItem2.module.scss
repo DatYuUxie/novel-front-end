@@ -12,7 +12,13 @@
     z-index: 1;
     color: #cbcbcb;
 }
-
+.check-icon2 {
+    margin-top: 65px;
+    position: absolute;
+    align-items: center;
+    z-index: 1;
+    color: #be0000;
+}
 .container input {
     width: 100px;
     height: 100px;
@@ -26,7 +32,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     border-radius: 50%;
-    border: 2px solid #ffffff;
+    border: 2px solid #a04141;
     // background-image: linear-gradient(90deg,#3b66f5,#163bcd);
     outline: none;
     cursor: pointer;

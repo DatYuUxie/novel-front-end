@@ -13,18 +13,16 @@ function NovelItem2({ to, isEdit, data, handleSelectId }) {
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
         if (!isChecked) {
-            handleSelectId(data.bookID , true);
-        }
-        else{
-            handleSelectId(data.bookID , false);
-
+            handleSelectId(data.bookID, true);
+        } else {
+            handleSelectId(data.bookID, false);
         }
     };
     return (
         <div className={cx('container', responsive)}>
             {isEdit === true && (
                 <>
-                    <div className={cx('check-icon')}>
+                    <div className={isChecked ? cx('check-icon2') : cx('check-icon')}>
                         <FontAwesomeIcon icon={faCheck} size="4x" />
                     </div>
                     <input
