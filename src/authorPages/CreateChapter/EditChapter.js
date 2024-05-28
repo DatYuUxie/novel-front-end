@@ -10,8 +10,8 @@ import IsValidContent from '../../services/IsValidContent';
 const cx = classNames.bind(styles);
 
 function EditChapter() {
-    const [bookID, setBookID] = useState('');
-    const { chapterID } = useParams();
+    // const [bookID, setBookID] = useState('');
+    const { bookID, orderNumber } = useParams();
     const [chapter, setChapter] = useState({});
     const contentRef = useRef(null);
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ function EditChapter() {
     useEffect(() => {
         const getChapter = async () => {
             try {
-                const response = await getChapterbyId(chapterID);
+                const response = await getChapterbyId(bookID, orderNumber);
                 setChapter(response.data.DT);
             } catch (error) {
                 console.log('Failed to fetch chapter data:', error);

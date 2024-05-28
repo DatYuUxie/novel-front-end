@@ -52,10 +52,8 @@ const publicRoutes = [
     { path: '/account/:userID', component: Account },
     { path: '/search/:bookName', component: SearchResult },
 ];
-
 const privateRoutes = [
     // Các route cho vai trò author
-
     {
         path: '/author/**',
         layout: AuthorLayout,
@@ -68,7 +66,7 @@ const privateRoutes = [
             { path: '/author/feedbacks', component: Feedback },
             { path: '/author/income', component: IncomeDashboard },
             { path: '/author/edit-novel/:bookID', component: EditNovel },
-            { path: '/author/edit-chapter/:chapterID', component: EditChapter },
+            { path: '/author/edit-chapter/:bookID/:orderNumber', component: EditChapter },
         ],
         authCondition: () => {
             console.log('Running authCondition for author route');

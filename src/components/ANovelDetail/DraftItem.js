@@ -42,9 +42,8 @@ function DraftItem({ bookID }) {
         }
     };
 
-    const handleEditChapter = (chapterID) => {
-        navigate(`/author/edit-chapter/${chapterID}`);
-        console.log('an trong ediiiiiiiit');
+    const handleEditChapter = (bookID, orderNumber) => {
+        navigate(`/author/edit-chapter/${bookID}/${orderNumber}`);
     };
     useEffect(() => {
         fetchDraft();
@@ -53,7 +52,7 @@ function DraftItem({ bookID }) {
         <>
             {draftChapter.map((chapter, index) => (
                 <div key={index} className={cx('draft')}>
-                    <a onClick={() => handleEditChapter(chapter.chapterID)}>
+                    <a onClick={() => handleEditChapter(bookID, chapter.orderNumber)}>
                         <h4>
                             Chương {chapter.orderNumber}: {chapter.chapterName}
                         </h4>
