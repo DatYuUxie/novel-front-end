@@ -2,13 +2,15 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getBookshelf } from '../../api/api';
+import { deleteBookInBookshelf, getBookshelf } from '../../api/api';
 import '../../assets/css/grid.css';
 import Button from '../../components/Button';
 import NovelItem2 from '../../components/NovelItem2';
 import styles from './Library.module.scss';
+import { message } from 'antd';
+
 const cx = classNames.bind(styles);
 function Library() {
     const [novels, setNovels] = useState([]);
@@ -41,16 +43,26 @@ function Library() {
     const handleSelectId = (selectedId, optionIn = false) => {
         if (optionIn) {
             if (!listId.includes(selectedId)) {
-                setListId([...listId, selectedId]); 
-              }
+                setListId([...listId, selectedId]);
+            }
         } else {
             setListId(listId.filter((id) => id !== selectedId));
         }
     };
-    const handleDelete=()=>{
+    const handleDelete = async () => {
         console.log('listId: ', listId);
-
-    }
+        try {
+            let res = await deleteBookInBookshelf(listId);
+            if (res && res.data && res.data.EC === 0) {
+                message.success('Xóa thành công');
+            }
+            setNovels((prevNovels) => prevNovels.filter((novel) => !listId.includes(novel.bookID)));
+            setListId([]); // Clear the selected list after deletion
+        } catch (error) {
+            console.log(error);
+            message.error('Xóa không thành công');
+        }
+    };
 
     return (
         <div>
@@ -66,7 +78,11 @@ function Library() {
                         </div>
                     </div>
                     <div className={cx(editClick === true && hidden)}>
-                        <Button className={cx('remove')} onClick={handleDelete} leftIcon={<FontAwesomeIcon icon={faTrashAlt} />}>
+                        <Button
+                            className={cx('remove')}
+                            onClick={handleDelete}
+                            leftIcon={<FontAwesomeIcon icon={faTrashAlt} />}
+                        >
                             Xóa
                         </Button>
                         <Button className={cx('cancel')} onClick={toggleClick}>
