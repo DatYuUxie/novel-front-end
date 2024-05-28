@@ -56,6 +56,8 @@ function BookBanner({ bookID }) {
     const [gift, setGift] = useState(0);
     const [giftIndex, setGiftIndex] = useState(0);
     const [sendGift, setSendGift] = useState({});
+    const [coin, setCoin] = useState(0);
+
     useEffect(() => {
         setSendGift({ gift, bookID: +bookID, userID: user.account.userID });
     }, [gift]);
@@ -65,6 +67,7 @@ function BookBanner({ bookID }) {
             let res = await giveCoupon(sendGift);
             if (res && res.data && res.data.EC === 0) {
                 message.success('Tặng thưởng thành công');
+                getCoinUser();
             } else {
                 message.error(res.data.EM);
             }
@@ -73,7 +76,6 @@ function BookBanner({ bookID }) {
             console.log(error);
         }
     };
-    const [coin, setCoin] = useState(0);
     const getCoinUser = async () => {
         try {
             const res = await getCoin(user.account.userID);
@@ -154,7 +156,7 @@ function BookBanner({ bookID }) {
                                 />
                             </div>
                             <h1>NO.16</h1>
-                            <p>BXH đọc</p>
+                            <p>BXH Đọc nhiều</p>
                         </div>
 
                         <div className={cx('item')}>
@@ -166,7 +168,7 @@ function BookBanner({ bookID }) {
                                 />
                             </div>
                             <h1>NO.6</h1>
-                            <p>BXH Phiếu thưởng</p>
+                            <p>BXH Tặng thưởng</p>
                         </div>
                     </div>
                     <div className={cx('button')}>
