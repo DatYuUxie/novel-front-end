@@ -66,7 +66,7 @@ function Comments({ chapterID }) {
                 let res = await createComment(data);
                 if (res.data.EC === 0) {
                     message.success('Đánh giá của bạn đã được gửi thành công');
-                    window.location.reload();
+                    handleGetReviewsbyID();
                 }
             }
 

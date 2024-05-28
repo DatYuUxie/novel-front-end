@@ -70,7 +70,7 @@ function AuthorNovelDetail() {
                         >
                             Viết chương mới
                         </Button>
-                        <Button primary2 tag>
+                        <Button primary2 tag to={`/book/${detailBook.bookID}`}>
                             Xem chi tiết trên trang web
                         </Button>
                     </div>

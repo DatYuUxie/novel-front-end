@@ -71,7 +71,8 @@ function Reviews() {
                 if (response.data.EC === 0) {
                     message.success('Đánh giá của bạn đã được gửi');
                 }
-                window.location.reload();
+                handleGetReviewsbyBookID();
+                
             }
         } catch (error) {
             console.log('Failed to create review: ', error);
