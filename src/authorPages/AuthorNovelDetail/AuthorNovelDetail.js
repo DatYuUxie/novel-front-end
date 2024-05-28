@@ -16,7 +16,7 @@ function AuthorNovelDetail() {
     const [detailBook, setdetailBook] = useState({});
     const bookByID = async () => {
         const res = await getBookById(bookID);
-        // console.log('getBookById', res);
+        console.log('getBookById', res);
         if (res && res.data && res.data.DT) {
             return res.data.DT;
         }
@@ -42,19 +42,15 @@ function AuthorNovelDetail() {
                     </p>
                     <div className={cx('stat')}>
                         <div className={cx('stat-item')}>
-                            <h3>999</h3>
+                            <h3>{detailBook.Chapters ? detailBook.Chapters.length : 0}</h3>
                             <p>Chương</p>
-                        </div>
-                        <div className={cx('stat-item')}>
-                            <h3>99.9k</h3>
-                            <p>Số từ</p>
                         </div>
                         <div className={cx('stat-item')}>
                             <h3>{detailBook.follow}</h3>
                             <p>Lượt đọc</p>
                         </div>
                         <div className={cx('stat-item')}>
-                            <h3>{detailBook.follow}</h3>
+                            <h3>{detailBook.view}</h3>
                             <p>Theo dõi</p>
                         </div>
                         <div className={cx('stat-item')}>

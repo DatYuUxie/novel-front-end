@@ -1,10 +1,10 @@
-import RankingSidebar from '../../components/RankingSidebar';
-import Ranking2 from '../../components/Ranking2';
 import classNames from 'classnames/bind';
-import styles from './Rankings.module.scss';
+import { useEffect, useState } from 'react';
 import { getBooks } from '../../api/api';
-import { useCallback, useEffect, useState } from 'react';
+import Ranking2 from '../../components/Ranking2';
+import RankingSidebar from '../../components/RankingSidebar';
 import RankingOrder from '../../services/RankingOrder';
+import styles from './Rankings.module.scss';
 const cx = classNames.bind(styles);
 function Rankings() {
     const [novels, setNovels] = useState([]);
@@ -30,7 +30,6 @@ function Rankings() {
         };
         fetchNovels();
     }, []);
-
 
     const handleTagChange = (selectedTags) => {
         setTag(selectedTags);

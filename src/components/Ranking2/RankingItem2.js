@@ -20,10 +20,10 @@ function RankingItem2({ data, order }) {
                 <p className={cx('des')}>{data.description}</p>
                 <div className={cx('info-container')}>
                     <Button className={cx('info')} leftIcon={<FontAwesomeIcon icon={faUserEdit} />}>
-                        Nhĩ Căn
+                        {data.author}
                     </Button>
                     <Button className={cx('info')} leftIcon={<FontAwesomeIcon icon={faFire} />}>
-                        1.20k
+                        {data.view}
                     </Button>
                     <Button className={cx('info')}>#{data.tag}</Button>
                 </div>
