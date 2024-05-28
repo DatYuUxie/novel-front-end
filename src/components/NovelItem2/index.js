@@ -10,7 +10,7 @@ function NovelItem2({ to, isEdit, data }) {
     let responsive = 'l-2 m-3 c-6';
 
     return (
-        <Link to={`/book/${data.bookID}`} className={cx('container', responsive)}>
+        <div className={cx('container', responsive)}>
             {isEdit === true && (
                 <>
                     <div className={cx('check-icon')}>
@@ -24,11 +24,13 @@ function NovelItem2({ to, isEdit, data }) {
                     <div className={cx('cover-novel-img')}>
                         <img src={data.poster} alt="cover-img" className={cx('cover-img')} />
                     </div>
+                    <Link to={`/book/${data.bookID}`}>
                     <h3 className={cx('name')}>{data.name}</h3>
+                    </Link>
                     <p className={cx('progress')}>Tiến trình 1/30</p>
                 </div>
             </label>
-        </Link>
+        </div>
     );
 }
 

@@ -66,6 +66,7 @@ function Comments({ chapterID }) {
                 let res = await createComment(data);
                 if (res.data.EC === 0) {
                     message.success('Đánh giá của bạn đã được gửi thành công');
+                    window.location.reload();
                 }
             }
 
@@ -131,7 +132,7 @@ function Comments({ chapterID }) {
                             Đóng
                         </Button>
                         <Button primary2 onClick={(e) => handleCreateComment(e)} type="submit">
-                            Đăng đánh giá
+                            Đăng bình luận
                         </Button>
                     </div>
                 </div>

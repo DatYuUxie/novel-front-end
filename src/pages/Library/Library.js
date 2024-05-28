@@ -25,6 +25,7 @@ function Library() {
     const getBookshelfData = async () => {
         const response = await getBookshelf(userID);
         const data = response.data.DT.map((book) => ({
+            bookID: book.bookID,
             poster: book.poster,
             name: book.bookName,
             rank: book.ratting,

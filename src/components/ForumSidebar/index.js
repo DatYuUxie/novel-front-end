@@ -24,10 +24,9 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-function ForumSidebar() {
+function ForumSidebar({ onTagChange }) {
     const { user } = useContext(UserContext);
-    const [active, setActive] = useState('Tất cả');
-    let activeCss = cx('active');
+
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [rating, setRating] = useState(0);
@@ -36,6 +35,21 @@ function ForumSidebar() {
         tag: '',
         content: '',
     });
+    const [tags, setTags] = useState([
+        { name: 'Tất cả', icon: <FontAwesomeIcon icon={faPoll} /> },
+        { name: 'Hỏi & đáp', icon: <FontAwesomeIcon icon={faPoll} /> },
+        { name: 'Bàn luận truyện', icon: <FontAwesomeIcon icon={faReadme} /> },
+        { name: 'Góp ý', icon: <FontAwesomeIcon icon={faSpa} /> },
+        { name: 'Đề cử', icon: <FontAwesomeIcon icon={faHeart} /> },
+        { name: 'Sự kiện', icon: <FontAwesomeIcon icon={faSpa} /> },
+        { name: 'Báo cáo lỗi', icon: <FontAwesomeIcon icon={faAward} /> },
+    ]);
+    const [active, setActive] = useState('Tất cả');
+    let activeCss = cx('active');
+    const handleclickTag = (e) => {
+        setActive(e.target.innerText);
+        onTagChange(e.target.innerText);
+    };
     const handleChange = (e) => {
         setForum({
             ...forum,
@@ -66,7 +80,6 @@ function ForumSidebar() {
                 message.success('Tạo bài viết thành công');
                 closeModal();
                 window.location.reload();
-
             }
         } catch (error) {
             console.error(error);
@@ -75,72 +88,24 @@ function ForumSidebar() {
         // setIsOpen(false);
         // setRating(0);
     };
-    const handleclick = (e) => {
-        console.log(e.target.innerText);
-        setActive(e.target.innerText);
-    };
+    
     return (
         <div className={cx('sidebar')}>
             <Button primary2 onClick={openModal}>
                 Tạo bài viết
             </Button>
             <h3 className={cx('title')}>Tags:</h3>
-            <Button
-                className={cx('item', active === 'Tất cả' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faPoll} />}
-            >
-                Tất cả
-            </Button>
-            <Button
-                className={cx('item', active === 'Hỏi & đáp' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faPoll} />}
-            >
-                Hỏi & đáp
-            </Button>
-            <Button
-                className={cx('item', active === 'Bàn luận truyện' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faReadme} />}
-            >
-                Bàn luận truyện
-            </Button>
-            <Button
-                className={cx('item', active === 'Báo cáo lỗi' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faAward} />}
-            >
-                Báo cáo lỗi
-            </Button>
-            <Button
-                className={cx('item', active === 'Góp ý' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faSpa} />}
-            >
-                Góp ý
-            </Button>
-            <Button
-                className={cx('item', active === 'Đề cử' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faHeart} />}
-            >
-                Đề cử
-            </Button>
-            <Button
-                className={cx('item', active === 'Sự kiện' && activeCss)}
-                onClick={(e) => handleclick(e)}
-                rounded
-                leftIcon={<FontAwesomeIcon icon={faSpa} />}
-            >
-                Sự kiện
-            </Button>
+            {tags.map((item, index) => (
+                <Button
+                    className={cx('item', active === item.name && activeCss)}
+                    onClick={(e) => handleclickTag(e)}
+                    rounded
+                    leftIcon={item.icon}
+                >
+                    {item.name}
+                </Button>
+            ))}
+
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
