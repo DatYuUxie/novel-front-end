@@ -64,6 +64,8 @@ function BookBanner({ bookID }) {
             let res = await giveCoupon(sendGift);
             if (res && res.data && res.data.EC === 0) {
                 message.success('Tặng thưởng thành công');
+            } else {
+                message.error(res.data.EM);
             }
         } catch (error) {
             message.error('Tặng thưởng không thành công');
@@ -193,7 +195,7 @@ function BookBanner({ bookID }) {
                             fontSize: '16px',
                         }}
                     >
-                        Coin của bạn: 1000
+                        Coin của bạn: {user.account.coin}
                         <img crossOrigin="anonymous" className="dib" width="40" height="40" alt="coins" src={coin1} />
                     </div>,
                 ]}
