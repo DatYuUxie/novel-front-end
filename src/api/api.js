@@ -148,6 +148,13 @@ const getBookshelf = async (id) => {
         console.error(error);
     }
 };
+const voteBook = async (bookID) => {
+    try {
+        return axios.post(`/api/v1/vote/book/${bookID}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 // ===========   forum api   ===========
 const createForum = async (data) => {
@@ -335,4 +342,5 @@ export {
     getCommentsbyForumID,
     getAllPayments,
     giveCoupon,
+    voteBook,
 };
