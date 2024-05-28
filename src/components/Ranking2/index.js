@@ -5,7 +5,6 @@ import RankingItem2 from './RankingItem2';
 const cx = classNames.bind(styles);
 
 function Ranking2({ data }) {
-    // console.log("datatattatata",data)
     return (
         <div className={cx('container')}>
             {data.map((item, index) => {
