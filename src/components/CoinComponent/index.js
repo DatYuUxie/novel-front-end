@@ -1,4 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getCoin } from '../../api/api';
 import '../../assets/css/grid.css';
 import coin1 from '../../assets/img/coin1.png';
 import coin2 from '../../assets/img/coin2.png';
@@ -46,13 +48,25 @@ const CoinTable = [
 
 function CoinComponent() {
     const { user } = useContext(UserContext);
-    console.log('user coin', user);
+    const { userID } = useParams();
+    const [coin, setCoin] = useState(0);
+    const getCoinUser = async () => {
+        try {
+            const response = await getCoin(userID);
+            setCoin(response.data.DT);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getCoinUser();
+    }, []);
     return (
         <div>
             <div className="card-inline1">
                 <div className="card-inline2">
                     <img crossOrigin="anonymous" className="dib" width="40" height="40" alt="coins" src={coin1} />
-                    <p>{user.account.coin}</p>
+                    <p>{coin}</p>
                 </div>
             </div>
 

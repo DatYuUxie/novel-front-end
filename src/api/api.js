@@ -63,6 +63,14 @@ const getAllUser = async () => {
         throw new Error(error);
     }
 };
+const getCoin = async (id) => {
+    try {
+        return axios.get(`/api/v1/user/coin/${id}`);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error);
+    }
+};
 // ===========   book api   ===========
 const getAllBooks = async () => {
     try {
@@ -351,4 +359,5 @@ export {
     giveCoupon,
     voteBook,
     deleteBookInBookshelf,
+    getCoin,
 };

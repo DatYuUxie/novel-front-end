@@ -48,7 +48,7 @@ const publicRoutes = [
     { path: '/login', component: Login, layout: null },
     { path: '/register', component: Register, layout: null },
     { path: '/account/setting', component: Setting },
-    { path: '/account/coin', component: Coin },
+    { path: '/account/coin/:userID', component: Coin },
     { path: '/account/:userID', component: Account },
     { path: '/search/:bookName', component: SearchResult },
 ];

@@ -23,7 +23,7 @@ function SettingSideBar({ tag }) {
 
     const handleclick = (e) => {
         if (e.target.innerText === 'Coin') {
-            navigate('/account/coin');
+            navigate(`/account/coin/${user.account.userID}`);
         } else if (e.target.innerText === 'Hồ sơ') {
             navigate(`/account/${user.account.userID}`);
         } else if (e.target.innerText === 'Cài đặt') {

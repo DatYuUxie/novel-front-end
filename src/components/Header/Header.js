@@ -122,7 +122,7 @@ function Header() {
         {
             icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Coin',
-            to: '/account/coin',
+            to: `/account/coin/${user.account.userID}`,
         },
         {
             icon: <FontAwesomeIcon icon={faUser} />,
