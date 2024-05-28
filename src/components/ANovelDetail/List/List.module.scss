@@ -2,12 +2,15 @@
     display: flex;
     border-bottom: 1px solid #e1e1e1;
     padding: 10px;
+    .number{
+        width: 30px;
+    }
     .item-content {
         margin-left: 20px;
         cursor: pointer;
         font-size: 1.8rem;
         .gr-row {
-            min-width: 420px;
+            min-width: 410px;
             display: flex;
             flex-direction: row;
             align-items: center;

@@ -127,7 +127,7 @@ const Login = (props) => {
                         },
                     ]}
                 >
-                    <Input
+                    <Input.Password
                         size="large"
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"

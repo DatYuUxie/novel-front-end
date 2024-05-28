@@ -10,6 +10,7 @@ import './Coin.scss';
 import CoinItem from './CoinItem';
 import FreeCard from './FreeCard';
 import PremiumCard from './PremiumCard';
+import PremiumCardActive from './PremiumCardActive';
 
 const CoinTable = [
     {
@@ -45,6 +46,7 @@ const CoinTable = [
 
 function CoinComponent() {
     const { user } = useContext(UserContext);
+    console.log('user coin', user);
     return (
         <div>
             <div className="card-inline1">
@@ -58,7 +60,7 @@ function CoinComponent() {
                 <div className="buy-container">
                     <div className="plans">
                         <div className="title">Gói tài khoản hiện tại của bạn</div>
-                        <FreeCard />
+                        {user.account.typeOfAccount == 'premium' ? <PremiumCardActive /> : <FreeCard />}
                     </div>
                 </div>
                 <PremiumCard />

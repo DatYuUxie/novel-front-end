@@ -24,7 +24,7 @@ function BookContent({ bookID }) {
                 </div>
             </div>
             <div className={cx('content')}>
-                {tab === 0 && <Intro />}
+                {tab === 0 && <Intro bookID={bookID}/>}
                 {tab === 1 && <Reviews />}
                 {tab === 2 && <List bookID={bookID} />}
             </div>

@@ -64,6 +64,9 @@ function ForumSidebar() {
             const response = await createForum(data);
             if (response.data.EC === 0) {
                 message.success('Tạo bài viết thành công');
+                closeModal();
+                window.location.reload();
+
             }
         } catch (error) {
             console.error(error);

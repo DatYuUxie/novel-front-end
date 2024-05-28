@@ -64,7 +64,7 @@ function Chapter() {
     };
     const handleIncrease = () => {
         let newOrderNumber = parseInt(orderNumber) + 1;
-        if (newOrderNumber > setChapterList.length + 1) return;
+        if (newOrderNumber >= chapterList.length + 1) return;
         setOrderNumberInit(newOrderNumber);
         navigate(`/chapter/${bookID}/${newOrderNumber}`);
     };
@@ -72,6 +72,8 @@ function Chapter() {
     const getChapter = async (bookID, orderNumberInit) => {
         try {
             const response = await getChapterbyId(bookID, orderNumberInit);
+            console.log('response.data.DT', response.data.DT);
+
             setChapter(response.data.DT);
         } catch (error) {
             console.log('Failed to fetch chapter data:', error);
@@ -184,7 +186,7 @@ function Chapter() {
                         leftIcon={<FontAwesomeIcon icon={faClock} />}
                         style={{ backgroundColor: backgroundColor, color: textColor }}
                     >
-                        20:20 1-1-2023
+                        {new Date(chapter.createdAt).toLocaleDateString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
                     </Button>
                 </div>
 

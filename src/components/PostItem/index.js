@@ -26,7 +26,7 @@ function PostItem({ data }) {
                         <h3 className={cx('name')}>{data.title}</h3>
                     </Link>
                     <Button primary2 className={cx('tag')}>
-                        Bàn luận truyện
+                    {data.tag}
                     </Button>
                 </div>
                 <p className={cx('des')}>{data.content}</p>

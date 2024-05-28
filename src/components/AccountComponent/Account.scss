@@ -55,6 +55,7 @@
     input[type='url'],
     textarea,
     select {
+        font-family: var(--font-family);
         background: rgba(255, 255, 255, 0.1);
         border: solid 1px #e5e5e5;
         border-radius: 10px;

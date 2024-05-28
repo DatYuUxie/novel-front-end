@@ -148,6 +148,12 @@ function EditNovel() {
                                     <option value="">Chọn thể loại sáng tác</option>
                                     <option value="Tiên hiệp">Tiên hiệp</option>
                                     <option value="Quân sự">Quân sự</option>
+                                    <option value="Ngôn tình">Ngôn tình</option>
+                                    <option value="Kì ảo">Kì ảo</option>
+                                    <option value="Lịch sử">Lịch sử</option>
+                                    <option value="Huyền huyễn">Huyền huyễn</option>
+                                    <option value="Khoa học">Khoa học</option>
+                                    <option value="Đô thị">Đô thị</option>
                                 </select>
 
                                 <label htmlFor="author" style={{ display: 'flex' }}>

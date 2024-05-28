@@ -36,7 +36,14 @@ function ThreadComponent({ data }) {
                 </p>
             </div>
             <h1 className={cx('title')}>{data.title}</h1>
-            <p className={cx('content')}>{data.content}</p>
+            <p className={cx('content')}>
+                {data.content &&
+                    data.content.split('\n').map((paragraph, index) => (
+                        <p className={cx('paragraph1')} key={index}>
+                            {paragraph}
+                        </p>
+                    ))}
+            </p>
             <div className={cx('action')}>
                 <FontAwesomeIcon icon={faThumbsUp} className={cx('icon')} />
                 <FontAwesomeIcon icon={faCommenting} className={cx('icon')} />

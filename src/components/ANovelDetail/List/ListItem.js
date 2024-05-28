@@ -20,7 +20,9 @@ function ListItem({ chapter }) {
     return (
         <div className={cx('padding-item', responsive)}>
             <div className={cx('item', evenNumber && item2)}>
-                <p>{chapter.orderNumber}</p>
+                <div className={cx('number')}>
+                    <p>{chapter.orderNumber}</p>
+                </div>
 
                 <div className={cx('item-content')}>
                     <div className={cx('gr-row')}>

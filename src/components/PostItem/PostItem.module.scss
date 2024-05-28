@@ -57,9 +57,9 @@
             }
             .name {
                 cursor: pointer;
-
                 overflow: hidden;
                 text-overflow: ellipsis;
+                width: 600px;
 
                 white-space-collapse: collapse;
                 text-wrap: nowrap;

@@ -1,11 +1,12 @@
 import classNames from 'classnames/bind';
 import styles from './NewUpdate.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function UpdateItem({ data }) {
     return (
-        <div className={cx('container-item')}>
+        <Link to={`/book/${data.bookID}`} className={cx('container-item')}>
             <div className={cx('cover-img')}>
                 <img src={data.poster} alt="cover-img" className={cx('img')} />
             </div>
@@ -14,7 +15,7 @@ function UpdateItem({ data }) {
                 <p className={cx('novel-des')}>{data.description}</p>
                 <h5 className={cx('type')}>#{data.tag}</h5>
             </div>
-        </div>
+        </Link>
     );
 }
 

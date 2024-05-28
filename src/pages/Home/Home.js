@@ -60,18 +60,15 @@ function Home() {
         if (user.isAuthenticated) {
             try {
                 const response = await getBookshelf(user.account.userID);
-                console.log('user.account.userId', user.account);
+                const data = response.data.DT.map((book) => ({
+                    bookID: book.bookID,
+                    poster: book.poster,
+                    bookName: book.bookName,
+                    ratting: book.ratting,
+                    tag: book.tag,
+                    description: book.description,
+                }));
 
-                const data = response.data.DT.flatMap((list) =>
-                    list.Books.map((book) => ({
-                        bookID: book.bookID,
-                        poster: book.poster,
-                        bookName: book.bookName,
-                        ratting: book.ratting,
-                        tag: book.tag,
-                        desciption: book.desciption,
-                    })),
-                );
                 setLibrary(data);
                 console.log('data', data);
             } catch (error) {
@@ -104,7 +101,7 @@ function Home() {
 
                     <div className={cx('continued')}>
                         {library.map((item, index) => {
-                            return <NovelItem data={item} library/>;
+                            return <NovelItem data={item} library />;
                         })}
                     </div>
                 </div>
