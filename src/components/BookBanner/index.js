@@ -58,9 +58,6 @@ function BookBanner({ bookID }) {
     const [sendGift, setSendGift] = useState({});
     const [coin, setCoin] = useState(0);
 
-    useEffect(() => {
-        setSendGift({ gift, bookID: +bookID, userID: user.account.userID });
-    }, [gift]);
     const handleSendGift = async () => {
         try {
             console.log('sendGift: ', sendGift);
@@ -81,6 +78,7 @@ function BookBanner({ bookID }) {
             const res = await getCoin(user.account.userID);
             if (res && res.data && res.data.DT) {
                 setCoin(res.data.DT);
+                console.log(res.data.DT);
             }
         } catch (error) {
             console.log(error);
@@ -114,6 +112,9 @@ function BookBanner({ bookID }) {
     const handleGiftClick = (coin, index) => {
         setGift(coin);
         setGiftIndex(index);
+        setSendGift({ gift: coin, bookID: +bookID, userID: user.account.userID });
+
+        console.log("coin",coin)
     };
     // Catch Rating value
     const bookByID = async () => {
