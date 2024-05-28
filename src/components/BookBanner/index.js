@@ -10,6 +10,7 @@ import { UserContext } from '../../context/UserContext';
 import Button from '../Button';
 import styles from './BookBanner.module.scss';
 import GiftCard from './GiftCard';
+import { getCoin } from '../../api/api';
 
 const cx = classNames.bind(styles);
 
@@ -72,6 +73,20 @@ function BookBanner({ bookID }) {
             console.log(error);
         }
     };
+    const [coin, setCoin] = useState(0);
+    const getCoinUser = async () => {
+        try {
+            const res = await getCoin(user.account.userID);
+            if (res && res.data && res.data.DT) {
+                setCoin(res.data.DT);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getCoinUser();
+    }, []);
     const handleVote = async () => {
         try {
             let res = await voteBook(bookID);
@@ -195,7 +210,7 @@ function BookBanner({ bookID }) {
                             fontSize: '16px',
                         }}
                     >
-                        Coin của bạn: {user.account.coin}
+                        Coin của bạn: {coin}
                         <img crossOrigin="anonymous" className="dib" width="40" height="40" alt="coins" src={coin1} />
                     </div>,
                 ]}
