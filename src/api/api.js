@@ -141,6 +141,13 @@ const addToBookshelf = async (data) => {
         console.error(error);
     }
 };
+const deleteBookInBookshelf = async (data) => {
+    try {
+        return axios.delete(`/api/v1/bookshelf/delete`, { data: data });
+    } catch (error) {
+        console.error(error);
+    }
+};
 const getBookshelf = async (id) => {
     try {
         return axios.get(`/api/v1/bookshelf/read/${id}`);
@@ -343,4 +350,5 @@ export {
     getAllPayments,
     giveCoupon,
     voteBook,
+    deleteBookInBookshelf,
 };
