@@ -3,8 +3,7 @@ function IsValidContent(text) {
     const linkRegex = /(http|https):\/\/[^\s]+/gi;
 
     // Biểu thức chính quy để kiểm tra từ tục tỉu
-    const obsceneWords = ['tục', 'tỉu', 'lờ', 'đụ', 'cc', 'đm', 'đmm', 'duma'];
-    // const obsceneWords = ['tục duma'];
+    const obsceneWords = ['ffff'];
 
     const obsceneRegex = new RegExp(obsceneWords.join('|'), 'gi');
 
