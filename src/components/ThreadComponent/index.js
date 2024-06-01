@@ -1,16 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommenting, faThumbsUp, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import Comments from '../BookContent/Comments';
-import Modal from 'react-modal';
-import { Reply } from '../../assets/icon';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames/bind';
-import styles from './ThreadComponent.module.scss';
-import { Dropdown, Space } from 'antd';
-import Button from '../Button';
+import { faCommenting, faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Dropdown, message, Space } from 'antd';
+import classNames from 'classnames/bind';
+import { useContext, useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
+import { Reply } from '../../assets/icon';
 import { UserContext } from '../../context/UserContext';
-import { useContext, useState } from 'react';
+import Comments from '../BookContent/Comments';
+import Button from '../Button';
+import styles from './ThreadComponent.module.scss';
+import { updateForum, deleteForum } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 const customStyles = {
@@ -25,17 +27,30 @@ const customStyles = {
     },
 };
 Modal.setAppElement('#root');
-function ThreadComponent({ data }) {
+function ThreadComponent({ data, onDataUpdate }) {
+    const navigate = useNavigate();
     let { user } = useContext(UserContext);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [forum, setForum] = useState(data);
-    console.log('thread', user);
-    const handleEditThread = () => {
+    // console.log('thread', user);
+    useEffect(() => {
+        setForum(data);
+    }, [data]);
+    const handleEditThread = async () => {
         openModal();
         console.log('handleEditThread');
     };
-    const handleDeleteThread = () => {
-        console.log('handleDeleteThread');
+    const handleDeleteThread = async () => {
+        try {
+            let response = await deleteForum({ postID: data.postID, userID: data.userID });
+            console.log(response);
+            if (response && response.data && response.data.EC === 0) {
+                message.success(response.data.EM);
+                navigate('/forum');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const items = [
@@ -76,9 +91,15 @@ function ThreadComponent({ data }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            let response = await updateForum(forum);
+            if (response && response.data && response.data.EC === 0) {
+                message.success(response.data.EM);
+                onDataUpdate();
+            }
         } catch (error) {
             console.error(error);
         }
+        setIsOpen(false);
     };
 
     function openModal() {

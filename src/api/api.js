@@ -193,6 +193,22 @@ const getForumByForumId = async (forumID) => {
         console.error(error);
     }
 };
+const updateForum = async (data) => {
+    try {
+        return axios.put('/api/v1/forum/update', data);
+    } catch (error) {
+        console.error(error);
+        throw new Error(error);
+    }
+};
+const deleteForum = async (data) => {
+    try {
+        return axios.delete('/api/v1/forum/delete', { data: data });
+    } catch (error) {
+        console.error(error);
+        throw new Error(error);
+    }
+};
 
 // ===========   chapter api   ===========
 const getChapterbyBookId = async (id) => {
@@ -360,4 +376,6 @@ export {
     voteBook,
     deleteBookInBookshelf,
     getCoin,
+    updateForum,
+    deleteForum,
 };

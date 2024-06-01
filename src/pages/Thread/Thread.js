@@ -19,6 +19,9 @@ function Thread() {
             console.log(error);
         }
     };
+    const handleDataUpdate = () => {
+        fetchForum();
+    };
     useEffect(() => {
         fetchForum();
     }, []);
@@ -27,7 +30,7 @@ function Thread() {
             <div className={cx('container')}>
                 <ForumSidebar />
                 <div className={cx('content')}>
-                    <ThreadComponent data={forum} />
+                    <ThreadComponent data={forum} onDataUpdate={handleDataUpdate} />
                 </div>
             </div>
         </>
